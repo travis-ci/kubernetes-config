@@ -18,6 +18,8 @@ spec:
         app: worker
         env: staging-com
         version: v4.6.2
+      annotations:
+        kubernetes.io/change-cause: Backout changes around rolling update
     spec:
       containers:
       - name: worker-com
