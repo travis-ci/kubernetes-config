@@ -4,7 +4,8 @@ MAKE_SECRET ?= $(TOP)/bin/make-secret
 
 SECRETS_FILES := \
 	secrets/worker-org.yaml \
-	secrets/jupiter-brain-org.yaml
+	secrets/jupiter-brain-org.yaml \
+	secrets/travis-vm-ssh-key.yaml
 
 .PHONY: clean
 clean:
@@ -20,3 +21,7 @@ secrets/worker-org.yaml:
 secrets/jupiter-brain-org.yaml:
 	mkdir -p secrets
 	$(TRVS) generate-config -f yaml jupiter-brain staging-1 | $(MAKE_SECRET) -n jupiter-brain-org -p JUPITER_BRAIN > $@
+
+secrets/travis-vm-ssh-key.yaml:
+	mkdir -p secrets
+	$(MAKE_SECRET) -n travis-vm-ssh-key -k travis-vm-ssh-key $$TRAVIS_KEYCHAIN_DIR/travis-keychain/macstadium/travis-vm-ssh-key > $@
