@@ -8,6 +8,7 @@ SECRETS_FILES := \
 	secrets/jupiter-brain-org.yaml \
 	secrets/jupiter-brain-com.yaml \
 	secrets/vsphere-monitor.yaml \
+	secrets/vsphere-janitor.yaml \
 	secrets/travis-vm-ssh-key.yaml
 
 .PHONY: clean
@@ -36,6 +37,10 @@ secrets/jupiter-brain-com.yaml:
 secrets/vsphere-monitor.yaml:
 	mkdir -p secrets
 	$(TRVS) generate-config -f yaml vsphere-monitor common-1 | $(MAKE_SECRET) -n vsphere-monitor -p VSPHERE_MONITOR > $@
+
+secrets/vsphere-janitor.yaml:
+	mkdir -p secrets
+	$(TRVS) generate-config -f yaml vsphere-janitor staging-1 | $(MAKE_SECRET) -n vsphere-janitor -p VSPHERE_JANITOR > $@
 
 secrets/travis-vm-ssh-key.yaml:
 	mkdir -p secrets
