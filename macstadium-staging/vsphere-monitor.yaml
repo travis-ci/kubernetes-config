@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vsphere-monitor
+  labels:
+    app: vsphere-monitor
+    env: staging
+spec:
+  selector:
+    matchLabels:
+      app: vsphere-monitor
+      env: staging
+  template:
+    metadata:
+      labels:
+        app: vsphere-monitor
+        env: staging
+        version: 7df7dc8
+    spec:
+      containers:
+      - name: vsphere-monitor
+        image: travisci/vsphere-monitor:7df7dc8
+        envFrom:
+        - secretRef:
+            name: vsphere-monitor
