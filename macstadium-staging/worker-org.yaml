@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-org
+  labels:
+    app: worker
+    env: staging-org
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: worker
+      env: staging-org
+  template:
+    metadata:
+      labels:
+        app: worker
+        env: staging-org
+        version: v4.6.2
+    spec:
+      containers:
+      - name: worker-org
+        image: travisci/worker:v4.6.2
+        env:
+        - name: TRAVIS_WORKER_TRAVIS_SITE
+          value: org
+        - name: TRAVIS_WORKER_POOL_SIZE
+          value: "2"
+        - name: JUPITER_BRAIN_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: jupiter-brain-org
+              key: JUPITER_BRAIN_AUTH_TOKEN
+        - name: TRAVIS_WORKER_JUPITERBRAIN_ENDPOINT
+          value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@jupiter-brain-org/
+        envFrom:
+        - configMapRef:
+            name: worker-common
+        - secretRef:
+            name: worker-org
+        volumeMounts:
+        - name: travis-vm-ssh-key
+          mountPath: "/etc/secret"
+          readOnly: true
+      volumes:
+      - name: travis-vm-ssh-key
+        secret:
+          secretName: travis-vm-ssh-key
+      terminationGracePeriodSeconds: 7200
