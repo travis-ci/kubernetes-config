@@ -6,14 +6,12 @@ metadata:
   labels:
     app: jupiter-brain
     env: staging-org
-    version: 361723f
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: jupiter-brain
       env: staging-org
-      version: 361723f
   template:
     metadata:
       labels:
@@ -23,7 +21,7 @@ spec:
     spec:
       containers:
       - name: jupiter-brain-org
-        image: travisci/jupiter-brain:361723f
+        image: travisci/jupiter-brain:9bb7981
         env:
         - name: JUPITER_BRAIN_ADDR
           value: "0.0.0.0:8080"
