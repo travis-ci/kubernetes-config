@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-com
+  labels:
+    app: worker
+    env: staging-com
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: worker
+      env: staging-com
+  template:
+    metadata:
+      labels:
+        app: worker
+        env: staging-com
+        version: v4.6.2
+    spec:
+      containers:
+      - name: worker-com
+        image: travisci/worker:v4.6.2
+        env:
+        - name: TRAVIS_WORKER_TRAVIS_SITE
+          value: com
+        - name: TRAVIS_WORKER_POOL_SIZE
+          value: "2"
+        - name: JUPITER_BRAIN_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: jupiter-brain-com
+              key: JUPITER_BRAIN_AUTH_TOKEN
+        - name: TRAVIS_WORKER_JUPITERBRAIN_ENDPOINT
+          value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@jupiter-brain-com/
+        envFrom:
+        - configMapRef:
+            name: worker-common
+        - secretRef:
+            name: worker-com
+        volumeMounts:
+        - name: travis-vm-ssh-key
+          mountPath: "/etc/secret"
+          readOnly: true
+      volumes:
+      - name: travis-vm-ssh-key
+        secret:
+          secretName: travis-vm-ssh-key
+      terminationGracePeriodSeconds: 7200
+  strategy:
+    rollingUpdate:
+      # We can probably handle extra jobs while a worker is shutting down,
+      # so allow an extra worker to be brought up while one is being shutdown.
+      maxUnavailable: 0
+      maxSurge: 1
