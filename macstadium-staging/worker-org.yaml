@@ -48,3 +48,9 @@ spec:
         secret:
           secretName: travis-vm-ssh-key
       terminationGracePeriodSeconds: 7200
+  strategy:
+    rollingUpdate:
+      # We can probably handle extra jobs while a worker is shutting down,
+      # so allow an extra worker to be brought up while one is being shutdown.
+      maxUnavailable: 0
+      maxSurge: 1
