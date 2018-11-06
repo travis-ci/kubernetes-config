@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       annotations:
-        kubernetes.io/change-cause: "Added librato source variable"
+        kubernetes.io/change-cause: Use pod name and namespace for librato source
       labels:
         app: vsphere-janitor
         env: staging
@@ -24,8 +24,16 @@ spec:
       - name: vsphere-janitor
         image: travisci/vsphere-janitor:v0.1.0-43-g885b4d8
         env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         - name: VSPHERE_JANITOR_LIBRATO_SOURCE
-          value: vsphere-janitor-staging-1
+          value: $(POD_NAMESPACE)-$(POD_NAME)
         envFrom:
         - secretRef:
             name: vsphere-janitor

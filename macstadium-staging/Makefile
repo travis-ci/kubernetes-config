@@ -40,7 +40,7 @@ secrets/vsphere-monitor.yaml:
 
 secrets/vsphere-janitor.yaml:
 	mkdir -p secrets
-	$(TRVS) generate-config -f yaml vsphere-janitor staging-1 | $(MAKE_SECRET) -n vsphere-janitor -p VSPHERE_JANITOR > $@
+	$(TRVS) generate-config --pro -f yaml vsphere-janitor staging-1 | $(MAKE_SECRET) -n vsphere-janitor -p VSPHERE_JANITOR > $@
 
 secrets/travis-vm-ssh-key.yaml:
 	mkdir -p secrets
