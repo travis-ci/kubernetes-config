@@ -25,6 +25,16 @@ spec:
         env:
         - name: JUPITER_BRAIN_ADDR
           value: "0.0.0.0:8080"
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: JUPITER_BRAIN_LIBRATO_SOURCE
+          value: $(POD_NAMESPACE)-$(POD_NAME)
         envFrom:
           - secretRef:
               name: jupiter-brain-com
