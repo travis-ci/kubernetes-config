@@ -11,9 +11,9 @@ ENV_NAME = File.basename(Dir.pwd)
 
 desc "Apply changes to Kubernetes cluster"
 task apply: :plan do
-  sh "kubectl apply --context=#{ENV_NAME} -f build/secrets/"
-  sh "kubectl apply --context=#{ENV_NAME} -R -f build/modules/"
-  sh "kubectl apply --context=#{ENV_NAME} -f build/templates/"
+  sh "kubectl apply --context=#{ENV_NAME} -f build/secrets/" if File.exist?('build/secrets')
+  sh "kubectl apply --context=#{ENV_NAME} -R -f build/modules/" if File.exist?('build/modules')
+  sh "kubectl apply --context=#{ENV_NAME} -f build/templates/" if File.exist?('build/templates')
 end
 
 desc "Create files for resources to be applied"
@@ -84,7 +84,7 @@ CONFIG.fetch('modules', []).each do |name, mod|
   path = "../modules/#{mod['module']}"
 
   module_hash = {}
-  module_hash.merge!(YAML.safe_load(File.read("#{path}/defaults.yml")))
+  module_hash.merge!(YAML.safe_load(File.read("#{path}/defaults.yml")) || {})
   module_hash.merge!(mod)
   module_hash['name'] = name
 
