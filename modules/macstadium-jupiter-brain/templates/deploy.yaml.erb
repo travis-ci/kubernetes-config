@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jupiter-brain-org
+  name: <%= name %>
   labels:
     app: jupiter-brain
-    env: staging-org
+    env: <%= env %>
 spec:
-  replicas: 2
+  replicas: <%= replicas %>
   selector:
     matchLabels:
       app: jupiter-brain
-      env: staging-org
+      env: <%= env %>
   template:
     metadata:
       labels:
         app: jupiter-brain
-        env: staging-org
-        version: 361723f
+        env: <%= env %>
+        version: <%= version %>
     spec:
       containers:
-      - name: jupiter-brain-org
-        image: travisci/jupiter-brain:9bb7981
+      - name: <%= name %>
+        image: travisci/jupiter-brain:<%= version %>
         env:
         - name: JUPITER_BRAIN_ADDR
           value: "0.0.0.0:8080"
@@ -37,16 +37,4 @@ spec:
           value: $(POD_NAMESPACE)-$(POD_NAME)
         envFrom:
           - secretRef:
-              name: jupiter-brain-org
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jupiter-brain-org
-spec:
-  selector:
-    app: jupiter-brain
-    env: staging-org
-  ports:
-  - port: 80
-    targetPort: 8080
+              name: <%= name %>

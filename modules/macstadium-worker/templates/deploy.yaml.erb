@@ -2,40 +2,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: worker-com
+  name: <%= name %>
   labels:
     app: worker
-    env: staging-com
+    env: <%= env %>
 spec:
-  replicas: 4
+  replicas: <%= replicas %>
   selector:
     matchLabels:
       app: worker
-      env: staging-com
+      env: <%= env %>
   template:
     metadata:
       labels:
         app: worker
-        env: staging-com
-        version: v4.6.2
-      annotations:
-        kubernetes.io/change-cause: Use pod name and namespace for librato source
+        env: <%= env %>
+        version: <%= version %>
     spec:
       containers:
-      - name: worker-com
-        image: travisci/worker:v4.6.2
+      - name: <%= name %>
+        image: travisci/worker:<%= version %>
         env:
         - name: TRAVIS_WORKER_TRAVIS_SITE
-          value: com
+          value: <%= site %>
         - name: TRAVIS_WORKER_POOL_SIZE
-          value: "2"
+          value: "<%= pool_size %>"
         - name: JUPITER_BRAIN_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
-              name: jupiter-brain-com
+              name: <%= jupiter_brain_name %>
               key: JUPITER_BRAIN_AUTH_TOKEN
         - name: TRAVIS_WORKER_JUPITERBRAIN_ENDPOINT
-          value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@jupiter-brain-com/
+          value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@<%= jupiter_brain_name %>/
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -50,7 +48,7 @@ spec:
         - configMapRef:
             name: worker-common
         - secretRef:
-            name: worker-com
+            name: <%= name %>
         volumeMounts:
         - name: travis-vm-ssh-key
           mountPath: "/etc/secret"
