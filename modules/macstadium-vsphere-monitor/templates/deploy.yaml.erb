@@ -2,25 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vsphere-monitor
+  name: <%= name %>
   labels:
     app: vsphere-monitor
-    env: staging
+    env: <%= env %>
 spec:
   selector:
     matchLabels:
       app: vsphere-monitor
-      env: staging
+      env: <%= env %>
   template:
     metadata:
       labels:
         app: vsphere-monitor
-        env: staging
-        version: 7df7dc8
+        env: <%= env %>
+        version: <%= version %>
     spec:
       containers:
       - name: vsphere-monitor
-        image: travisci/vsphere-monitor:7df7dc8
+        image: travisci/vsphere-monitor:<%= version %>
         envFrom:
         - secretRef:
-            name: vsphere-monitor
+            name: <%= name %>

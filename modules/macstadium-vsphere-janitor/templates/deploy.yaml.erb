@@ -2,27 +2,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vsphere-janitor
+  name: <%= name %>
   labels:
     app: vsphere-janitor
-    env: staging
+    env: <%= env %>
 spec:
   selector:
     matchLabels:
       app: vsphere-janitor
-      env: staging
+      env: <%= env %>
   template:
     metadata:
-      annotations:
-        kubernetes.io/change-cause: Use pod name and namespace for librato source
       labels:
         app: vsphere-janitor
-        env: staging
-        version: v0.1.0-43-g885b4d8
+        env: <%= env %>
+        version: <%= version %>
     spec:
       containers:
       - name: vsphere-janitor
-        image: travisci/vsphere-janitor:v0.1.0-43-g885b4d8
+        image: travisci/vsphere-janitor:<%= version %>
         env:
         - name: POD_NAME
           valueFrom:
@@ -36,4 +34,4 @@ spec:
           value: $(POD_NAMESPACE)-$(POD_NAME)
         envFrom:
         - secretRef:
-            name: vsphere-janitor
+            name: <%= name %>
