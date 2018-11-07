@@ -62,6 +62,7 @@ end
 
 def make_secret_command(secret)
   cmd = "#{MAKE_SECRET} -n #{secret['name']} "
+  cmd += "--raw-keys " if secret['raw_keys']
   cmd += "-p #{secret['prefix']} " if secret['prefix']
   cmd += "-k #{secret['key']} " if secret['key']
   cmd += "> #{secret_filename(secret)}"
