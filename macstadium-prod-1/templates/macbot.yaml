@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: macbot
+  labels:
+    app: macbot
+    env: prod-1
+spec:
+  selector:
+    matchLabels:
+      app: macbot
+      env: prod-1
+  template:
+    metadata:
+      labels:
+        app: macbot
+        env: prod-1
+    spec:
+      containers:
+      - name: macbot
+        image: travisci/macbot
+        env:
+        - name: MACBOT_IMAGED_URL
+          value: http://imaged
+        envFrom:
+        - secretRef:
+            name: macbot

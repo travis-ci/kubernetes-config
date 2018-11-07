@@ -63,6 +63,7 @@ end
 def make_secret_command(secret)
   cmd = "#{MAKE_SECRET} -n #{secret['name']} "
   cmd += "-p #{secret['prefix']} " if secret['prefix']
+  cmd += "-k #{secret['key']} " if secret['key']
   cmd += "> #{secret_filename(secret)}"
   cmd
 end
