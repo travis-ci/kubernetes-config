@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: macbot
-        image: travisci/macbot:v1.1.2
+        image: travisci/macbot:v1.1.2-1-g2bc84b6
         env:
         - name: MACBOT_IMAGED_URL
           value: http://imaged
