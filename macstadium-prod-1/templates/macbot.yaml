@@ -23,6 +23,10 @@ spec:
         env:
         - name: MACBOT_IMAGED_URL
           value: http://imaged
+        - name: MACBOT_JOB_BOARD_PRODUCTION_URL
+          value: https://job-board-production.herokuapp.com
+        - name: MACBOT_JOB_BOARD_STAGING_URL
+          value: https://job-board-staging.herokuapp.com
         envFrom:
         - secretRef:
             name: macbot
