@@ -27,6 +27,7 @@ spec:
           value: <%= site %>
         - name: TRAVIS_WORKER_POOL_SIZE
           value: "<%= pool_size %>"
+
         - name: JUPITER_BRAIN_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
@@ -34,6 +35,7 @@ spec:
               key: JUPITER_BRAIN_AUTH_TOKEN
         - name: TRAVIS_WORKER_JUPITERBRAIN_ENDPOINT
           value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@<%= jupiter_brain_name %>/
+
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -44,6 +46,14 @@ spec:
               fieldPath: metadata.namespace
         - name: TRAVIS_WORKER_LIBRATO_SOURCE
           value: $(POD_NAMESPACE)-$(POD_NAME)
+
+        # The worker secret will have these prefixed with TRAVIS_WORKER,
+        # but the AWS library wants these variable names instead.
+        - name: AWS_ACCESS_KEY_ID
+          value: $(TRAVIS_WORKER_AWS_ACCESS_KEY_ID)
+        - name: AWS_SECRET_ACCESS_KEY
+          value: $(TRAVIS_WORKER_AWS_SECRET_ACCESS_KEY)
+
         envFrom:
         - configMapRef:
             name: worker-common
