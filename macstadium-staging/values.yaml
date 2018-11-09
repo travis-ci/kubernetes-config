@@ -1,0 +1,25 @@
+# Default values for macstadium-staging.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+worker-org:
+  replicaCount: 4
+  site: org
+  poolSize: 2
+  jupiterBrainName: jupiter-brain-org
+  jupiterBrainSecret: jupiter-brain-org
+  secretName: worker-org
+
+jupiter-brain-org:
+  secretName: jupiter-brain-org
+
+worker-com:
+  replicaCount: 4
+  site: com
+  poolSize: 2
+  jupiterBrainName: jupiter-brain-com
+  jupiterBrainSecret: jupiter-brain-com
+  secretName: worker-com
+
+jupiter-brain-com:
+  secretName: jupiter-brain-com

@@ -1,0 +1,9 @@
+dependencies:
+- name: macstadium-worker
+  repository: file://../charts/macstadium-worker
+  version: 0.1.0
+- name: macstadium-jupiter-brain
+  repository: file://../charts/macstadium-jupiter-brain
+  version: 0.1.0
+digest: sha256:943d30846d9b3bdfd1b05f54f36816d100a7241db7bf91ae32abe8451d1472e2
+generated: 2018-11-09T12:57:54.57553-06:00
