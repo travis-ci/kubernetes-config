@@ -11,5 +11,8 @@ dependencies:
 - name: macstadium-jupiter-brain
   repository: file://../charts/macstadium-jupiter-brain
   version: 0.1.0
-digest: sha256:2a9040a92a2aabe9f9403b4ddd28a754dea699f89e666dc16f926be35e60a5a3
-generated: 2018-11-11T19:58:49.540235-06:00
+- name: vsphere-monitor
+  repository: file://../charts/vsphere-monitor
+  version: 0.1.0
+digest: sha256:2e02987b73d19360af73e5bd9bf4dc2380986bddbef22ca1bf04752e45c5580c
+generated: 2018-11-11T20:51:51.996873-06:00

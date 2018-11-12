@@ -15,3 +15,6 @@ dependencies:
   version: "0.1.0"
   repository: "file://../charts/macstadium-jupiter-brain"
   alias: jupiter-brain-com
+- name: vsphere-monitor
+  version: "0.1.0"
+  repository: "file://../charts/vsphere-monitor"

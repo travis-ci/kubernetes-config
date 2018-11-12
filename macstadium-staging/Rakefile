@@ -6,3 +6,7 @@ task :apply do
   sh "helm dep update"
   sh "helm upgrade --install --kube-context=#{context_name} #{RELEASE_NAME} ."
 end
+
+task :status do
+  sh "helm status #{RELEASE_NAME}"
+end

@@ -22,3 +22,6 @@ worker-com:
 jupiter-brain-com:
   secretEnv: staging-1
   pro: true
+
+vsphere-monitor:
+  secretEnv: common-1
