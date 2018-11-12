@@ -25,3 +25,6 @@ jupiter-brain-com:
 
 vsphere-monitor:
   secretEnv: common-1
+
+vsphere-janitor:
+  secretEnv: staging-1
