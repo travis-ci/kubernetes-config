@@ -7,19 +7,18 @@ worker-org:
   site: org
   poolSize: 2
   jupiterBrainName: jupiter-brain-org
-  jupiterBrainSecret: jupiter-brain-org
-  secretName: worker-org
+  secretEnv: staging-common
 
 jupiter-brain-org:
-  secretName: jupiter-brain-org
+  secretEnv: staging-1
 
 worker-com:
   replicaCount: 4
   site: com
   poolSize: 2
   jupiterBrainName: jupiter-brain-com
-  jupiterBrainSecret: jupiter-brain-com
-  secretName: worker-com
+  secretEnv: staging-common
 
 jupiter-brain-com:
-  secretName: jupiter-brain-com
+  secretEnv: staging-1
+  pro: true

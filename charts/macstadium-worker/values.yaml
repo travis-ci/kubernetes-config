@@ -12,6 +12,9 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
+# The environment to pull configuration from in the keychain
+secretEnv: ""
+
 # Which travis-ci site this worker is for ("org" or "com")
 site: ""
 

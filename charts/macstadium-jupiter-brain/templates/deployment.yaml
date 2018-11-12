@@ -42,4 +42,4 @@ spec:
           value: $(POD_NAMESPACE)-$(POD_NAME)
         envFrom:
         - secretRef:
-            name: {{ .Values.secretName }}
+            name: {{ include "jupiter-brain.fullname" . }}

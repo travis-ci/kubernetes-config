@@ -28,7 +28,7 @@ spec:
         - name: JUPITER_BRAIN_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.jupiterBrainSecret }}
+              name: {{ include "macstadium-worker.jupiterbrainname" . }}
               key: JUPITER_BRAIN_AUTH_TOKEN
         - name: TRAVIS_WORKER_JUPITERBRAIN_ENDPOINT
           value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@{{ include "macstadium-worker.jupiterbrainname" . }}/
@@ -56,9 +56,9 @@ spec:
 
         envFrom:
         - configMapRef:
-            name: {{ include "macstadium-worker.fullname" . }}
+            name: {{ template "macstadium-worker.fullname" . }}
         - secretRef:
-            name: {{ .Values.secretName }}
+            name: {{ template "macstadium-worker.fullname" . }}
         volumeMounts:
         - name: travis-vm-ssh-key
           mountPath: "/etc/secret"
@@ -66,7 +66,7 @@ spec:
       volumes:
       - name: travis-vm-ssh-key
         secret:
-          secretName: {{ .Values.sshKeySecretName }}
+          secretName: {{ template "macstadium-worker.fullname" . }}-vm-key
       terminationGracePeriodSeconds: 7200
   strategy:
     rollingUpdate:
