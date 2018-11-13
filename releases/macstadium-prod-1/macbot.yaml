@@ -1,0 +1,10 @@
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: macbot
+  namespace: macstadium-prod-1
+  labels:
+    chart: macbot
+spec:
+  chartGitPath: macbot
+  releaseName: macbot
