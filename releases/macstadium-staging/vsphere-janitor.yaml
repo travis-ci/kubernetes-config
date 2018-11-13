@@ -1,0 +1,12 @@
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: vsphere-janitor
+  namespace: macstadium-staging
+  labels:
+    chart: vsphere-janitor
+spec:
+  chartGitPath: vsphere-janitor
+  releaseName: vsphere-janitor
+  values:
+    secretEnv: staging-1

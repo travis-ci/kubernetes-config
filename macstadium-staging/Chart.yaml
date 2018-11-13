@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: The staging environment for the Travis CI MacStadium infrastructure
-name: macstadium-staging
-version: 0.1.0

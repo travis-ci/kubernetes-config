@@ -6,60 +6,79 @@ This repo contains configuration for all of the Kubernetes services that we run 
 
 This repo does not provision the actual Kubernetes cluster that the services run on. For that, see the [terraform-config](https://github.com/travis-ci/terraform-config) repo.
 
-## Requirements
-
-* kubectl
-* Ruby 2.2 or higher (to make sure trvs functions correctly)
-
 ## Organization
 
-This repository is organized very similarly to our `terraform-config` repository. Different environments are separated into top-level directories with names matching the Terraform graph directory that provisions the cluster (e.g. `macstadium-staging`).
+This repository is organized into three important directories:
 
-Each environment directory contains the following:
+* `charts`
+* `releases`
+* `shared`
 
-* `Rakefile`, which pulls in the common `rake` tasks from `rakelib/environment.rb`
-* `env.yml`: an environment configuration file that defines modules to import and secrets to generate
-* `templates/` (optional): a directory containing static `.yaml` files defining Kubernetes resources specific to the environment
+### Charts
 
-There is a top-level modules directory that contains reusable sets of resources that can be customized for the environment where they are used.
+The `charts` directory contains various [Helm](https://helm.sh) charts for the various services we deploy in Kubernetes. Each chart is parameterized so that it can be customized as needed and reused between environments.
+
+If you need to make changes to how a service is deployed _everywhere it is deployed_, that change should go in the chart.
+
+You can create a new chart using the `helm create` command:
+
+``` sh
+$ helm create charts/my-new-service
+```
+
+### Releases
+
+The `releases` directory has subdirectories for each environment that we deploy to (e.g. `macstadium-staging`). The name should match up to the Terraform graph directory that provisions the cluster.
+
+Inside a particular environment's releases directory are YAML files for the different Helm releases that will be deployed to the environment. Each chart deployed to an environment will have its own release where it can be customized as needed.
+
+For example, to deploy jupiter-brain for travis-ci.org in the MacStadium staging environment, we have the following release resource:
+
+``` yaml
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: jupiter-brain-org
+  namespace: macstadium-staging
+  labels:
+    chart: jupiter-brain
+spec:
+  chartGitPath: jupiter-brain
+  releaseName: jupiter-brain-org
+  values:
+    secretEnv: staging-1
+```
+
+A few things to note:
+
+* `metadata.name` should match the filename, and ideally should match `spec.releaseName` too.
+* `metadata.labels.chart` must match `spec.chartGitPath`, and corresponds to the path to the chart relative to the `charts/` directory.
+* `spec.values` can and should be used to override the configuration of the chart for the particular release.
+* `releaseName` should match the name of the chart, but may also include differentiators when the same chart is being deployed multiple times in the same namespace.
 
 ## Set-up
 
-Services are deployed to Kubernetes via `kubectl apply`. The build process expects your default `KUBECONFIG` file to have a context named the same as the directory whose services you are trying to deploy.
+Deploying releases is done automatically in the cluster using [Flux](https://github.com/weaveworks/flux). No setup is needed on your local machine to do deploys.
+
+However, you may want to inspect the state of the cluster from your machine. You can use the [Kubernetes Dashboard](#kubernetes-dashboard) for this, or you can set up a `kubectl` context to point at the right cluster and namespace.
 
 You can configure such a context automatically from the `terraform-config` repo by running `make context` from the appropriate graph directory. This should only need to be done once per development machine, unless the cluster master has to be rebuilt for some reason.
 
 ## Usage
 
-This repo uses a `rake`-based build system to collect and generate the Kubernetes resources that will be applied.
+Deploying changes is as easy as `git push`ing to master!
 
-### Planning changes
+Existing environments should already have Flux set up (see `shared/install-flux.sh` for doing so in a new cluster). Flux as we use it comes in two pieces: `flux` and `flux-helm-operator`.
 
-To generate the .yaml files that will be applied for an environment, use `rake plan` from the environment directory:
+### flux
 
-```
-macstadium-staging$ rake plan
-```
+`flux` on its own just watches a Git repository, watches it for changes, and applies them to the cluster. In our clusters, `flux` is configured to only watch the `releases/<env>/` directory for the corresponding environment. This means it will automatically update the `FluxHelmRelease` resources that define which Helm charts should be deployed in the cluster.
 
-This will do the following steps:
+### flux-helm-operator
 
-* Generate Kubernetes secret resources based on secrets generated by `trvs`
-* Copy resources in `templates/` into the `build/` directory
-* Generate resources from any modules the environment uses by rendering the module's templates
+The `flux-helm-operator` does the rest of the work. It watches for changes in the `FluxHelmRelease` resources that are defined in the cluster and performs Helm upgrades of the corresponding charts as needed. It also watches for changes in the chart contents themselves.
 
-All of the resources for the environment can then be found in `build/`. You can inspect them if needed.
-
-### Applying changes
-
-To create and update the resources on the actual Kubernetes cluster, run `rake apply`:
-
-```
-macstadium-staging$ rake apply
-```
-
-This will first apply all of the secrets, then any module resources, and finally any environment-specific resources. The output from `kubectl` should indicate whether a given resource was changed or not.
-
-If you haven't already run `rake plan`, then the necessary resources will be generated when you `apply`.
+Together, these two components ensure that what is in Git always matches what is running in the Kubernetes.
 
 ## Kubernetes Dashboard
 
