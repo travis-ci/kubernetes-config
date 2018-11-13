@@ -1,0 +1,19 @@
+# Default values for macstadium-prod-1.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+worker-org:
+  # Eventually this should be:
+  # replicaCount: 8
+  replicaCount: 1
+  site: org
+  poolSize: 20
+  jupiterBrainName: jupiter-brain-org
+  secretEnv: production-common
+
+jupiter-brain-org:
+  secretEnv: production-1
+
+jupiter-brain-com:
+  secretEnv: production-1
+  pro: true

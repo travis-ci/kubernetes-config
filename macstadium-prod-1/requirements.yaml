@@ -1,0 +1,13 @@
+dependencies:
+- name: macstadium-worker
+  version: "0.1.0"
+  repository: "file://../charts/macstadium-worker"
+  alias: worker-org
+- name: jupiter-brain
+  version: "0.1.0"
+  repository: "file://../charts/jupiter-brain"
+  alias: jupiter-brain-org
+- name: jupiter-brain
+  version: "0.1.0"
+  repository: "file://../charts/jupiter-brain"
+  alias: jupiter-brain-com
