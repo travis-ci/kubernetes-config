@@ -1,0 +1,12 @@
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: jupiter-brain-org
+  namespace: macstadium-staging
+  labels:
+    chart: jupiter-brain
+spec:
+  chartGitPath: jupiter-brain
+  releaseName: jupiter-brain-org
+  values:
+    secretEnv: staging-1
