@@ -7,7 +7,6 @@ helm upgrade flux weaveworks/flux \
   --set rbac.create=true \
   --set helmOperator.create=true \
   --set git.url=ssh://git@github.com/travis-ci/kubernetes-config.git \
-  --set git.branch=mjm-flux \
   --set "git.path=releases/$NAMESPACE" \
   --set git.chartsPath=charts \
   --set git.pollInterval=1m \
