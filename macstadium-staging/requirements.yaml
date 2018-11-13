@@ -7,13 +7,13 @@ dependencies:
   version: "0.1.0"
   repository: "file://../charts/macstadium-worker"
   alias: worker-com
-- name: macstadium-jupiter-brain
+- name: jupiter-brain
   version: "0.1.0"
-  repository: "file://../charts/macstadium-jupiter-brain"
+  repository: "file://../charts/jupiter-brain"
   alias: jupiter-brain-org
-- name: macstadium-jupiter-brain
+- name: jupiter-brain
   version: "0.1.0"
-  repository: "file://../charts/macstadium-jupiter-brain"
+  repository: "file://../charts/jupiter-brain"
   alias: jupiter-brain-com
 - name: vsphere-monitor
   version: "0.1.0"

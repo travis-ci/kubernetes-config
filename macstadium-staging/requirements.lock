@@ -5,11 +5,11 @@ dependencies:
 - name: macstadium-worker
   repository: file://../charts/macstadium-worker
   version: 0.1.0
-- name: macstadium-jupiter-brain
-  repository: file://../charts/macstadium-jupiter-brain
+- name: jupiter-brain
+  repository: file://../charts/jupiter-brain
   version: 0.1.0
-- name: macstadium-jupiter-brain
-  repository: file://../charts/macstadium-jupiter-brain
+- name: jupiter-brain
+  repository: file://../charts/jupiter-brain
   version: 0.1.0
 - name: vsphere-monitor
   repository: file://../charts/vsphere-monitor
@@ -17,5 +17,5 @@ dependencies:
 - name: vsphere-janitor
   repository: file://../charts/vsphere-janitor
   version: 0.1.0
-digest: sha256:6d3b62e7203c2a681bc4e79c02805c8aafeafabcd964bb4999a534ababd76cbf
-generated: 2018-11-11T21:04:34.729102-06:00
+digest: sha256:964c20773994b1215badd0fac9bc76c084911e8674e56b1e83930764563e4f16
+generated: 2018-11-13T11:55:00.375594-06:00
