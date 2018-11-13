@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "imaged.fullname" . }}
+data:
+  IMAGED_TEMPLATES_URL: https://github.com/travis-ci/packer-templates-mac.git
+  IMAGED_ANSIBLE_SECRETS_FILE: /etc/secrets/ansible.yml

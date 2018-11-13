@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "macbot.fullname" . }}
+data:
+  MACBOT_IMAGED_URL: http://{{ include "imaged.fullname" . }}
+  MACBOT_JOB_BOARD_PRODUCTION_URL: https://job-board-production.herokuapp.com
+  MACBOT_JOB_BOARD_STAGING_URL: https://job-board-staging.herokuapp.com
