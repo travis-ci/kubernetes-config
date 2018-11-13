@@ -1,0 +1,16 @@
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: worker-org
+  namespace: macstadium-staging
+  labels:
+    chart: macstadium-worker
+spec:
+  chartGitPath: macstadium-worker
+  releaseName: worker-org
+  values:
+    replicaCount: 4
+    site: org
+    poolSize: 2
+    jupiterBrainName: jupiter-brain-org
+    secretEnv: staging-common
