@@ -1,3 +1,0 @@
----
-# NodePort to expose the dashboard service on.
-port: 31000
