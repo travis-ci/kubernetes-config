@@ -1,0 +1,9 @@
+language: ruby
+dist: xenial
+addons:
+  snaps:
+    - name: helm
+      classic: true
+branches:
+  except:
+    - flux-sync

@@ -1,3 +1,4 @@
+---
 apiVersion: helm.integrations.flux.weave.works/v1alpha2
 kind: FluxHelmRelease
 metadata:
@@ -14,6 +15,6 @@ spec:
   releaseName: macbot
   values:
     macbot:
-      image: travisci/macbot:v1.1.2-2-gf339d36
+      image: travisci/macbot:v1.1.2-3-gd335dcb
     imaged:
-      image: travisci/imaged:627afe9
+      image: travisci/imaged:v1.0.0
