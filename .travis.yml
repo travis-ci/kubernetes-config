@@ -1,6 +1,6 @@
 language: ruby
 dist: xenial
 addons:
-  snap:
+  snaps:
     - name: helm
       classic: true
