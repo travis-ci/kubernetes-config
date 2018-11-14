@@ -2,16 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-image:
-  repository: travisci/macbot
-  tag: v1.1.2-2-gf339d36
-  pullPolicy: IfNotPresent
+macbot:
+  image: travisci/macbot:v1.1.2-2-gf339d36
+  imagePullPolicy: IfNotPresent
 
 imaged:
-  image:
-    repository: travisci/imaged
-    tag: latest
-    pullPolicy: Always
+  image: travisci/imaged:627afe9
+  imagePullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""

@@ -25,8 +25,8 @@ spec:
             secretName: {{ include "imaged.fullname" . }}-ansible
       containers:
         - name: imaged
-          image: "{{ .Values.imaged.image.repository }}:{{ .Values.imaged.image.tag }}"
-          imagePullPolicy: {{ .Values.imaged.image.pullPolicy }}
+          image: "{{ .Values.imaged.image }}"
+          imagePullPolicy: {{ .Values.imaged.imagePullPolicy }}
           envFrom:
             - configMapRef:
                 name: {{ include "imaged.fullname" . }}

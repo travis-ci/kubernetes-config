@@ -5,7 +5,15 @@ metadata:
   namespace: macstadium-prod-1
   labels:
     chart: macbot
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.macbot: glob:*
+    flux.weave.works/tag.imaged: glob:*
 spec:
   chartGitPath: macbot
   releaseName: macbot
-  values: {}
+  values:
+    macbot:
+      image: travisci/macbot:v1.1.2-2-gf339d36
+    imaged:
+      image: travisci/imaged:627afe9

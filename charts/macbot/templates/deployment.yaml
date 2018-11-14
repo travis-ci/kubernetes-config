@@ -21,8 +21,8 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.macbot.image }}"
+          imagePullPolicy: {{ .Values.macbot.imagePullPolicy }}
           envFrom:
             - configMapRef:
                 name: {{ include "macbot.fullname" . }}
