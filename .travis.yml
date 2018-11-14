@@ -1,1 +1,5 @@
 language: ruby
+dist: xenial
+addons:
+  snap:
+    - helm
