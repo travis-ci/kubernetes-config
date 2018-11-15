@@ -1,0 +1,12 @@
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: statsd
+  namespace: kube-system
+  labels:
+    chart: statsd
+spec:
+  chartGitPath: statsd
+  releaseName: statsd
+  values:
+    secretEnv: macstadium_prod_1
