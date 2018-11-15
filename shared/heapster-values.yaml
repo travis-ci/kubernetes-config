@@ -1,7 +1,0 @@
-rbac:
-  create: true
-
-command:
-  - /heapster
-  - "--source=kubernetes.summary_api:https://kubernetes.default?kubeletHttps=true&kubeletPort=10250&insecure=true"
-  - "--sink=statsd:udp://statsd:8125?prefix=kubernetes.macstadium-staging&allowedLabels=container_name,namespace_name,pod_name,type,hostname,nodename"
