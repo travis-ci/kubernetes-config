@@ -1,0 +1,38 @@
+# The default version of this role in our cluster does not have the "nodes/stats"
+# resource available, so Heapster gets a 403 Forbidden when trying to get metrics
+# from nodes. We have to manually patch this to add that permission.
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    rbac.authorization.kubernetes.io/autoupdate: "true"
+  labels:
+    kubernetes.io/bootstrapping: rbac-defaults
+  name: system:heapster
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - events
+  - namespaces
+  - nodes
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - extensions
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - nodes/stats
+  verbs:
+  - get
