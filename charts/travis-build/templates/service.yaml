@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "travis-build.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "travis-build.name" . }}
+    helm.sh/chart: {{ include "travis-build.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "travis-build.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
