@@ -1,0 +1,7 @@
+# Default values for heapster.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+heapster:
+  rbac:
+    create: true
