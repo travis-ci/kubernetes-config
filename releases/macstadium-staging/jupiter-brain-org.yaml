@@ -10,3 +10,5 @@ spec:
   releaseName: jupiter-brain-org
   values:
     secretEnv: staging-1
+    honeycomb:
+      dataset: jb-requests-staging

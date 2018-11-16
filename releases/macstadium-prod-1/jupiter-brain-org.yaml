@@ -10,3 +10,6 @@ spec:
   releaseName: jupiter-brain-org
   values:
     secretEnv: production-1
+    honeycomb:
+      dataset: jb-requests
+      sampleRate: 10
