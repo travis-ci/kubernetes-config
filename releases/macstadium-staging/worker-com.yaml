@@ -10,7 +10,7 @@ spec:
   releaseName: worker-com
   values:
     image:
-      tag: v4.6.3
+      tag: v5.0.0
     replicaCount: 4
     site: com
     poolSize: 2
