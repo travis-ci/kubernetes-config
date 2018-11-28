@@ -11,3 +11,6 @@ spec:
   values:
     secretEnv: production-1
     pro: true
+    honeycomb:
+      dataset: jb-requests
+      sampleRate: 10

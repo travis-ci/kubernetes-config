@@ -15,6 +15,16 @@ fullnameOverride: ""
 secretEnv: ""
 pro: false
 
+concurrency:
+  create: 20
+  delete: 20
+
+requestTimeout: 5m
+
+honeycomb:
+  dataset: ""
+  sampleRate: 1
+
 service:
   type: ClusterIP
   port: 80

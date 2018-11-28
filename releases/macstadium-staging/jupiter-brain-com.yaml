@@ -11,3 +11,5 @@ spec:
   values:
     secretEnv: staging-1
     pro: true
+    honeycomb:
+      dataset: jb-requests-staging
