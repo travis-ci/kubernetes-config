@@ -9,7 +9,9 @@ spec:
   chartGitPath: jupiter-brain
   releaseName: jupiter-brain-org
   values:
-    secretEnv: production-1
+    trvs:
+      enabled: true
+      env: production-1
     honeycomb:
       dataset: jb-requests
       sampleRate: 10

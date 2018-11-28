@@ -30,3 +30,14 @@ Create chart name and version as used by the chart label.
 {{- define "jupiter-brain.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Use the fullname as the secret name unless a secretName has been provided.
+*/}}
+{{- define "jupiter-brain.secret" -}}
+{{- if .Values.secretName -}}
+{{- .Values.secretName -}}
+{{- else -}}
+{{- include "jupiter-brain.fullname" . }}
+{{- end -}}
+{{- end -}}

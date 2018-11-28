@@ -44,4 +44,4 @@ spec:
         - configMapRef:
             name: {{ template "jupiter-brain.fullname" . }}
         - secretRef:
-            name: {{ include "jupiter-brain.fullname" . }}
+            name: {{ include "jupiter-brain.secret" . }}
