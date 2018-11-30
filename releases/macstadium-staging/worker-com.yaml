@@ -18,7 +18,7 @@ spec:
       poolSize: 2
       totalJobs: 4 # this is artificially low for testing
       redis:
-        name: worker-redis
+        name: worker-redis-master
 
     jupiterBrainName: jupiter-brain-com
     secretEnv: staging-common

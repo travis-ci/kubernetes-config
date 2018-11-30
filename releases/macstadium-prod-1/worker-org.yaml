@@ -20,7 +20,7 @@ spec:
       poolSize: 20
       totalJobs: 20 # eventually 160ish
       redis:
-        name: worker-redis
+        name: worker-redis-master
 
     jupiterBrainName: jupiter-brain-org
     secretEnv: production-common
