@@ -9,6 +9,8 @@ spec:
   chartGitPath: jupiter-brain
   releaseName: jupiter-brain-org
   values:
-    secretEnv: staging-1
+    trvs:
+      enabled: true
+      env: staging-1
     honeycomb:
       dataset: jb-requests-staging
