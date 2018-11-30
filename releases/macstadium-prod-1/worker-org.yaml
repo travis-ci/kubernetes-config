@@ -15,6 +15,12 @@ spec:
     # replicaCount: 8
     replicaCount: 1
     site: org
-    poolSize: 20
+
+    concurrency:
+      poolSize: 20
+      totalJobs: 20 # eventually 160ish
+      redis:
+        name: worker-redis
+
     jupiterBrainName: jupiter-brain-org
     secretEnv: production-common

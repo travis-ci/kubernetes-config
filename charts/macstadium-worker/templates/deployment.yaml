@@ -46,6 +46,8 @@ spec:
           value: $(POD_NAMESPACE)-$(POD_NAME)
         - name: TRAVIS_WORKER_HOSTNAME
           value: $(POD_NAME).$(POD_NAMESPACE)
+        - name: TRAVIS_WORKER_CONCURRENT_JOBS_NAME
+          values: $(POD_NAME)
 
         # The worker secret will have these prefixed with TRAVIS_WORKER,
         # but the AWS library wants these variable names instead.
@@ -63,10 +65,16 @@ spec:
         - name: travis-vm-ssh-key
           mountPath: "/etc/secret"
           readOnly: true
+        - name: concurrent-jobs
+          mountPath: "/etc/worker"
+          readOnly: true
       volumes:
       - name: travis-vm-ssh-key
         secret:
           secretName: {{ template "macstadium-worker.fullname" . }}-vm-key
+      - name: concurrent-jobs
+        configMap:
+          name: {{ template "macstadium-worker.fullname" . }}-concurrency
       terminationGracePeriodSeconds: 7200
   strategy:
     rollingUpdate:

@@ -18,8 +18,15 @@ secretEnv: ""
 # Which travis-ci site this worker is for ("org" or "com")
 site: ""
 
-# How many concurrent jobs this worker can run
-poolSize: 2
+concurrency:
+  poolSize: 2
+
+  # The maximum number of jobs that should be able to run across all worker instances in this deployment
+  totalJobs: 10
+
+  redis:
+    # The service name of the Redis instance to connect to for tracking running jobs
+    name: ""
 
 # The AMQP queue to pull jobs from
 queue: builds.macstadium6

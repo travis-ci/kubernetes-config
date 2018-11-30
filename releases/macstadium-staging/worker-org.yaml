@@ -10,9 +10,15 @@ spec:
   releaseName: worker-org
   values:
     image:
-      tag: v5.0.0
+      tag: v5.1.0-7-g620b1f9
     replicaCount: 4
     site: org
-    poolSize: 2
+
+    concurrency:
+      poolSize: 2
+      totalJobs: 4 # this is artificially low for testing
+      redis:
+        name: worker-redis
+
     jupiterBrainName: jupiter-brain-org
     secretEnv: staging-common
