@@ -1,0 +1,8 @@
+redis:
+  cluster:
+    enabled: false
+  usePassword: false
+
+  master:
+    persistence:
+      enabled: false

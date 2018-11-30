@@ -1,0 +1,11 @@
+apiVersion: helm.integrations.flux.weave.works/v1alpha2
+kind: FluxHelmRelease
+metadata:
+  name: worker-redis
+  namespace: macstadium-staging
+  labels:
+    chart: redis
+spec:
+  chartGitPath: redis
+  releaseName: worker-redis
+  values: {}
