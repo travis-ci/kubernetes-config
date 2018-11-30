@@ -9,6 +9,7 @@ fi
 
 helm repo add weaveworks https://weaveworks.github.io/flux
 helm upgrade flux weaveworks/flux \
+  --version 0.4.0 \
   --install \
   --set rbac.create=true \
   --set helmOperator.create=true \

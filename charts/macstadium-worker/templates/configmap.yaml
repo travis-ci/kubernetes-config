@@ -29,6 +29,6 @@ data:
 
   {{- if .Values.concurrency.redis.name -}}
   TRAVIS_WORKER_CONCURRENT_JOBS_REDIS_URL: "redis://{{ .Values.concurrency.redis.name }}/"
-  TRAVIS_WORKER_CONCURRENT_JOBS_PREFIX: {{ include "macstadium-worker.fullname" }}
+  TRAVIS_WORKER_CONCURRENT_JOBS_PREFIX: {{ include "macstadium-worker.fullname" . }}
   TRAVIS_WORKER_CONCURRENT_JOBS_TOTAL_FILE: /etc/worker/total-concurrent-jobs
   {{- end -}}
