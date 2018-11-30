@@ -1,10 +1,12 @@
 #!/bin/bash
 
+GIT_URL="https://$GITHUB_TOKEN@github.com/travis-ci/kubernetes-config.git"
+
 merge_to_staging() {
   git fetch origin staging:staging
   git checkout staging
   git merge "$1"
-  git push origin staging
+  git push "$GIT_URL" staging
   git checkout -
 }
 
