@@ -15,6 +15,6 @@ spec:
   releaseName: macbot
   values:
     macbot:
-      image: travisci/macbot:v1.1.2-3-gd335dcb
+      image: travisci/macbot:v1.2.0
     imaged:
       image: travisci/imaged:v1.0.0
