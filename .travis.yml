@@ -4,6 +4,12 @@ addons:
   snaps:
     - name: helm
       classic: true
+
+after_success:
+  # Merge PRs or master branch updates into staging branch automatically
+  - ./shared/update-staging.sh
+
 branches:
   except:
     - flux-sync
+    - flux-write-check
