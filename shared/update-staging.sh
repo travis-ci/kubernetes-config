@@ -1,7 +1,8 @@
 #!/bin/bash
 
 merge_to_staging() {
-  git checkout staging
+  git fetch origin staging
+  git checkout -b staging origin/staging
   git merge "$1"
   git push origin staging
   git checkout -
