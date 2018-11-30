@@ -27,8 +27,8 @@ data:
   TRAVIS_WORKER_STARTUP_TIMEOUT: "8m"
   TRAVIS_WORKER_SCRIPT_UPLOAD_TIMEOUT: "6m"
 
-  {{- if .Values.redis.name -}}
-  TRAVIS_WORKER_CONCURRENT_JOBS_REDIS_URL: "redis://{{ .Values.redis.name }}/"
+  {{- if .Values.concurrency.redis.name -}}
+  TRAVIS_WORKER_CONCURRENT_JOBS_REDIS_URL: "redis://{{ .Values.concurrency.redis.name }}/"
   TRAVIS_WORKER_CONCURRENT_JOBS_PREFIX: {{ include "macstadium-worker.fullname" }}
   TRAVIS_WORKER_CONCURRENT_JOBS_TOTAL_FILE: /etc/worker/total-concurrent-jobs
   {{- end -}}
