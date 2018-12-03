@@ -1,6 +1,6 @@
 task default: %i[lint package]
 
-CHARTS = FileList["charts/*"]
+CHARTS = FileList["charts/*"].resolve
 
 task :lint do
   CHARTS.each do |chart|
@@ -12,7 +12,7 @@ task :package do
   mkdir_p "dist"
   Dir.chdir "dist" do
     CHARTS.each do |chart|
-      sh "helm package ../#{chart}"
+      sh "helm package -u ../#{chart}"
     end
     sh "helm repo index . --url https://travis-ci-helm-charts.storage.googleapis.com"
   end
