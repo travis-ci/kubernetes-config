@@ -5,6 +5,9 @@ addons:
   - name: helm
     classic: true
 
+after_install:
+  - helm init --client-only
+
 deploy:
   provider: gcs
   access_key_id: GOOG3U3NOXL7UQ45WWKCPNWY
