@@ -8,13 +8,16 @@ addons:
 before_script:
   - helm init --client-only
 
+before_deploy:
+  - ls dist
+
 deploy:
   provider: gcs
   access_key_id: GOOG3U3NOXL7UQ45WWKCPNWY
   secret_access_key:
     secure: j1XyOSMyZicV1ucDjyZB9p7iGpW+O7Na8WqnkjH5dno2/td4dLIYoEfIhVmDoDP4aQQ9iaRMgli99PdHvtqiLsyXWR+vaMAHuRMbEXHDYsCgtGlW+rW8FY8HO3i18E1PJYqODng89+NgvvVAjKX4cieGn6GDkVgchcUwEs1sRu2tAUw5ty4Vghs5UWbbWRrTlZxB0WGWURX/d+SFWgKbQUeRdMdkkoFovOULblDGs7bAp3YRQeLmpNci++ydcJHO2Q9xdfRfqS9mzaesOK+ALkKXIHDuu6/eBZiV4GSJrSuVN3DlGQKR23FcVKHXyWqY5FD4tMpLcTq35etF5d1CMm2ksEMlbp0GSQSH9ZuGY2+nTwAPIaytIGL7IPu2CCf+SOBMIb9Dj56xIxilpD23vbiXOPNYZPeOdLYpRsPlTXP3vevQ2T9svXrT6Ez2h/4DbirnoCb7gCWVCmPSgVfk2FdyO4PExHXiHxQXVcwGxK30AG222q8ykmy0W/YVgYy+qguZKNf8Z56OlHDaWfljLM16KyyqrQL0BejjEw97QkoKF0O3721BGbbzN4LQkaQrWmY5nDjIBe94DQsIk0PizIJ2t/5Ey3m4RQmw5eDEZxU/idQPv6Vf+Nsiswu8K+9qDXkZP08hZA6e9nnohNLXtvdOYTlgkJG1XZkuMg0adr0=
   bucket: travis-ci-helm-charts
-  local-dir: dist
+  local_dir: dist
   skip_cleanup: true
   on:
     repo: travis-ci/kubernetes-config
