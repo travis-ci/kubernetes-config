@@ -5,7 +5,7 @@ addons:
   - name: helm
     classic: true
 
-after_install:
+before_script:
   - helm init --client-only
 
 deploy:
