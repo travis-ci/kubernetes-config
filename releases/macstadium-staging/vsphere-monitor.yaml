@@ -9,4 +9,6 @@ spec:
   chartGitPath: vsphere-monitor
   releaseName: vsphere-monitor
   values:
-    secretEnv: common-1
+    trvs:
+      enabled: true
+      env: common-1

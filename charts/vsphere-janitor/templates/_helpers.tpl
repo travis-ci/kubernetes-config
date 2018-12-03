@@ -30,3 +30,14 @@ Create chart name and version as used by the chart label.
 {{- define "vsphere-janitor.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Use the fullname as the secret name unless a secretName has been provided.
+*/}}
+{{- define "vsphere-janitor.secret" -}}
+{{- if .Values.secretName -}}
+{{- .Values.secretName -}}
+{{- else -}}
+{{- include "vsphere-janitor.fullname" . }}
+{{- end -}}
+{{- end -}}

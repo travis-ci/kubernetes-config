@@ -10,7 +10,23 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 
-secretEnv: ""
+# Pull secrets from trvs keychain
+trvs:
+  # If not enabled, be sure to set secretName and create a secret with the
+  # necessary environment variables for vsphere-janitor
+  enabled: false
+  app: vsphere-janitor
+  env: ""
+  pro: true
+
+# Override the name of the secret with environment variables.
+#
+# If trvs.enabled is true, it will create a secret with this name instead
+# of using the fullname of the deployment.
+#
+# If trvs.enabled is false, this should be set and you must create a secret
+# with the given name that has the right environment variables.
+secretName: ""
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
