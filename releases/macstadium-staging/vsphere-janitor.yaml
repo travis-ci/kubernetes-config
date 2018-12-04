@@ -1,12 +1,13 @@
-apiVersion: helm.integrations.flux.weave.works/v1alpha2
-kind: FluxHelmRelease
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
 metadata:
   name: vsphere-janitor
   namespace: macstadium-staging
-  labels:
-    chart: vsphere-janitor
 spec:
-  chartGitPath: vsphere-janitor
+  chart:
+    path: charts/vsphere-janitor
+    git: https://github.com/travis-ci/kubernetes-config.git
+    ref: staging
   releaseName: vsphere-janitor
   values:
     secretEnv: staging-1

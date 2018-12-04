@@ -1,12 +1,13 @@
-apiVersion: helm.integrations.flux.weave.works/v1alpha2
-kind: FluxHelmRelease
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
 metadata:
   name: jupiter-brain-org
   namespace: macstadium-staging
-  labels:
-    chart: jupiter-brain
 spec:
-  chartGitPath: jupiter-brain
+  chart:
+    path: charts/jupiter-brain
+    git: https://github.com/travis-ci/kubernetes-config.git
+    ref: staging
   releaseName: jupiter-brain-org
   values:
     trvs:
