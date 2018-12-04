@@ -58,7 +58,7 @@ spec:
         - configMapRef:
             name: {{ template "macstadium-worker.fullname" . }}
         - secretRef:
-            name: {{ template "macstadium-worker.fullname" . }}
+            name: {{ template "macstadium-worker.secret" . }}
         volumeMounts:
         - name: travis-vm-ssh-key
           mountPath: "/etc/secret"
