@@ -1,6 +1,0 @@
-service:
-  type: NodePort
-  nodePort: 31000
-
-rbac:
-  clusterAdminRole: true
