@@ -16,4 +16,8 @@ spec:
     site: com
     poolSize: 2
     jupiterBrainName: jupiter-brain-com
-    secretEnv: staging-common
+    trvs:
+      enabled: true
+      app: macstadium-workers
+      env: staging-common
+      pro: true

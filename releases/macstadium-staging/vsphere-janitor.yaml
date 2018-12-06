@@ -10,4 +10,6 @@ spec:
     ref: staging
   releaseName: vsphere-janitor
   values:
-    secretEnv: staging-1
+    trvs:
+      enabled: true
+      env: staging-1

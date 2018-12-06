@@ -36,7 +36,7 @@ spec:
             value: $(POD_NAMESPACE)-$(POD_NAME)
           envFrom:
           - secretRef:
-              name: {{ include "vsphere-janitor.fullname" . }}
+              name: {{ include "vsphere-janitor.secret" . }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}

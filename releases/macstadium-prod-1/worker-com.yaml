@@ -17,4 +17,8 @@ spec:
     site: com
     poolSize: 21
     jupiterBrainName: jupiter-brain-com
-    secretEnv: production-common
+    trvs:
+      enabled: true
+      app: macstadium-workers
+      env: production-common
+      pro: true
