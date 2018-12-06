@@ -1,12 +1,13 @@
-apiVersion: helm.integrations.flux.weave.works/v1alpha2
-kind: FluxHelmRelease
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
 metadata:
   name: vsphere-monitor
   namespace: macstadium-staging
-  labels:
-    chart: vsphere-monitor
 spec:
-  chartGitPath: vsphere-monitor
+  chart:
+    path: charts/vsphere-monitor
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
   releaseName: vsphere-monitor
   values:
     trvs:

@@ -1,12 +1,12 @@
-apiVersion: helm.integrations.flux.weave.works/v1alpha2
-kind: FluxHelmRelease
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
 metadata:
   name: worker-org
   namespace: macstadium-prod-1
-  labels:
-    chart: macstadium-worker
 spec:
-  chartGitPath: macstadium-worker
+  chart:
+    path: charts/macstadium-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
   releaseName: worker-org
   values:
     image:

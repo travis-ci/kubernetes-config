@@ -1,17 +1,16 @@
----
-apiVersion: helm.integrations.flux.weave.works/v1alpha2
-kind: FluxHelmRelease
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
 metadata:
   name: macbot
   namespace: macstadium-prod-1
-  labels:
-    chart: macbot
   annotations:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.macbot: glob:*
     flux.weave.works/tag.imaged: glob:*
 spec:
-  chartGitPath: macbot
+  chart:
+    path: charts/macbot
+    git: git@github.com:travis-ci/kubernetes-config.git
   releaseName: macbot
   values:
     macbot:
