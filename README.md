@@ -6,6 +6,12 @@ This repo contains configuration for all of the Kubernetes services that we run 
 
 This repo does not provision the actual Kubernetes cluster that the services run on. For that, see the [terraform-config](https://github.com/travis-ci/terraform-config) repo.
 
+## Related Repos
+
+* [travis-ci/terraform-config](https://github.com/travis-ci/terraform-config)
+* [travis-ci/trvs-operator](https://github.com/travis-ci/trvs-operator)
+* [travis-ci/worker-operator](https://github.com/travis-ci/worker-operator)
+
 ## Organization
 
 This repository is organized into three important directories:
