@@ -1,3 +1,4 @@
+{{ if not .Values.cluster.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -61,7 +62,7 @@ spec:
             name: {{ template "macstadium-worker.secret" . }}
         volumeMounts:
         - name: travis-vm-ssh-key
-          mountPath: "/etc/secret"
+          mountPath: "/etc/worker/ssh"
           readOnly: true
       volumes:
       - name: travis-vm-ssh-key
@@ -74,3 +75,4 @@ spec:
       # so allow an extra worker to be brought up while one is being shutdown.
       maxUnavailable: 0
       maxSurge: 1
+{{ end }}
