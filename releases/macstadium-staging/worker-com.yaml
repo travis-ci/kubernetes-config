@@ -11,11 +11,16 @@ spec:
   releaseName: worker-com
   values:
     image:
-      tag: v5.0.0
-    replicaCount: 4
+      tag: v6.0.0
+
+    cluster:
+      enabled: true
+      maxJobs: 8
+      maxJobsPerWorker: 2
+
     site: com
-    poolSize: 2
     jupiterBrainName: jupiter-brain-com
+
     trvs:
       enabled: true
       app: macstadium-workers
