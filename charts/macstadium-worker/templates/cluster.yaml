@@ -28,10 +28,10 @@ spec:
       - name: JUPITER_BRAIN_AUTH_TOKEN
         valueFrom:
           secretKeyRef:
-            name: jupiter-brain-com
+            name: {{ include "macstadium-worker.jupiterbrainname" . }}
             key: JUPITER_BRAIN_AUTH_TOKEN
       - name: TRAVIS_WORKER_JUPITERBRAIN_ENDPOINT
-        value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@jupiter-brain-com/
+        value: http://$(JUPITER_BRAIN_AUTH_TOKEN)@{{ include "macstadium-worker.jupiterbrainname" . }}/
 
       - name: POD_NAME
         valueFrom:
@@ -53,9 +53,9 @@ spec:
 
       envFrom:
       - configMapRef:
-          name: worker-com
+          name: {{ template "macstadium-worker.fullname" . }}
       - secretRef:
-          name: worker-com
+          name: {{ template "macstadium-worker.secret" . }}
 
       sshKeySecret: {{ template "macstadium-worker.fullname" . }}-vm-key
 {{ end }}
