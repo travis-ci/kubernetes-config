@@ -18,5 +18,5 @@ spec:
     trvs:
       enabled: true
       app: macstadium-workers
-      env: production-common
+      env: custom-2
       pro: true
