@@ -14,7 +14,9 @@ data:
   TRAVIS_WORKER_BUILD_TRACE_S3_REGION: us-east-1
   TRAVIS_WORKER_INFRA: "macstadium"
   TRAVIS_WORKER_QUEUE_TYPE: "amqp"
+  {{ if .Values.queue -}}
   TRAVIS_WORKER_QUEUE_NAME: "{{ .Values.queue }}"
+  {{- end }}
   TRAVIS_WORKER_PROVIDER_NAME: "jupiterbrain"
   TRAVIS_WORKER_JUPITERBRAIN_IMAGE_SELECTOR_TYPE: "api"
   TRAVIS_WORKER_JUPITERBRAIN_SSH_KEY_PATH: "/etc/secret/travis-vm.key"

@@ -15,6 +15,7 @@ spec:
     site: com
     poolSize: 5
     jupiterBrainName: jupiter-brain-custom-2
+    queue: ""
     trvs:
       enabled: true
       app: macstadium-workers
