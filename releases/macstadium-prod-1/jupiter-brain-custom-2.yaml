@@ -1,0 +1,17 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: jupiter-brain-custom-2
+  namespace: macstadium-prod-1
+spec:
+  chart:
+    path: charts/jupiter-brain
+    git: git@github.com:travis-ci/kubernetes-config.git
+  releaseName: jupiter-brain-custom-2
+  values:
+    trvs:
+      enabled: true
+      env: custom-2-1
+    honeycomb:
+      dataset: jb-requests
+      sampleRate: 1
