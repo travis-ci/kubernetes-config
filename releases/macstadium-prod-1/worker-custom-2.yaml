@@ -10,12 +10,17 @@ spec:
   releaseName: worker-custom-2
   values:
     image:
-      tag: v6.1.0
-    replicaCount: 1
+      tag: v6.2.0
+
+    cluster:
+      enabled: true
+      maxJobs: 5
+      maxJobsPerWorker: 5
+
     site: com
-    poolSize: 5
     jupiterBrainName: jupiter-brain-custom-2
     queue: ""
+
     trvs:
       enabled: true
       app: macstadium-workers
