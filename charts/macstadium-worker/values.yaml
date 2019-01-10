@@ -2,15 +2,44 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# The number of worker pods to run in the deployment.
+#
+# This is ignored if cluster.enabled is true, as the worker-operator figures
+# out the replica count dynamically.
 replicaCount: 2
 
 image:
   repository: travisci/worker
-  tag: v4.6.2
+  tag: v6.0.0
   pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
+
+# Use and configure the WorkerCluster resource from worker-operator
+cluster:
+  # Configure this worker as a WorkerCluster instead of an ordinary Kubernetes
+  # deployment resource.
+  #
+  # Only enable this if the Kubernetes cluster is running an instance of
+  # worker-operator in your namespace.
+  #
+  # This allows the operator to manage the pool size of the worker pods to
+  # ensure that job capacity remains consistent while rolling out new pods.
+  enabled: false
+
+  # How many jobs should this cluster of workers be able to run at once.
+  #
+  # The worker-operator will ensure that the total pool size of all workers in
+  # this cluster total to this number.
+  maxJobs: 1
+
+  # How many jobs should a single worker pod be able to run.
+  #
+  # The worker-operator will determine the number of replicas to create, such
+  # that no worker has a pool size exceeding this number.
+  maxJobsPerWorker: 30
+
 
 # Pull secrets from trvs keychain
 trvs:
@@ -33,7 +62,11 @@ secretName: ""
 # Which travis-ci site this worker is for ("org" or "com")
 site: ""
 
-# How many concurrent jobs this worker can run
+# How many concurrent jobs each worker pod can run.
+#
+# This is ignored if cluster.enabled is true, as the worker-operator assigns
+# pool sizes and adjusts them dynamically. Use the cluster.maxJobs* values to
+# control how many jobs your worker cluster can run.
 poolSize: 2
 
 # The AMQP queue to pull jobs from
