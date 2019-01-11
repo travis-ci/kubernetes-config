@@ -1,0 +1,26 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-org
+  namespace: macstadium-prod-1
+spec:
+  chart:
+    path: charts/macstadium-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+  releaseName: worker-org
+  values:
+    image:
+      tag: v6.2.0
+
+    cluster:
+      enabled: true
+      maxJobs: 25
+      maxJobsPerWorker: 20
+
+    site: org
+    jupiterBrainName: jupiter-brain-org
+
+    trvs:
+      enabled: true
+      app: macstadium-workers
+      env: production-common
