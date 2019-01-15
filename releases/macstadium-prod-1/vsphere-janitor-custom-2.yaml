@@ -12,3 +12,4 @@ spec:
     trvs:
       enabled: true
       env: custom-2-1
+      pro: false
