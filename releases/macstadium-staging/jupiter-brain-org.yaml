@@ -10,6 +10,8 @@ spec:
     ref: staging
   releaseName: jupiter-brain-org
   values:
+    image:
+      tag: v1.1.0-1-g118df4b
     trvs:
       enabled: true
       env: staging-1
