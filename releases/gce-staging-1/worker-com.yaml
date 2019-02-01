@@ -13,10 +13,8 @@ spec:
     image:
       tag: v6.2.0
 
-    cluster:
-      enabled: true
-      maxJobs: 8
-      maxJobsPerWorker: 2
+    poolSize: 4
+    replicaCount: 2
 
     site: com
 
