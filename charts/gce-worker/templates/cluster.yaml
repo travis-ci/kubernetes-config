@@ -1,0 +1,53 @@
+{{ if .Values.cluster.enabled }}
+apiVersion: travisci.com/v1alpha1
+kind: WorkerCluster
+metadata:
+  name: {{ include "gce-worker.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "gce-worker.name" . }}
+    helm.sh/chart: {{ include "gce-worker.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  maxJobs: {{ .Values.cluster.maxJobs }}
+  maxJobsPerWorker: {{ .Values.cluster.maxJobsPerWorker }}
+
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "gce-worker.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "gce-worker.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      env:
+      - name: POD_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+
+      - name: TRAVIS_WORKER_LIBRATO_SOURCE
+        value: $(POD_NAMESPACE)-$(POD_NAME)
+      - name: TRAVIS_WORKER_HOSTNAME
+        value: $(POD_NAME).$(POD_NAMESPACE)
+      - name: AWS_ACCESS_KEY_ID
+        value: $(TRAVIS_WORKER_AWS_ACCESS_KEY_ID)
+      - name: AWS_SECRET_ACCESS_KEY
+        value: $(TRAVIS_WORKER_AWS_SECRET_ACCESS_KEY)
+
+      envFrom:
+      - configMapRef:
+          name: {{ template "gce-worker.fullname" . }}
+      - secretRef:
+          name: {{ template "gce-worker.secret" . }}
+
+      sshKeySecret: {{ template "gce-worker.fullname" . }}-vm-key
+{{ end }}
