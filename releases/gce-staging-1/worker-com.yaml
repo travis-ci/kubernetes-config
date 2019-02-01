@@ -2,10 +2,10 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: worker-com
-  namespace: macstadium-staging
+  namespace: gce-staging
 spec:
   chart:
-    path: charts/macstadium-worker
+    path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
   releaseName: worker-com
@@ -19,10 +19,9 @@ spec:
       maxJobsPerWorker: 2
 
     site: com
-    jupiterBrainName: jupiter-brain-com
 
     trvs:
       enabled: true
-      app: macstadium-workers
+      app: gce-workers
       env: staging-common
       pro: true
