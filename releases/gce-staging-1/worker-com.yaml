@@ -2,7 +2,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: worker-com
-  namespace: gce-staging
+  namespace: gce-staging-1
 spec:
   chart:
     path: charts/gce-worker
