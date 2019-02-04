@@ -2,7 +2,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: worker-com
-  namespace: gce-staging-1
+  namespace: gce-staging
 spec:
   chart:
     path: charts/gce-worker
@@ -13,8 +13,10 @@ spec:
     image:
       tag: v6.2.0
 
-    poolSize: 4
-    replicaCount: 2
+    cluster:
+      enabled: true
+      maxJobs: 8
+      maxJobsPerWorker: 2
 
     site: com
 
