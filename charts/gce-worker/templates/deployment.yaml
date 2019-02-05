@@ -68,5 +68,4 @@ spec:
       maxUnavailable: 0
       maxSurge: 1
 
-      gceAccountFile: {{ template "gce-worker.secret" . }}
 {{ end }}
