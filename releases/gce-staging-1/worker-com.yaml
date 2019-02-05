@@ -26,3 +26,4 @@ spec:
       app: gce-workers
       env: staging-1
       pro: true
+      gceAccountFile: keys/gke-gce-staging-1-worker-com-1-gce.json
