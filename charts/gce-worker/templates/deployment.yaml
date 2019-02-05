@@ -53,13 +53,13 @@ spec:
         - secretRef:
             name: {{ template "gce-worker.secret" . }}
         volumeMounts:
-        - name: travis-vm-ssh-key
-          mountPath: "/etc/worker/ssh"
+        - name: gce-json
+          mountPath: "/etc/worker/gce/"
           readOnly: true
       volumes:
-      - name: travis-vm-ssh-key
+      - name: gce-json
         secret:
-          secretName: {{ template "gce-worker.fullname" . }}-vm-key
+          secretName: {{ template "gce-worker.fullname" . }}-gce-json
       terminationGracePeriodSeconds: 7200
   strategy:
     rollingUpdate:
@@ -67,4 +67,6 @@ spec:
       # so allow an extra worker to be brought up while one is being shutdown.
       maxUnavailable: 0
       maxSurge: 1
+
+      gceAccountFile: {{ template "worker.secret" . }}
 {{ end }}

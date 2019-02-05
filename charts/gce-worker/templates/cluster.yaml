@@ -49,5 +49,4 @@ spec:
       - secretRef:
           name: {{ template "gce-worker.secret" . }}
 
-      sshKeySecret: {{ template "gce-worker.fullname" . }}-vm-key
 {{ end }}

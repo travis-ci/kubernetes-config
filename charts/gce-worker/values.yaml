@@ -49,6 +49,7 @@ trvs:
   app: ""  # Different infras use a different app key for their secrets
   env: ""
   pro: false
+  gceAccountFile: ""
 
 # Override the name of the secret with environment variables.
 #
