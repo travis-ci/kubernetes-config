@@ -23,5 +23,5 @@ spec:
     trvs:
       enabled: true
       app: gce-workers
-      env: staging-common
+      env: staging-1
       pro: true
