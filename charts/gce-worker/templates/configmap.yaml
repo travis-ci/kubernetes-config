@@ -21,3 +21,6 @@ data:
   TRAVIS_WORKER_STARTUP_TIMEOUT: "8m"
   TRAVIS_WORKER_SCRIPT_UPLOAD_TIMEOUT: "6m"
   TRAVIS_WORKER_RABBITMQ_SHARDING: "true"
+  {{ if .Values.trvs.gceAccountFile }}
+  TRAVIS_WORKER_GCE_ACCOUNT_JSON: "/etc/worker/gce/gce.json"
+  {{ end }}
