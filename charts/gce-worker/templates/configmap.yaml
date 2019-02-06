@@ -52,5 +52,7 @@ data:
   TRAVIS_WORKER_RABBITMQ_SHARDING: "true"
   TRAVIS_WORKER_SILENCE_METRICS: "true"
   TRAVIS_WORKER_STACKDRIVER_PROJECT_ID: "travis-staging-1"
-  TRAVIS_WORKER_STACKDRIVER_TRACE_ACCOUNT_JSON: "/var/tmp/gce.json"
+  {{ if .Values.trvs.gceAccountFile }}
+  TRAVIS_WORKER_STACKDRIVER_TRACE_ACCOUNT_JSON: "/etc/worker/gce/gce.json"
+  {{ end }}
   GOTRACEBACK: "all"
