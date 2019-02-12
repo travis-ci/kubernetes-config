@@ -1,0 +1,47 @@
+# Default values for collectd-vsphere.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: travisci/collectd-vsphere
+  tag: v1.2.0
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+# Pull secrets from trvs keychain
+trvs:
+  # If not enabled, be sure to set secretName and create a secret with the
+  # necessary environment variables for collectd-vsphere
+  enabled: false
+  app: collectd-vsphere
+  env: ""
+  pro: false
+
+# Override the name of the secret with environment variables.
+#
+# If trvs.enabled is true, it will create a secret with this name instead
+# of using the fullname of the deployment.
+#
+# If trvs.enabled is false, this should be set and you must create a secret
+# with the given name that has the right environment variables.
+secretName: ""
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
