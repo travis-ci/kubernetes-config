@@ -15,7 +15,7 @@ data:
   TRAVIS_WORKER_BUILD_TRACE_S3_REGION: "us-east-1"
   TRAVIS_WORKER_INFRA: "gce"
   TRAVIS_WORKER_QUEUE_TYPE: "amqp"
-  TRAVIS_WORKER_GCE_SUBNETWORK: "workers"
+  TRAVIS_WORKER_GCE_SUBNETWORK: "jobs-com"
   {{ if .Values.queue -}}
   TRAVIS_WORKER_QUEUE_NAME: "{{ .Values.queue }}"
   {{- end }}
