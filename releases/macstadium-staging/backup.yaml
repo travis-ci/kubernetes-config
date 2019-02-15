@@ -1,0 +1,17 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: backup
+  namespace: macstadium-staging
+spec:
+  chart:
+    path: charts/backup
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: backup
+  values:
+    etcd:
+      image:
+        tag: 3.2.24
+    nodeSelector:
+      kubernetes.io/hostname: cluster-staging-master
