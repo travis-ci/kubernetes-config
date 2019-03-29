@@ -10,7 +10,7 @@ spec:
   releaseName: jupiter-brain-com
   values:
     image:
-      tag: v1.2.1
+      tag: v1.2.1-1-g339ced2
     trvs:
       enabled: true
       env: production-1
