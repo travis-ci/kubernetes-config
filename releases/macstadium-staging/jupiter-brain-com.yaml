@@ -11,7 +11,7 @@ spec:
   releaseName: jupiter-brain-com
   values:
     image:
-      tag: v1.1.0-7-g1cf484e
+      tag: v1.2.1
     trvs:
       enabled: true
       env: staging-1
