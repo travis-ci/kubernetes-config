@@ -1,0 +1,14 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: vsphere-janitor
+  namespace: macstadium-prod-2
+spec:
+  chart:
+    path: charts/vsphere-janitor
+    git: git@github.com:travis-ci/kubernetes-config.git
+  releaseName: vsphere-janitor
+  values:
+    trvs:
+      enabled: true
+      env: production-2
