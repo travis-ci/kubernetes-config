@@ -1,0 +1,14 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: collectd-vsphere
+  namespace: macstadium-prod-2
+spec:
+  chart:
+    path: charts/collectd-vsphere
+    git: git@github.com:travis-ci/kubernetes-config.git
+  releaseName: collectd-vsphere
+  values:
+    trvs:
+      enabled: true
+      env: common-2
