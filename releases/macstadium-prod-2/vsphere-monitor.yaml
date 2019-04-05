@@ -1,0 +1,14 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: vsphere-monitor
+  namespace: macstadium-prod-2
+spec:
+  chart:
+    path: charts/vsphere-monitor
+    git: git@github.com:travis-ci/kubernetes-config.git
+  releaseName: vsphere-monitor
+  values:
+    trvs:
+      enabled: true
+      env: common-2
