@@ -1,0 +1,28 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-custom-7
+  namespace: macstadium-prod-1
+spec:
+  chart:
+    path: charts/macstadium-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+  releaseName: worker-custom-7
+  values:
+    image:
+      tag: v6.2.0
+
+    cluster:
+      enabled: true
+      maxJobs: 2
+      maxJobsPerWorker: 2
+
+    site: com
+    jupiterBrainName: jupiter-brain-custom-7
+    queue: ""
+
+    trvs:
+      enabled: true
+      app: macstadium-workers
+      env: custom-7
+      pro: true
