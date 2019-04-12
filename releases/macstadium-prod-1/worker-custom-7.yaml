@@ -14,8 +14,8 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 2
-      maxJobsPerWorker: 2
+      maxJobs: 1
+      maxJobsPerWorker: 1
 
     site: com
     jupiterBrainName: jupiter-brain-custom-7
