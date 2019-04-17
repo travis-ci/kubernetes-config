@@ -15,6 +15,6 @@ spec:
   releaseName: macbot
   values:
     macbot:
-      image: travisci/macbot:v1.3.0
+      image: travisci/macbot:v1.3.1
     imaged:
       image: travisci/imaged:v1.0.0
