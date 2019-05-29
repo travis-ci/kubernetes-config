@@ -6,6 +6,7 @@ BRANCH="master"
 if [[ $NAMESPACE == *staging* ]]; then
   BRANCH="staging"
 fi
+BRANCH="gcloud-test"
 
 helm repo add weaveworks https://weaveworks.github.io/flux
 helm upgrade flux weaveworks/flux \

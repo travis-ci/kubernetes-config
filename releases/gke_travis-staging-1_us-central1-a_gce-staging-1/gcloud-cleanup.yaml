@@ -1,0 +1,23 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: gcloud-cleanup
+  namespace: gce-staging-1
+  annotations:
+    flux.weave.works/tag.gcloud-cleanup: glob:test-*
+    flux.weave.works/automated: 'false'
+spec:
+  chart:
+    path: charts/gcloud-cleanup
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: gcloud-test
+  releaseName: gcloud-cleanup
+  values:
+    image:
+      repository: travisci/gcloud-cleanup
+      tag: test-b4bd2fa
+    trvs:
+      enabled: true
+      env: staging-1
+      pro: false
