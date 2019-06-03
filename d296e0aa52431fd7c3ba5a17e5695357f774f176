@@ -1,0 +1,1 @@
+{"jobID":"d095c782-26ca-3e46-b0d3-f946fff0e8ef","spec":{"type":"policy","cause":{"Message":"","User":"Duologic \u003cjeroen@simplistic.be\u003e"},"spec":{"gce-staging-1:helmrelease/gcloud-cleanup":{"add":{},"remove":{"automated":"true"}}}},"result":null}
