@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: travisci/gcloud-cleanup
-      tag: afc3bd5
+      tag: b28c85d
     trvs:
       enabled: true
       env: staging-1
