@@ -34,7 +34,7 @@ $ helm create charts/my-new-service
 
 ### Releases
 
-The `releases` directory has subdirectories for each environment that we deploy to (e.g. `macstadium-staging`). The name should match up to the Terraform graph directory that provisions the cluster.
+The `releases` directory has subdirectories for each environment that we deploy to (e.g. `macstadium-staging`). The name should match up to the Terraform graph directory that provisions the cluster. For Google Kubernetes Engine, the naming is more complicated, the name can be found with `kubectl config current-context`.
 
 Inside a particular environment's releases directory are YAML files for the different Helm releases that will be deployed to the environment. Each chart deployed to an environment will have its own release where it can be customized as needed.
 

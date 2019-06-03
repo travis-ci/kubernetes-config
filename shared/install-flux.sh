@@ -17,4 +17,5 @@ helm upgrade flux weaveworks/flux \
   --set git.branch="$BRANCH" \
   --set "git.path=releases/$NAMESPACE" \
   --set git.pollInterval=1m \
+  --set git.label="flux-sync-$NAMESPACE" \
   --namespace flux
