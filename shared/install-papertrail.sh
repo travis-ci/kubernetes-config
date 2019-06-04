@@ -1,4 +1,5 @@
 #!/bin/bash
+set -u
 
 TOP=$(git rev-parse --show-toplevel)
 ENDPOINT="$1"
