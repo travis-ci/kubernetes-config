@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: travisci/gcloud-cleanup
-      tag: a54fabf
+      tag: 4890bc7
     trvs:
       enabled: true
       env: production-1
