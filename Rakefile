@@ -7,6 +7,12 @@ CHARTS = FileList["charts/*"].resolve
 
 task :lint do
   CHARTS.each do |chart|
+    sh "helm dependency update #{chart}"
+  end
+end
+
+task :lint do
+  CHARTS.each do |chart|
     sh "helm lint #{chart}"
   end
 end
