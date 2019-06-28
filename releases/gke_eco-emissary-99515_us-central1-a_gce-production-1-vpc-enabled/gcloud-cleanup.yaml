@@ -21,3 +21,5 @@ spec:
       enabled: true
       env: production-1
       pro: false
+    redis:
+      enabled: false
