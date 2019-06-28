@@ -41,3 +41,7 @@ Use the fullname as the secret name unless a secretName has been provided.
 {{- include "gcloud-cleanup.fullname" . }}
 {{- end -}}
 {{- end -}}
+
+{{- define "gcloud-cleanup.redis.fullname" -}}
+{{- printf "%s-%s" .Release.Name "redis" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}

@@ -23,4 +23,7 @@ trvs:
 
 secretName: ""
 
+redis:
+  enabled: false
+
 env: []

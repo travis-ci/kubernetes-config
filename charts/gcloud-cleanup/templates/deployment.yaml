@@ -34,6 +34,13 @@ spec:
             - name: "{{ $key }}"
               value: "{{ $value }}"
             {{ end }}
+            - name: GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "gcloud-cleanup.redis.fullname" . }}
+                  key: redis-password
+            - name: GCLOUD_CLEANUP_RATE_LIMIT_REDIS_URL
+              value: redis://:$(GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD)@$(GCLOUD_CLEANUP_REDIS_MASTER_SERVICE_HOST):$(GCLOUD_CLEANUP_REDIS_MASTER_SERVICE_PORT)
           envFrom:
             - secretRef:
                 name: {{ template "gcloud-cleanup.secret" . }}

@@ -11,7 +11,7 @@ spec:
   chart:
     path: charts/gcloud-cleanup
     git: git@github.com:travis-ci/kubernetes-config.git
-    ref: master
+    ref: staging
   releaseName: gcloud-cleanup
   values:
     image:
@@ -21,3 +21,5 @@ spec:
       enabled: true
       env: staging-1
       pro: false
+    redis:
+      enabled: true
