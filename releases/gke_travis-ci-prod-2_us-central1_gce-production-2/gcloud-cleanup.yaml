@@ -21,4 +21,4 @@ spec:
       enabled: true
       env: production-2
       pro: false
-    replicaCount: 5
+    replicaCount: 3
