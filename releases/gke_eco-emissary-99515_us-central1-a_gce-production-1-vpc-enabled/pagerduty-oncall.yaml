@@ -6,7 +6,7 @@ metadata:
   namespace: gce-production-1-vpc-enabled
 spec:
   chart:
-    path: charts/pagerduty-oncall
+    path: chart/pagerduty-oncall
     git: git@github.com:travis-ci/pagerduty-oncall.git
     ref: master
   releaseName: pagerduty-oncall
