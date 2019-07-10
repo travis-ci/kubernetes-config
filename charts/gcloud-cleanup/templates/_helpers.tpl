@@ -45,10 +45,17 @@ Use the fullname as the secret name unless a secretName has been provided.
 {{/*
 Get the config/secrets created by Terraform.
 */}}
-{{- define "gcloud-cleanup.service-account" -}}
+{{- define "gcloud-cleanup.terraform" -}}
 {{- if .Values.secretName -}}
 {{- .Values.terraformSecretName -}}
 {{- else -}}
 {{- include "gcloud-cleanup.fullname" . }}-terraform
 {{- end -}}
+{{- end -}}
+
+{{/*
+Get the Redis release name for the secret.
+*/}}
+{{- define "gcloud-cleanup.redis.fullname" -}}
+{{- printf "%s-%s" .Release.Name "redis" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

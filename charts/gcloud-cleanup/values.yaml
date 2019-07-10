@@ -24,4 +24,13 @@ trvs:
 secretName: ""
 serviceAccountSecretName: ""
 
+redis:
+  enabled: false
+  cluster:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+
+
 env: []

@@ -16,8 +16,11 @@ spec:
   values:
     image:
       repository: travisci/gcloud-cleanup
-      tag: b28c85d
+      tag: 4890bc7
     trvs:
       enabled: true
       env: staging-1
       pro: false
+    redis:
+      enabled: true
+    replicaCount: 2

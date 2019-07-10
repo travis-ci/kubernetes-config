@@ -21,4 +21,6 @@ spec:
       enabled: true
       env: production-3
       pro: false
+    redis:
+      enabled: false
     replicaCount: 3
