@@ -37,6 +37,8 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ template "gcloud-cleanup.secret" . }}
+            - secretRef:
+                name: {{ template "gcloud-cleanup.service-account" . }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

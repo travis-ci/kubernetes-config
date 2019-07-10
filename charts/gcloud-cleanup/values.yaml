@@ -22,5 +22,6 @@ trvs:
   pro: false
 
 secretName: ""
+serviceAccountSecretName: ""
 
 env: []
