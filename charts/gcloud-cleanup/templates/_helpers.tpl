@@ -43,12 +43,12 @@ Use the fullname as the secret name unless a secretName has been provided.
 {{- end -}}
 
 {{/*
-Get the service-account from this Secret, created by Terraform.
+Get the config/secrets created by Terraform.
 */}}
 {{- define "gcloud-cleanup.service-account" -}}
 {{- if .Values.secretName -}}
-{{- .Values.serviceAccountSecretName -}}
+{{- .Values.terraformSecretName -}}
 {{- else -}}
-{{- include "gcloud-cleanup.fullname" . }}-service-account
+{{- include "gcloud-cleanup.fullname" . }}-terraform
 {{- end -}}
 {{- end -}}

@@ -38,7 +38,7 @@ spec:
             - secretRef:
                 name: {{ template "gcloud-cleanup.secret" . }}
             - secretRef:
-                name: {{ template "gcloud-cleanup.service-account" . }}
+                name: {{ template "gcloud-cleanup.terraform" . }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
