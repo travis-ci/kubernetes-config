@@ -1,4 +1,4 @@
-# Default values for macstadium-worker.
+# Default values for gce-worker.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -71,12 +71,3 @@ poolSize: 2
 
 # The AMQP queue to pull jobs from
 queue: builds.gce
-
-# The name of the jupiter-brain service/secret for the jupiter-brain to connect to
-jupiterBrainName: ""
-
-# The name of the secret that contains the Travis build VM SSH private key
-#
-# This secret must store the private key under the key "travis-vm-ssh-key" regardless
-# of this value.
-sshKeySecretName: "travis-vm-ssh-key"
