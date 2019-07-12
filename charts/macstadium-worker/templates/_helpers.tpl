@@ -24,10 +24,6 @@ If release name contains chart name it will be used as a full name.
 {{- end -}}
 {{- end -}}
 
-{{- define "macstadium-worker.jupiterbrainname" -}}
-{{- .Values.jupiterBrainName -}}
-{{- end -}}
-
 {{/*
 Create chart name and version as used by the chart label.
 */}}
@@ -44,4 +40,8 @@ Use the fullname as the secret name unless a secretName has been provided.
 {{- else -}}
 {{- include "macstadium-worker.fullname" . }}
 {{- end -}}
+{{- end -}}
+
+{{- define "macstadium-worker.jupiterbrainname" -}}
+{{- .Values.jupiterBrainName -}}
 {{- end -}}

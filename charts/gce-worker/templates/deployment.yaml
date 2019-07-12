@@ -67,5 +67,4 @@ spec:
       # so allow an extra worker to be brought up while one is being shutdown.
       maxUnavailable: 0
       maxSurge: 1
-
 {{ end }}
