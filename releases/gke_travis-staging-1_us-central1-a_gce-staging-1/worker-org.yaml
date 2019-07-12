@@ -1,29 +1,28 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-com
+  name: worker-org
   namespace: gce-staging-1
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
-  releaseName: worker-com
+  releaseName: worker-org
   values:
     image:
       tag: v6.2.0
 
-      #    cluster:
-      #      enabled: true
-      #      maxJobs: 8
-      #      maxJobsPerWorker: 2
+    # 2400 CPUs / 2 vCPU per job = 1200 maxJobs
+    cluster:
+      enabled: true
+      maxJobs: 1000
+      maxJobsPerWorker: 50
 
-    poolSize: 4
-    site: com
+    site: org
 
     trvs:
       enabled: true
       app: gce-workers
       env: staging-1
-      pro: true
-      gceAccountFile: keys/gke-gce-staging-1-worker-com-1-gce.json
+      pro: false
