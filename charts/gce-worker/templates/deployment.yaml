@@ -52,14 +52,8 @@ spec:
             name: {{ template "gce-worker.fullname" . }}
         - secretRef:
             name: {{ template "gce-worker.secret" . }}
-        volumeMounts:
-        - name: gce-json
-          mountPath: "/etc/worker/gce/"
-          readOnly: true
-      volumes:
-      - name: gce-json
-        secret:
-          secretName: {{ template "gce-worker.fullname" . }}-gce-json
+        - secretRef:
+            name: {{ template "gce-worker.terraform" . }}
       terminationGracePeriodSeconds: 7200
   strategy:
     rollingUpdate:
