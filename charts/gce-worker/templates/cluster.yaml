@@ -48,5 +48,6 @@ spec:
           name: {{ template "gce-worker.fullname" . }}
       - secretRef:
           name: {{ template "gce-worker.secret" . }}
-
+      - secretRef:
+          name: {{ template "gce-worker.terraform" . }}
 {{ end }}
