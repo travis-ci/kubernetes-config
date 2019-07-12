@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "gcloud-cleanup.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "gcloud-cleanup.name" . }}
+    helm.sh/chart: {{ include "gcloud-cleanup.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  {{ if .Values.zones -}}
+  GCLOUD_CLEANUP_ZONES: "{{ .Values.zones }}"
+  {{- end }}
+  GCLOUD_CLEANUP_ARCHIVE_SAMPLE_RATE: "10"
+  GCLOUD_CLEANUP_ARCHIVE_SERIAL: "true"
+  GCLOUD_CLEANUP_ENTITIES: instances
+  GCLOUD_CLEANUP_INSTANCE_FILTERS: "name eq ^(testing-gce|travis-job|packer-).*"
+  GCLOUD_CLEANUP_INSTANCE_MAX_AGE: "3h"
+  GCLOUD_CLEANUP_LOOP_SLEEP: "1m"
+  GCLOUD_CLEANUP_OPENCENSUS_SAMPLING_RATE: "10"
+  GCLOUD_CLEANUP_OPENCENSUS_TRACING_ENABLED: "true"
+  GCLOUD_CLEANUP_RATE_LIMIT_PREFIX: gcloud-cleanup
+  GCLOUD_CLEANUP_RATE_LIMIT_DURATION: "2s"
+  GCLOUD_CLEANUP_RATE_LIMIT_MAX_CALLS: "20"

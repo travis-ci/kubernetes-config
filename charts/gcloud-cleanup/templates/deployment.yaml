@@ -30,10 +30,6 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 130
           env:
-            {{ range $key, $value := .Values.env }}
-            - name: "{{ $key }}"
-              value: "{{ $value }}"
-            {{ end }}
           {{- if .Values.redis.enabled }}
             - name: GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD
               valueFrom:
@@ -44,6 +40,8 @@ spec:
               value: redis://:$(GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD)@$(GCLOUD_CLEANUP_REDIS_MASTER_SERVICE_HOST):$(GCLOUD_CLEANUP_REDIS_MASTER_SERVICE_PORT)
           {{- end }}
           envFrom:
+            - configMapRef:
+                name: {{ template "gcloud-cleanup.fullname" . }}
             - secretRef:
                 name: {{ template "gcloud-cleanup.secret" . }}
             - secretRef:
