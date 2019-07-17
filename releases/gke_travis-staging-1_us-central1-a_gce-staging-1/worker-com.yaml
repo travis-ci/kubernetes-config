@@ -1,0 +1,35 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-com
+  namespace: gce-staging-1
+spec:
+  chart:
+    path: charts/gce-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: worker-com
+  values:
+    image:
+      repository: gcr.io/travis-staging-1/travisci/worker
+      tag: v6.2.0-69-g4e3246c
+
+      # Example calculation: 2400 CPUs / 2 vCPU per job = 1200 maxJobs
+      # Staging doesn't need that much, would be a waste of resources.
+    cluster:
+      enabled: true
+      maxJobs: 20
+      maxJobsPerWorker: 10
+
+    site: com
+
+    trvs:
+      enabled: true
+      app: gce-workers
+      env: staging-1
+      pro: true
+
+    rateLimitRedis:
+      enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
