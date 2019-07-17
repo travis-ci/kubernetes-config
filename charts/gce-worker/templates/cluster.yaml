@@ -24,6 +24,7 @@ spec:
     spec:
       image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
       imagePullPolicy: {{ .Values.image.pullPolicy }}
+
       env:
       - name: POD_NAME
         valueFrom:
@@ -38,10 +39,23 @@ spec:
         value: $(POD_NAMESPACE)-$(POD_NAME)
       - name: TRAVIS_WORKER_HOSTNAME
         value: $(POD_NAME).$(POD_NAMESPACE)
+
+        # The worker secret will have these prefixed with TRAVIS_WORKER,
+        # but the AWS library wants these variable names instead.
       - name: AWS_ACCESS_KEY_ID
         value: $(TRAVIS_WORKER_AWS_ACCESS_KEY_ID)
       - name: AWS_SECRET_ACCESS_KEY
         value: $(TRAVIS_WORKER_AWS_SECRET_ACCESS_KEY)
+
+    {{- if .Values.rateLimitRedis.enabled }}
+      - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: "{{ .Values.rateLimitRedis.secretName }}"
+            key: redis-password
+      - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_URL
+        value: redis://:$(TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD)@$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_HOST):$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_PORT)
+    {{- end }}
 
       envFrom:
       - configMapRef:
@@ -50,4 +64,5 @@ spec:
           name: {{ template "gce-worker.secret" . }}
       - secretRef:
           name: {{ template "gce-worker.terraform" . }}
+
 {{ end }}

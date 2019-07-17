@@ -71,3 +71,8 @@ poolSize: 2
 
 # The AMQP queue to pull jobs from
 queue: builds.gce
+
+rateLimitRedis:
+  enabled: false
+  secretName: rate-limit-redis
+  envPrefix: RATE_LIMIT_REDIS

@@ -24,8 +24,8 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
 
+        env:
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -47,6 +47,16 @@ spec:
         - name: AWS_SECRET_ACCESS_KEY
           value: $(TRAVIS_WORKER_AWS_SECRET_ACCESS_KEY)
 
+      {{- if .Values.rateLimitRedis.enabled }}
+        - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Values.rateLimitRedis.secretName }}"
+              key: redis-password
+        - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_URL
+          value: redis://:$(TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD)@$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_HOST):$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_PORT)
+      {{- end }}
+
         envFrom:
         - configMapRef:
             name: {{ template "gce-worker.fullname" . }}
@@ -54,6 +64,7 @@ spec:
             name: {{ template "gce-worker.secret" . }}
         - secretRef:
             name: {{ template "gce-worker.terraform" . }}
+
       terminationGracePeriodSeconds: 7200
   strategy:
     rollingUpdate:

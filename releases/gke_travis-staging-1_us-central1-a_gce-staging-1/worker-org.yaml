@@ -28,3 +28,8 @@ spec:
       app: gce-workers
       env: staging-1
       pro: false
+
+    rateLimitRedis:
+      enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
