@@ -43,7 +43,7 @@ spec:
             {{ end }}
           envFrom:
             - secretRef:
-              name: {{ template "travis-vcs.secret" . }}
+                name: {{ template "travis-vcs.secret" . }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
