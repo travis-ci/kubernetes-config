@@ -23,6 +23,7 @@ spec:
 
     site: com
     queue: builds.gce-free
+    project: travis-staging-1
 
     trvs:
       enabled: true

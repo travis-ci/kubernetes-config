@@ -24,6 +24,7 @@ spec:
 
     site: com
     queue: builds.gce-free
+    project: travis-ci-prod-3
 
     trvs:
       enabled: true

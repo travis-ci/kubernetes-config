@@ -24,6 +24,7 @@ spec:
 
     site: com
     queue: builds.gce-free
+    project: eco-emissary-99515
 
     trvs:
       enabled: true

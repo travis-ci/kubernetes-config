@@ -72,6 +72,9 @@ poolSize: 2
 # The AMQP queue to pull jobs from
 queue: builds.gce
 
+# GCP project (for Stackdriver)
+project: travis-staging-1
+
 rateLimitRedis:
   enabled: false
   secretName: rate-limit-redis

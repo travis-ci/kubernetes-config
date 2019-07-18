@@ -23,6 +23,7 @@ spec:
 
     site: com
     queue: builds.gce
+    project: eco-emissary-99515
 
     trvs:
       enabled: true
