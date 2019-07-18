@@ -21,3 +21,7 @@ trvs:
   app: "travis-vcs"
   env: ""
   pro: false
+
+service:
+  type: LoadBalancer
+  port: 80
