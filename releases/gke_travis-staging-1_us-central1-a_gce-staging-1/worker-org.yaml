@@ -22,6 +22,7 @@ spec:
       maxJobsPerWorker: 10
 
     site: org
+    queue: builds.gce
 
     trvs:
       enabled: true

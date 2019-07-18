@@ -1,14 +1,14 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-com
+  name: worker-com-free
   namespace: gce-staging-1
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
-  releaseName: worker-com
+  releaseName: worker-com-free
   values:
     image:
       repository: gcr.io/travis-staging-1/travisci/worker
@@ -22,7 +22,7 @@ spec:
       maxJobsPerWorker: 10
 
     site: com
-    queue: builds.gce
+    queue: builds.gce-free
 
     trvs:
       enabled: true
