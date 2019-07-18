@@ -4,14 +4,11 @@ kind: HelmRelease
 metadata:
   name: travis-vcs
   namespace: gce-staging-1
-  annotations:
-    flux.weave.works/tag.travis-vcs: glob:test-*
-    flux.weave.works/automated: 'false'
 spec:
   chart:
     path: charts/travis-vcs
     git: git@github.com:travis-ci/kubernetes-config.git
-    ref: travis-vcs
+    ref: staging
   releaseName: travis-vcs
   values:
     image:
