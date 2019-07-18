@@ -43,3 +43,14 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
+
+{{/*
+Use the fullname as the secret name unless a secretName has been provided.
+*/}}
+{{- define "travis-vcs.secret" -}}
+{{- if .Values.secretName -}}
+{{- .Values.secretName -}}
+{{- else -}}
+{{- include "travis-vcs.fullname" . }}
+{{- end -}}
+{{- end -}}
