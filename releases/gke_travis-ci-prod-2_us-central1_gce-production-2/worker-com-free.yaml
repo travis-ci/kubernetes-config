@@ -1,0 +1,37 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-com-free
+  namespace: gce-production-2
+spec:
+  chart:
+    path: charts/gce-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: master
+  releaseName: worker-com-free
+  values:
+    image:
+      repository: travisci/worker
+      tag: v6.2.1
+
+      # Calculation: 17000 CPUs / 2 vCPU per job / 2 worker types per project = 4250 maxJobs per worker type
+      # Take a bit of headroom, don't go over 4000 maxJobs
+      # NOTE: com-free is not in use atm.
+    cluster:
+      enabled: true
+      maxJobs: 0
+      maxJobsPerWorker: 1
+
+    site: com
+    queue: builds.gce-free
+
+    trvs:
+      enabled: true
+      app: gce-workers
+      env: production-2
+      pro: true
+
+    rateLimitRedis:
+      enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
