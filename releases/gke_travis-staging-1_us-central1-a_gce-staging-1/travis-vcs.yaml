@@ -12,8 +12,10 @@ spec:
   releaseName: travis-vcs
   values:
     image:
-      repository: travisci/travis-vcs
+      repository: quay.io/travisci/travis-vcs
       tag: efcbf51
+    imagePullSecrets:
+      - name: travisci-travis-vcs-pull-secret
     trvs:
       enabled: true
       env: staging-1
