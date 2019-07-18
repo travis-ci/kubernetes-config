@@ -1,0 +1,26 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-vcs
+  namespace: gce-staging-1
+  annotations:
+    flux.weave.works/tag.travis-vcs: glob:test-*
+    flux.weave.works/automated: 'false'
+spec:
+  chart:
+    path: charts/travis-vcs
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: travis-vcs
+  releaseName: travis-vcs
+  values:
+    image:
+      repository: travisci/travis-vcs
+      tag: efcbf51
+    trvs:
+      enabled: true
+      env: staging-1
+      pro: false
+    redis:
+      enabled: true
+    replicaCount: 1
