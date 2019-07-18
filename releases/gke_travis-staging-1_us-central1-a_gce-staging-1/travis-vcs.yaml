@@ -20,6 +20,6 @@ spec:
       enabled: true
       env: staging-1
       pro: false
-    redis:
-      enabled: true
+    env:
+      - RAILS_ENV: production
     replicaCount: 1
