@@ -18,7 +18,7 @@ spec:
       # Take a bit of headroom, don't go over 4000 maxJobs
     cluster:
       enabled: true
-      maxJobs: 100
+      maxJobs: 0
       maxJobsPerWorker: 50
 
     site: com
