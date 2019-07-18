@@ -22,7 +22,4 @@ spec:
       pro: false
     service:
       port: 3000
-    env:
-      RAILS_ENV: production
-      RAILS_LOG_TO_STDOUT: true
     replicaCount: 1
