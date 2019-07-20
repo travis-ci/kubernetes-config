@@ -24,16 +24,16 @@ trvs:
 
 service:
   type: LoadBalancer
-  port: 80
+  port: 3000
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: vcs-staging.travis-ci.com
-      paths: []
+      paths: [ "/*" ]
 
   tls: []
   #  - secretName: chart-example-tls

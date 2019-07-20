@@ -13,13 +13,11 @@ spec:
   values:
     image:
       repository: quay.io/travisci/travis-vcs
-      tag: f5ca32c
+      tag: 885f812
     imagePullSecrets:
       - name: travisci-travis-vcs-pull-secret
     trvs:
       enabled: true
       env: staging-1
       pro: false
-    service:
-      port: 3000
-    replicaCount: 1
+    replicaCount: 2
