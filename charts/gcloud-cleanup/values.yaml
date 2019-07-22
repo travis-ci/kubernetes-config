@@ -24,6 +24,7 @@ trvs:
 secretName: ""
 serviceAccountSecretName: ""
 
+# Self-provisioned Redis through requirements.yaml
 redis:
   enabled: false
   cluster:
@@ -32,5 +33,10 @@ redis:
     persistence:
       enabled: false
 
+# Cluster provided Redis Cluster (see releases/*/rate_limit_redis.yaml)
+rateLimitRedis:
+  enabled: false
+  secretName: rate-limit-redis
+  envPrefix: RATE_LIMIT_REDIS
 
 zones: "us-central1-a,us-central1-b,us-central1-c,us-central1-f"

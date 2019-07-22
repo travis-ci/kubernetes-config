@@ -21,6 +21,8 @@ spec:
       enabled: true
       env: production-2
       pro: false
-    redis:
+    rateLimitRedis:
       enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
     replicaCount: 1

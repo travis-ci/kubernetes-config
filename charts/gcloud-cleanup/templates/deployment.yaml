@@ -38,7 +38,16 @@ spec:
                   key: redis-password
             - name: GCLOUD_CLEANUP_RATE_LIMIT_REDIS_URL
               value: redis://:$(GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD)@$(GCLOUD_CLEANUP_REDIS_MASTER_SERVICE_HOST):$(GCLOUD_CLEANUP_REDIS_MASTER_SERVICE_PORT)
+          {{- else if .Values.rateLimitRedis.enabled }}
+            - name: GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.rateLimitRedis.secretName }}"
+                  key: redis-password
+            - name: GCLOUD_CLEANUP_RATE_LIMIT_REDIS_URL
+              value: redis://:$(GCLOUD_CLEANUP_RATE_LIMIT_REDIS_PASSWORD)@$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_HOST):$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_PORT)
           {{- end }}
+
           envFrom:
             - configMapRef:
                 name: {{ template "gcloud-cleanup.fullname" . }}
