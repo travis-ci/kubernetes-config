@@ -1,0 +1,12 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: pagerduty-oncall
+  namespace: gce-production-1
+spec:
+  chart:
+    path: chart/pagerduty-oncall
+    git: git@github.com:travis-ci/pagerduty-oncall.git
+    ref: master
+  releaseName: pagerduty-oncall
