@@ -7,8 +7,8 @@ if [[ $NAMESPACE == *staging* ]]; then
   BRANCH="staging"
 fi
 
-helm repo add weaveworks https://weaveworks.github.io/flux
-helm upgrade flux weaveworks/flux \
+helm repo add fluxcd https://fluxcd.github.io/flux
+helm upgrade flux fluxcd/flux \
   --install \
   --set rbac.create=true \
   --set helmOperator.create=true \
