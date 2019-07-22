@@ -12,6 +12,7 @@ helm upgrade flux fluxcd/flux \
   --install \
   --set rbac.create=true \
   --set helmOperator.create=true \
+  --set helmOperator.createCRD=true \
   --set git.url=git@github.com:travis-ci/kubernetes-config.git \
   --set git.branch="$BRANCH" \
   --set "git.path=releases/$NAMESPACE" \
