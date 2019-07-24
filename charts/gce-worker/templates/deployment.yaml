@@ -25,6 +25,10 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
 
+      limit:
+        min:
+          cpu: "50m"
+
         env:
         - name: POD_NAME
           valueFrom:
