@@ -14,11 +14,11 @@ spec:
       repository: travisci/worker
       tag: v6.2.1
 
-      # Calculation: 17000 CPUs / 2 vCPU per job / 2 worker types per project = 4250 maxJobs per worker type
-      # Take a bit of headroom, don't go over 4000 maxJobs
+    # Calculation: 17000 CPUs / 2 vCPU per job / 2 worker types (com/org) per project = 4250 maxJobs per worker type
+    # Take a bit of headroom, don't go over 4000 maxJobs
     cluster:
       enabled: true
-      maxJobs: 500
+      maxJobs: 1000
       maxJobsPerWorker: 50
 
     site: com
