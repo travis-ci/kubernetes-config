@@ -30,7 +30,12 @@ data:
   TRAVIS_WORKER_GCE_IMAGE_DEFAULT: "travis-ci-garnet-trusty.%2B"
   TRAVIS_WORKER_GCE_IMAGE_PROJECT_ID: "eco-emissary-99515"
   TRAVIS_WORKER_GCE_IMAGE_SELECTOR_TYPE: "api"
-  TRAVIS_WORKER_GCE_MACHINE_TYPE: "n1-standard-2"
+  {{ if .Values.default_machine_type -}}
+  TRAVIS_WORKER_GCE_MACHINE_TYPE: "{{ .Values.default_machine_type }}"
+  {{- end }}
+  {{ if .Values.premium_machine_type -}}
+  TRAVIS_WORKER_GCE_PREMIUM_MACHINE_TYPE: "{{ .Values.premium_machine_type }}"
+  {{- end }}
   TRAVIS_WORKER_GCE_PROJECT_ID: "travis-staging-1"
   TRAVIS_WORKER_GCE_PUBLIC_IP: "false"
   TRAVIS_WORKER_GCE_PUBLIC_IP_CONNECT: "false"

@@ -82,3 +82,6 @@ rateLimitRedis:
 
 # Prefix for LIBRATO_SOURCE, as in '<prefix>-<podname>'
 librato_source_prefix: ""
+
+default_machine_type: "n1-standard-2"
+premium_machine_type: "n1-standard-4"
