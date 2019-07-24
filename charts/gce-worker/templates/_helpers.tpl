@@ -58,7 +58,7 @@ Custom prefix for LIBRATO_SOURCE.
 */}}
 {{- define "gce-worker.librato_source_prefix" -}}
 {{- if .Values.librato_source_prefix -}}
-{{- .Values.librato_prefix -}}
+{{- .Values.librato_source_prefix -}}
 {{- else -}}
 {{- .Release.Namespace -}}
 {{- end -}}
