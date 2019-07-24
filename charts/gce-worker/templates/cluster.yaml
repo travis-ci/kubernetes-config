@@ -41,7 +41,7 @@ spec:
             fieldPath: metadata.namespace
 
       - name: TRAVIS_WORKER_LIBRATO_SOURCE
-        value: $(POD_NAMESPACE)-$(POD_NAME)
+        value: {{ include "gce-worker.librato_source_prefix" . }}-$(POD_NAME)
       - name: TRAVIS_WORKER_HOSTNAME
         value: $(POD_NAME).$(POD_NAMESPACE)
 

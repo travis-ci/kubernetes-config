@@ -52,3 +52,14 @@ Get the config/secrets created by Terraform.
 {{- include "gce-worker.fullname" . }}-terraform
 {{- end -}}
 {{- end -}}
+
+{{/*
+Custom prefix for LIBRATO_SOURCE.
+*/}}
+{{- define "gce-worker.librato_source_prefix" -}}
+{{- if .Values.librato_source_prefix -}}
+{{- .Values.librato_prefix -}}
+{{- else -}}
+{{- .Release.Namespace -}}
+{{- end -}}
+{{- end -}}

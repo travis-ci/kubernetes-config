@@ -79,3 +79,6 @@ rateLimitRedis:
   enabled: false
   secretName: rate-limit-redis
   envPrefix: RATE_LIMIT_REDIS
+
+# Prefix for LIBRATO_SOURCE, as in '<prefix>-<podname>'
+librato_source_prefix: ""
