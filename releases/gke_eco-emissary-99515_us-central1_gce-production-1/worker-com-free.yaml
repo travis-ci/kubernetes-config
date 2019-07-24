@@ -25,6 +25,7 @@ spec:
     site: com
     queue: builds.gce-free
     project: eco-emissary-99515
+    librato_source_prefix: production-1-gce
 
     trvs:
       enabled: true
