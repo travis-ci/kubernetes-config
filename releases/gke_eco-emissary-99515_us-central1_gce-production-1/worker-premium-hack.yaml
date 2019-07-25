@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.0-5-g09f1c5e
+      tag: v6.2.0-6-ga7e15a0
 
     cluster:
       enabled: true
