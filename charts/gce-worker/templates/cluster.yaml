@@ -26,9 +26,9 @@ spec:
       imagePullPolicy: {{ .Values.image.pullPolicy }}
 
       resources:
-        limit:
-          min:
-            cpu: "50m"
+        requests:
+          cpu: "100m"
+          memory: 100Mi
 
       env:
       - name: POD_NAME
