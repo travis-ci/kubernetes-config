@@ -24,6 +24,7 @@ spec:
     site: com
     queue: builds.gce-free
     project: travis-staging-1
+    librato_source_prefix: staging-1-gce
 
     trvs:
       enabled: true

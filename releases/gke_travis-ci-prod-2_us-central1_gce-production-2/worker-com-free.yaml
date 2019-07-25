@@ -25,6 +25,7 @@ spec:
     site: com
     queue: builds.gce-free
     project: travis-ci-prod-2
+    librato_source_prefix: production-2-gce
 
     trvs:
       enabled: true
