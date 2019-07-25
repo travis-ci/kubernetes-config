@@ -22,52 +22,54 @@ spec:
         app.kubernetes.io/name: {{ include "gce-worker.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
 
-      resources:
-        requests:
-          cpu: "100m"
-          memory: 100Mi
+        resources:
+          requests:
+            cpu: "100m"
+            memory: 100Mi
 
-      env:
-      - name: POD_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.name
-      - name: POD_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
 
-      - name: TRAVIS_WORKER_LIBRATO_SOURCE
-        value: {{ include "gce-worker.librato_source_prefix" . }}-$(POD_NAME)
-      - name: TRAVIS_WORKER_HOSTNAME
-        value: $(POD_NAME).$(POD_NAMESPACE)
+        - name: TRAVIS_WORKER_LIBRATO_SOURCE
+          value: {{ include "gce-worker.librato_source_prefix" . }}-$(POD_NAME)
+        - name: TRAVIS_WORKER_HOSTNAME
+          value: $(POD_NAME).$(POD_NAMESPACE)
 
         # The worker secret will have these prefixed with TRAVIS_WORKER,
         # but the AWS library wants these variable names instead.
-      - name: AWS_ACCESS_KEY_ID
-        value: $(TRAVIS_WORKER_AWS_ACCESS_KEY_ID)
-      - name: AWS_SECRET_ACCESS_KEY
-        value: $(TRAVIS_WORKER_AWS_SECRET_ACCESS_KEY)
+        - name: AWS_ACCESS_KEY_ID
+          value: $(TRAVIS_WORKER_AWS_ACCESS_KEY_ID)
+        - name: AWS_SECRET_ACCESS_KEY
+          value: $(TRAVIS_WORKER_AWS_SECRET_ACCESS_KEY)
 
-    {{- if .Values.rateLimitRedis.enabled }}
-      - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: "{{ .Values.rateLimitRedis.secretName }}"
-            key: redis-password
-      - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_URL
-        value: redis://:$(TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD)@$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_HOST):$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_PORT)
-    {{- end }}
+      {{- if .Values.rateLimitRedis.enabled }}
+        - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "{{ .Values.rateLimitRedis.secretName }}"
+              key: redis-password
+        - name: TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_URL
+          value: redis://:$(TRAVIS_WORKER_GCE_RATE_LIMIT_REDIS_PASSWORD)@$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_HOST):$({{ .Values.rateLimitRedis.envPrefix }}_MASTER_SERVICE_PORT)
+      {{- end }}
 
-      envFrom:
-      - configMapRef:
-          name: {{ template "gce-worker.fullname" . }}
-      - secretRef:
-          name: {{ template "gce-worker.secret" . }}
-      - secretRef:
-          name: {{ template "gce-worker.terraform" . }}
+        envFrom:
+        - configMapRef:
+            name: {{ template "gce-worker.fullname" . }}
+        - secretRef:
+            name: {{ template "gce-worker.secret" . }}
+        - secretRef:
+            name: {{ template "gce-worker.terraform" . }}
 
 {{ end }}
