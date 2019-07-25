@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: quay.io/travisci/travis-vcs
-      tag: b3cfec0
+      tag: 46c1350
     imagePullSecrets:
     - name: travisci-travis-vcs-pull-secret
     trvs:
