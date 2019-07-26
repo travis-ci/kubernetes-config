@@ -25,11 +25,6 @@ spec:
       image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
       imagePullPolicy: {{ .Values.image.pullPolicy }}
 
-      resources:
-        requests:
-          cpu: "100m"
-          memory: 100Mi
-
       env:
       - name: POD_NAME
         valueFrom:
