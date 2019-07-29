@@ -1,0 +1,20 @@
+# Default values for fair-use-ip-query-report.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: travisci/fair-use-ip-query-report
+  tag: latest
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+secretName: ""
+
+trvs:
+  enabled: false
+  app: fair-use-ip-query-report
+  env: fair-use-ip-query-report

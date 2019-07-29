@@ -1,0 +1,20 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: fair-use-ip-query-report
+  namespace: gce-staging-1
+spec:
+  chart:
+    path: charts/fair-use-ip-query-report
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: fair-use-ip-query-report
+  values:
+    image:
+      repository: travisci/fair-use-ip-query-report
+      tag: 4890bc7
+    trvs:
+      enabled: true
+      env: staging-1
+      pro: false

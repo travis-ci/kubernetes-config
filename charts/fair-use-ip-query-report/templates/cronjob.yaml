@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "fair-use-ip-query-report.name" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "fair-use-ip-query-report.name" . }}
+    helm.sh/chart: {{ include "fair-use-ip-query-report.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          ttlSecondsAfterFinished: 43200 # 12h
+          containers:
+          - name: {{ .Chart.Name }}
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            envFrom:
+              - secretRef:
+                  name: {{ template "fair-use-ip-query-report.secret" . }}
+          restartPolicy: OnFailure
