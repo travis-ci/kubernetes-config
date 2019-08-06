@@ -30,3 +30,14 @@ Create chart name and version as used by the chart label.
 {{- define "travis-build.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Use the fullname as the secret name unless a secretName has been provided.
+*/}}
+{{- define "travis-build.secret" -}}
+{{- if .Values.secretName -}}
+{{- .Values.secretName -}}
+{{- else -}}
+{{- include "travis-build.fullname" . }}
+{{- end -}}
+{{- end -}}

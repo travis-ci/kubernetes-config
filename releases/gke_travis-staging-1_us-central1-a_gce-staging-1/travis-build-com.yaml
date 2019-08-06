@@ -18,17 +18,9 @@ spec:
 
     trvs:
       enabled: true
-      app: travis-build-com
+      app: travis-build
       env: staging-1
       pro: true
-
-    # in trvs:
-    #   API_TOKEN
-    #   GITHUB_PRIVATE_PEM
-    #   LIBRATO_EMAIL
-    #   LIBRATO_TOKEN
-    #   SENTRY_DSN
-    #   ROLLOUT_REDIRECT_IO_OWNERS_BLOCKLIST ptyOwners
 
     debug: "true"
     libratoSource: travis-pro-build-staging

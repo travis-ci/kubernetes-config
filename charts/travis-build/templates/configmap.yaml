@@ -11,7 +11,6 @@ data:
   PUMA_WORKERS: 8
 
   ROLLOUT: "redirect_io"
-  ROLLOUT_REDIRECT_IO_OWNERS_BLOCKLIST: "{{ .Values.ptyOwners }}"
   ROLLOUT_REDIRECT_IO_PERCENT: "100"
 
   TRAVIS_SITE: "{{ .Values.site }}"

@@ -11,6 +11,7 @@ image:
 
 nameOverride: ""
 fullnameOverride: ""
+secretName: ""
 
 service:
   type: ClusterIP
@@ -47,10 +48,11 @@ tolerations: []
 
 affinity: {}
 
-# There are two ways to scrub secrets from the Travis logs, pty and redirect_io. The latter is the default (newest) but
-# causes/caused issues for some repositories. This list of repo owners will use pty instead.
-# Related code: https://github.com/travis-ci/travis-build/tree/master/public/filter
-ptyOwners: ""
+trvs:
+  enabled: false
+  app: ""
+  env: ""
+  pro: false
 
 debug: "false"
 enableDebugTools: "false"
