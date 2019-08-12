@@ -36,7 +36,9 @@ task :validate do
 end
 
 def validate_release(release)
+  puts "Validating #{release}..."
   r = YAML.safe_load(File.read(release))
+  return unless r['kind'] == "HelmRelease"
   return unless r['spec']['chart']['git'] == 'git@github.com:travis-ci/kubernetes-config.git'
 
   namespace = r['metadata']['namespace']
