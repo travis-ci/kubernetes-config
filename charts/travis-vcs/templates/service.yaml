@@ -6,7 +6,6 @@ metadata:
 {{ include "travis-vcs.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
-  externalTrafficPolicy: "Local"
   ports:
     - port: 80
       targetPort: {{ .Values.service.port }}
