@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "travis-vcs.fullname" . }}
+  labels:
+{{ include "travis-vcs.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  externalTrafficPolicy: "Local"
+  ports:
+    - port: 80
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "travis-vcs.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
