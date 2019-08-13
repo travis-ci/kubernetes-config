@@ -1,0 +1,27 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: gce-staging-1
+  labels:
+    chart: nginx-ingress
+spec:
+  releaseName: nginx-ingress
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: nginx-ingress
+    version: 1.14.0
+  values:
+    image:
+      repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+      tag: 0.25.0
+    controller:
+      replicaCount: 2
+      config:
+        use-proxy-protocol: "true"
+      service:
+        type: LoadBalancer
+        externalTrafficPolicy: "Local"
+    rbac:
+      create: true
