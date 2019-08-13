@@ -1,0 +1,25 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: contour
+  namespace: gce-staging-1
+  labels:
+    chart: contour
+spec:
+  releaseName: contour
+  chart:
+    path: charts/contour
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  values:
+    replicaCount: 2
+    controller:
+      image:
+        repository: gcr.io/heptio-images/contour
+        # Note that by default we use appVersion to get images tag
+        tag: v0.14.1
+    proxy:
+      image:
+        repository: docker.io/envoyproxy/envoy-alpine
+        tag: v1.11.0
