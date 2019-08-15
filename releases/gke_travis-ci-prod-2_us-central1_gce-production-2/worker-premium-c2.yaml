@@ -23,7 +23,6 @@ spec:
     queue: builds.gce-premium-c2
     project: travis-ci-prod-2
     librato_source_prefix: production-2-gce
-    terraformSecretName: worker-premium-c2
 
     trvs:
       enabled: true
