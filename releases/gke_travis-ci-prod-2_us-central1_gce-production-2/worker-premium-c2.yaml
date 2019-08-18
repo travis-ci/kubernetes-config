@@ -37,3 +37,4 @@ spec:
 
     default_machine_type: "n1-standard-2"
     premium_machine_type: "c2-standard-8"
+    worker_gce_zone: "us-central1-b"

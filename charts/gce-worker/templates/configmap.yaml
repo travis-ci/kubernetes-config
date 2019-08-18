@@ -44,6 +44,9 @@ data:
   TRAVIS_WORKER_GCE_RATE_LIMIT_PREFIX: "worker"
   TRAVIS_WORKER_GCE_RATE_LIMIT_TICK: "2s"
   TRAVIS_WORKER_GCE_REGION: "us-central1"
+  {{ if .Values.worker_gce_zone -}}
+  TRAVIS_WORKER_GCE_ZONE: "{{ .Values.worker_gce_zone }}"
+  {{- end }}
   TRAVIS_WORKER_GCE_SKIP_STOP_POLL: "true"
   TRAVIS_WORKER_GCE_UPLOAD_RETRIES: "300"
   {{ if .Values.project -}}
