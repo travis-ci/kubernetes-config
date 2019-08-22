@@ -38,11 +38,6 @@ spec:
             httpGet:
               path: /uptime
               port: {{ .Values.service.port }}
-          env:
-            {{ range $key, $value := .Values.env }}
-            - name: "{{ $key }}"
-              value: "{{ $value }}"
-            {{ end }}
           envFrom:
             - configMapRef:
                 name: {{ template "travis-listener.fullname" . }}
