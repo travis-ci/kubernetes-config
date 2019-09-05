@@ -3,7 +3,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: contour
-  namespace: gce-staging-services-1
+  namespace: gce-production-services-1
   labels:
     chart: contour
 spec:
