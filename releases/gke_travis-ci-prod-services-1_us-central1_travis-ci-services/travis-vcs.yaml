@@ -1,0 +1,41 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-vcs
+  namespace: gce-production-services-1
+  annotations:
+    flux.weave.works/automated: 'false'
+spec:
+  chart:
+    path: charts/travis-vcs
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: production
+  releaseName: travis-vcs
+  values:
+    image:
+      repository: quay.io/travisci/travis-vcs
+      tag: '845ccb4'
+    imagePullSecrets:
+    - name: travisci-travis-vcs-pull-secret
+    trvs:
+      enabled: true
+      env: production-1
+      pro: false
+    replicaCount: 3
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-production
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - host: vcs.travis-ci.org
+        paths: ["/"]
+
+      tls:
+      - secretName: vcs-travis-ci-org-tls
+        hosts:
+        - vcs.travis-ci.org
