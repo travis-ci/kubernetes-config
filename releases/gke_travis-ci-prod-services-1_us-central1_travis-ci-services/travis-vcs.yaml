@@ -10,12 +10,12 @@ spec:
   chart:
     path: charts/travis-vcs
     git: git@github.com:travis-ci/kubernetes-config.git
-    ref: production
+    ref: master
   releaseName: travis-vcs
   values:
     image:
       repository: quay.io/travisci/travis-vcs
-      tag: '845ccb4'
+      tag: '28e9d4d'
     imagePullSecrets:
     - name: travisci-travis-vcs-pull-secret
     trvs:

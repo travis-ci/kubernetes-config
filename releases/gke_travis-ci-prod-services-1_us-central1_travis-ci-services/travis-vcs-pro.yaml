@@ -5,17 +5,17 @@ metadata:
   name: travis-vcs-pro
   namespace: gce-production-services-1
   annotations:
-    flux.weave.works/automated: 'true'
+    flux.weave.works/automated: 'false'
 spec:
   chart:
     path: charts/travis-vcs
     git: git@github.com:travis-ci/kubernetes-config.git
-    ref: production
+    ref: master
   releaseName: travis-vcs-pro
   values:
     image:
       repository: quay.io/travisci/travis-vcs
-      tag: 'e25adb6'
+      tag: '28e9d4d'
     imagePullSecrets:
     - name: travisci-travis-vcs-pull-secret
     trvs:
