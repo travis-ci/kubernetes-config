@@ -26,6 +26,13 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "{{ .Values.resources.limits.cpu }}"
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: "{{ .Values.resources.requests.cpu }}"
+              memory: {{ .Values.resources.requests.memory }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
