@@ -13,6 +13,15 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+# Default resources
+resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 200m
+    memory: 200Mi
+
 # Pull secrets from trvs keychain
 trvs:
   # If not enabled, be sure to set secretName and create a secret with the
