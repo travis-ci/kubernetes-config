@@ -2,7 +2,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: worker-premium-c2
-  namespace: gce-production-2
+  namespace: gce-production-1
 spec:
   chart:
     path: charts/gce-worker
@@ -16,18 +16,18 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 150
+      maxJobs: 50
       maxJobsPerWorker: 50
 
     site: com
     queue: builds.gce-premium-c2
-    project: travis-ci-prod-2
-    librato_source_prefix: production-2-gce
+    project: eco-emissary-99515
+    librato_source_prefix: production-1-gce
 
     trvs:
       enabled: true
       app: gce-workers
-      env: production-2
+      env: production-1
       pro: true
 
     rateLimitRedis:
