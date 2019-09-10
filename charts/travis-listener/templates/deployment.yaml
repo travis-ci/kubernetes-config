@@ -5,8 +5,6 @@ metadata:
   labels:
 {{ include "travis-listener.labels" . | indent 4 }}
 spec:
-  securityContext:
-    runAsUser: 1000
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -18,6 +16,8 @@ spec:
         app.kubernetes.io/name: {{ include "travis-listener.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      securityContext:
+        runAsUser: {{ .Values.runAsUser }}
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
