@@ -12,6 +12,7 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+runAsUser: 1000
 
 # Default resources
 resources:
