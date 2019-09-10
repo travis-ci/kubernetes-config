@@ -2,7 +2,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: worker-premium-n2
-  namespace: gce-production-2
+  namespace: gce-production-3
 spec:
   chart:
     path: charts/gce-worker
@@ -21,13 +21,13 @@ spec:
 
     site: com
     queue: builds.gce-premium-n2
-    project: travis-ci-prod-2
-    librato_source_prefix: production-2-gce
+    project: travis-ci-prod-3
+    librato_source_prefix: production-3-gce
 
     trvs:
       enabled: true
       app: gce-workers
-      env: production-2
+      env: production-3
       pro: true
 
     rateLimitRedis:
