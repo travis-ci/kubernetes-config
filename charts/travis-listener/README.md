@@ -26,7 +26,7 @@ The following table lists the configurable parameters of the `travis-listener` c
 | `image.PullPolicy`                   | Set travis-listener image pull policy              | `IfNotPresent`                      |
 | `imagePullSecrets`                   | Secrets for image pull                             | `[]`                                |
 | `nameOverride`                       | Set different name then chart name                 | `""`                                |
-| `fullnameOverride:                   | Set different full name then chart name            | `""`                                |
+| `fullnameOverride`                   | Set different full name then chart name            | `""`                                |
 | `trvs.enable`                        | Enable pull secrets with trvs                      | `false`                             |
 | `trvs.app`                           | Set trvs app name                                  | `listener`                          |
 | `trvs.env`                           | Set trvs environment                               | `""`                                |
