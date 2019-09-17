@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTEXT="$1"
+CONTEXT=$(kubectl config current-context)
 
 kubectl create serviceaccount tiller \
   --context "$CONTEXT" \
