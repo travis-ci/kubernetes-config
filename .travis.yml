@@ -5,23 +5,19 @@ addons:
   - name: helm
     classic: true
 
-before_install:
-- openssl aes-256-cbc -K $encrypted_8a2a23268e29_key -iv $encrypted_8a2a23268e29_iv
-  -in gcs-credentials.json.enc -out gcs-credentials.json -d
-
 before_script:
 - helm init --client-only
 
 before_deploy:
 - ls dist
+- openssl aes-256-cbc -K $encrypted_8a2a23268e29_key -iv $encrypted_8a2a23268e29_iv
+  -in gcs-credentials.json.enc -out gcs-credentials.json -d
 
 deploy:
   provider: gcs
-  edge: true
-  # project_id: eco-emissary-99515
-  access_key_id: GOOGLOFVBSVM5UVI7HVV7T5V
-  secret_access_key:
-    secure: "XOdyJFh1V9nJlqNmzRvV5w0UqXmwLv1KIbkGZpQ5eMq5jDn9TkwbmMgaxJZa20+ccVJGLQeNSpjCy1cyllrTEALR0XbUGBDh2DJqlH0EShcRYfe3Qcw0wKoOgqqKHvjt1RfMhZoDeTaf+sUfRzSdjr64Vq/dqOrL6OhrWkVFft9G6/tFuAXvvQZgQW0XIqYZPinK8RyN8vWX/lC8KkmQmk17Ku2fBz4GWb8ezXds2bz21+IqzZL/iGOUOEUfwIf12UScc4/SXD79Si1fI3DVSBVmQmApQciKIOL6Z3WONkwtoq5pVICcEBc/wfmrFVLMm409jwzuBE6xMk5CkokpfkHXPwwgGcT630dVyO2JXuJXIBg1m5STMttqwhdxTm+h+emvx/LEbZaQJ3lMC3pAxZ4100vOVrYopf+oGTCvrcLYirHawDjW6J7wK8dzoOrE7Xk2PZBg3m8S+Xb6H51HJQmrVttwUlwQmWpAp0W4Ek0W/Fbhxl5ahPc5fnyya8rXfNCht5Oebhcg1jVIsplIn8QJVvg3TxjwOAYrwXvaEo6Ef4JHjjevjVuTy6n5qAq2Vbt1UHniNfMj8Yx7CZNwYFv3SzQbTMf1kYvrNG+SQvpRdme20UFPJZvXPnonhC3PYmiHT1+LqVIA4FxcI7lGuH7R+exUMsVjp/C6Ks0IKrQ="
+  edge:
+    branch: master
+  key_file: gcs-credentials.json
   bucket: travis-ci-helm-charts
   local_dir: dist
   acl: public-read
