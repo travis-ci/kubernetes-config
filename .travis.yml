@@ -17,13 +17,11 @@ before_deploy:
 
 deploy:
   provider: gcs
-  edge:
-    branch: gcs-ng
+  edge: true
   project_id: eco-emissary-99515
   credentials: gcs-credentials.json
   bucket: travis-ci-helm-charts
   local_dir: dist
-  skip_cleanup: true
   acl: publicRead
   on:
     repo: travis-ci/kubernetes-config
