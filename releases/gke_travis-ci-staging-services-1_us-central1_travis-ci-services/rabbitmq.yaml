@@ -8,10 +8,6 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: rabbitmq
+    version: 3.7.13
   releaseName: rabbitmq
-  values:
-    cluster:
-      enabled: false
-    master:
-      persistence:
-        enabled: true
+
