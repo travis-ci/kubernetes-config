@@ -1,0 +1,18 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: rabbitmq
+  namespace: gce-staging-services-1
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: charts/rabbitmq
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: rabbitmq
+  values:
+    image:
+      repository: https://kubernetes-charts.storage.googleapis.com
+
