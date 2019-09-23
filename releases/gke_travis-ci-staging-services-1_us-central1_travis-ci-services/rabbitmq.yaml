@@ -8,6 +8,6 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: rabbitmq
-    version: 3.7.13
+    version: 6.7.4
   releaseName: rabbitmq
 
