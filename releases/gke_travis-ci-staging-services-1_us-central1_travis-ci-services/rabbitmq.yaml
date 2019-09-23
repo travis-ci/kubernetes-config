@@ -8,7 +8,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: rabbitmq
-  releaseName: redis
+  releaseName: rabbitmq
   values:
     cluster:
       enabled: false
