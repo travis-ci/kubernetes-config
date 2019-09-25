@@ -49,3 +49,4 @@ data:
   TRAVIS_BUILD_GPG_KEYS_URL: "https://raw.githubusercontent.com/travis-ci/apt-gpg-keys/master/gpg_keys.json"
   TRAVIS_BUILD_GIMME_FORCE_REINSTALL: "{{ .Values.gimmeForceReinstall }}"
   GITHUB_APPS_ID: "{{ .Values.githubAppsId }}"
+  HUB_URL: "{{ .Values.hubURL }}"
