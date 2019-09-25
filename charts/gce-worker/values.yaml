@@ -85,3 +85,5 @@ librato_source_prefix: ""
 
 default_machine_type: "n1-standard-2"
 premium_machine_type: "n1-standard-4"
+
+worker_gce_region: "us-central1"
