@@ -1,0 +1,53 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-build
+  namespace: gce-staging-services-1
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: charts/travis-build
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: travis-build
+  values:
+
+    trvs:
+      enabled: true
+      app: travis-build
+      env: staging-1
+      pro: false
+
+    replicaCount: 1
+
+    ingress:
+      enabled: true
+
+      annotations:
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/ingress.class: contour
+        kubernetes.io/tls-acme: "true"
+
+      hosts:
+        #- host: build-staging.travis-ci.org
+        #  paths: ["/"]
+      - host: build.staging.travis-ci.org
+        paths: ["/"]
+
+      tls:
+      - secretName: build-staging-travis-ci-org-tls
+        hosts:
+          #- build-staging.travis-ci.org
+        - build.staging.travis-ci.org
+
+    appHost: build.staging.travis-ci.org
+    rackEnv: staging
+    site: org
+    aptProxy: "http://staging-1-build-cache.gce-us-central1.travisci.net"
+    aptSafelistSkip: "true"
+    gimmeForceReinstall: "true"
+    hubURL: "https://travis-hub-staging.herokuapp.com"

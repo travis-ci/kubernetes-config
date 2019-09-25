@@ -1,0 +1,64 @@
+# Default values for travis-build.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: travisci/travis-build
+  tag: aj-docker
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+secretName: ""
+
+resources: {}
+# limits:
+#  cpu: 100m
+#  memory: 128Mi
+# requests:
+#  cpu: 100m
+#  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+trvs:
+  enabled: false
+  app: ""
+  env: ""
+  pro: false
+
+service:
+  type: ClusterIP
+  port: 4000
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    -host: chart-example.local
+    paths: ["/"]
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+debug: "false"
+enableDebugTools: "false"
+libratoSource: ""
+rackEnv: "production"
+appHost: "build.travis-ci.com"
+aptProxy: ""
+aptSafelistSkip: "false"
+site: ""
+gimmeForceReinstall: "false"
+githubAppsId: ""
+hubURL: ""
