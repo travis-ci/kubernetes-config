@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: travisci/travis-build
-  tag: aj-docker
+  repository: quay.io/travisci/travis-build
+  tag: 6720f06
   pullPolicy: IfNotPresent
 
 nameOverride: ""
