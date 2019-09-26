@@ -6,9 +6,9 @@ data:
   DEBUG: "{{ .Values.debug }}"
   TRAVIS_ENABLE_DEBUG_TOOLS: "{{ .Values.enableDebugTools }}"
 
-  PUMA_MAX_THREADS: 5
-  PUMA_MIN_THREADS: 5
-  PUMA_WORKERS: 8
+  PUMA_MAX_THREADS: "5"
+  PUMA_MIN_THREADS: "5"
+  PUMA_WORKERS: "8"
 
   ROLLOUT: "redirect_io"
   ROLLOUT_REDIRECT_IO_PERCENT: "100"
