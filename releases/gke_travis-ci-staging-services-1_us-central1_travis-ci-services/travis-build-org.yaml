@@ -33,18 +33,18 @@ spec:
         kubernetes.io/tls-acme: "true"
 
       hosts:
-        #- host: build-staging.travis-ci.org
-        #  paths: ["/"]
+      - host: build-staging.travis-ci.org
+        paths: ["/"]
       - host: build.staging.travis-ci.org
         paths: ["/"]
 
       tls:
       - secretName: build-staging-travis-ci-org-tls
         hosts:
-          #- build-staging.travis-ci.org
+        - build-staging.travis-ci.org
         - build.staging.travis-ci.org
 
-    appHost: build.staging.travis-ci.org
+    appHost: build-staging.travis-ci.org
     rackEnv: staging
     site: org
     aptProxy: "http://staging-1-build-cache.gce-us-central1.travisci.net"
