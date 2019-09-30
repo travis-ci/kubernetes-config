@@ -14,7 +14,7 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 108
+      maxJobs: 120
       maxJobsPerWorker: 30
 
     site: com
