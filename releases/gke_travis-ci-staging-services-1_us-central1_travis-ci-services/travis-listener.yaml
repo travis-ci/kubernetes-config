@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: quay.io/travisci/travis-listener
-      tag: '6551c15-jaroslaw-enterprise-docker'
+      tag: '3a31cb9'
     trvs:
       enabled: true
       env: staging-1
