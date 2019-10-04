@@ -46,7 +46,7 @@ Use the fullname as the secret name unless a secretName has been provided.
 Get the config/secrets created by Terraform.
 */}}
 {{- define "gce-worker.terraform" -}}
-{{- if .Values.secretName -}}
+{{- if .Values.terraformSecretName -}}
 {{- .Values.terraformSecretName -}}
 {{- else -}}
 {{- include "gce-worker.fullname" . }}-terraform
