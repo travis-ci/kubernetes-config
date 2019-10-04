@@ -35,6 +35,8 @@ spec:
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
 
+    terraformSecretName: worker-premium-n2
+
     default_machine_type: "n1-standard-2"
     premium_machine_type: "n2-highmem-4"
     worker_gce_zone: "us-central1-c"
