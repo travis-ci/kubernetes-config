@@ -38,5 +38,5 @@ spec:
     terraformSecretName: worker-premium-n2-terraform
 
     default_machine_type: "n2-highmem-4"
-    premium_machine_type: "n2-highmem-4"
+    premium_machine_type: "n2-highmem-8"
     worker_gce_zone: "us-central1-c"
