@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    name: gce-production-1-ue1
+  name: gce-production-1-ue1
+---
