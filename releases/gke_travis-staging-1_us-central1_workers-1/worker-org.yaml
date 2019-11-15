@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.5-4-g175add6
+      tag: v6.2.3-12-ga868f9a
 
       # Example calculation: 2400 CPUs / 2 vCPU per job = 1200 maxJobs
       # Staging doesn't need that much, would be a waste of resources.
@@ -36,6 +36,3 @@ spec:
       enabled: true
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
-
-    default_machine_type: "n2-standard-2"
-    worker_gce_zones: "us-central1-c,us-central1-f"
