@@ -55,6 +55,7 @@ data:
   {{ if .Values.project -}}
   TRAVIS_WORKER_STACKDRIVER_PROJECT_ID: "{{ .Values.project }}"
   {{- end }}
+  TRAVIS_WORKER_DEBUG: "true"
 
   TRAVIS_WORKER_OPENCENSUS_SAMPLING_RATE: "10"
   TRAVIS_WORKER_OPENCENSUS_TRACING_ENABLED: "true"
