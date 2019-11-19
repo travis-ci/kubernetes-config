@@ -12,19 +12,14 @@ spec:
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
   values:
-
     replicaCount: 1
-
     ingress:
       enabled: true
-
       annotations:
         kubernetes.io/ingress.class: contour
-
       hosts:
       - host: vault.staging.travis-ci.org
         paths: ["/"]
-
     appHost: vault.staging.travis-ci.org
     rackEnv: staging
     site: org
