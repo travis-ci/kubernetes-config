@@ -2,7 +2,7 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: travis-build
+  name: vault
   namespace: gce-staging-services-1
   annotations:
     flux.weave.works/automated: 'true'
@@ -23,7 +23,7 @@ spec:
 
       hosts:
       - host: vault.staging.travis-ci.org
-        paths: []
+        paths: ["/"]
 
     appHost: vault.staging.travis-ci.org
     rackEnv: staging
