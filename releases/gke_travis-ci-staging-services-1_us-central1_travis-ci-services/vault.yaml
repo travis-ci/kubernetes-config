@@ -1,0 +1,33 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-build
+  namespace: gce-staging-services-1
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: charts/vault
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  values:
+
+    replicaCount: 1
+
+    ingress:
+      enabled: true
+
+      annotations:
+        kubernetes.io/ingress.class: contour
+
+      hosts:
+      - host: vault.staging.travis-ci.org
+        paths: []
+
+    appHost: vault.staging.travis-ci.org
+    rackEnv: staging
+    site: org
+    aptProxy: "http://staging-1-build-cache.gce-us-central1.travisci.net"
+    aptSafelistSkip: "true"
+    gimmeForceReinstall: "true"
