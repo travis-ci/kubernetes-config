@@ -27,18 +27,18 @@ server:
       memory: 256Mi
       cpu: 250m
     limits:
-      memory: 5126Mi
+      memory: 512Mi
       cpu: 500m
 
   # Ingress allows ingress services to be created to allow external access 
   # from Kubernetes to access Vault pods.
   ingress:
     enabled: true
-    annotations: {}
-        kubernetes.io/ingress.class: contour
+    annotations:
+      kubernetes.io/ingress.class: contour
     hosts:
       - host: vault.staging.travis-ci.org
-        paths: []
+        paths: ["/"]
 
     #tls: []
     #  - secretName: chart-example-tls
@@ -265,4 +265,4 @@ ui:
   # Extra annotations to attach to the ui service
   # This should be a multi-line string mapping directly to the a map of
   # the annotations to apply to the ui service
-  annotations: {}
+  # annotations: {}
