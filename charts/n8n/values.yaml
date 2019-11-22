@@ -22,9 +22,16 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+#   type: ClusterIP
+#   port: 5678
+
 service:
-  type: ClusterIP
+  # type: ClusterIP
+  enabled: true
   port: 5678
+  targetPort: 5678
+  annotations: {}
+
 
 ingress:
   enabled: true

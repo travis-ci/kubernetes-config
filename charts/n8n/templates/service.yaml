@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "n8n.fullname" . }}
   labels:
-    {{- include "n8n.labels" . | nindent 4 }}
+    {{- include "n8n.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "n8n.selectorLabels" . | nindent 4 }}
+    {{- include "n8n.selectorLabels" . | indent 4 }}
