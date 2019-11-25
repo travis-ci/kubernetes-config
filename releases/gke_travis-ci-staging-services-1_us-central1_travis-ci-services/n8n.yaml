@@ -7,13 +7,6 @@ metadata:
   annotations:
     flux.weave.works/automated: 'true'
 spec:
-  chart:
-    path: charts/n8n
-    git: git@github.com:travis-ci/kubernetes-config.git
-    ref: staging
-  releaseName: n8n
-  values:
-    replicaCount: 1
   rollback:
     enable: true
     force: true
