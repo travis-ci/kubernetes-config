@@ -13,4 +13,4 @@ spec:
     ref: staging
   releaseName: n8n
   values:
-    replicaCount: 0
+    replicaCount: 1
