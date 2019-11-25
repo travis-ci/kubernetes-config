@@ -30,7 +30,7 @@ spec:
             - name: N8N_PORT
               value: "5678"
           ports:
-            - name: http
+            - name: n8n
               containerPort: 5678
               protocol: TCP
           livenessProbe:
