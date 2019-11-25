@@ -28,10 +28,10 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: N8N_PORT
-              value: 5678
+              value: "5678"
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 5678
               protocol: TCP
           livenessProbe:
             httpGet:
