@@ -27,7 +27,6 @@ securityContext: {}
 
 service:
   # type: ClusterIP
-  enabled: true
   port: 5678
   annotations: {}
 
