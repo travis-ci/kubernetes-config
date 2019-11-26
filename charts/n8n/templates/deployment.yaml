@@ -26,9 +26,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: N8N_PORT
-              value: "5678"
           ports:
             - name: n8n
               containerPort: 5678
