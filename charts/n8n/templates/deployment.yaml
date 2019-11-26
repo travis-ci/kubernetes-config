@@ -3,16 +3,21 @@ kind: Deployment
 metadata:
   name: {{ include "n8n.fullname" . }}
   labels:
-    {{- include "n8n.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "n8n.name" . }}
+    helm.sh/chart: {{ include "n8n.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "n8n.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: {{ include "n8n.vcs.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        {{- include "n8n.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/name: {{ include "n8n.vcs.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
