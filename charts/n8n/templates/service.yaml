@@ -15,5 +15,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "n8n.vcs.name" . }}
+    app.kubernetes.io/name: {{ include "n8n.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
