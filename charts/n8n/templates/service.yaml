@@ -8,7 +8,6 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: 5678
       protocol: TCP
       name: http
   selector:
