@@ -8,7 +8,9 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
       name: http
   selector:
-    {{- include "n8n.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "n8n.vcs.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
