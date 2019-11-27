@@ -51,6 +51,11 @@ app.kubernetes.io/name: {{ include "n8n.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
+{{- define "n8n.selector" -}}
+app: {{ include "n8n.name" . }}
+release: {{ .Release.Name }}
+{{- end -}}
+
 {{/*
 Create the name of the service account to use
 */}}

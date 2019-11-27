@@ -14,8 +14,6 @@ spec:
     metadata:
       labels:
         {{ include "n8n.selector" . | indent 8 | trim }}
-      annotations:
-        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
       containers:
         - name: {{ include "n8n.fullname" . }}

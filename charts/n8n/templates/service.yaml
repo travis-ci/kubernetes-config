@@ -17,3 +17,4 @@ spec:
       protocol: TCP
   selector:
     {{ include "n8n.selector" . | indent 4 | trim }}
+    
