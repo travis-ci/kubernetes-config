@@ -14,4 +14,10 @@ spec:
   releaseName: n8n
   values:
     replicaCount: 1
+  rollback:
+    enable: true
+    force: true
+    disableHooks: false
+    timeout: 300
+    wait: false
 
