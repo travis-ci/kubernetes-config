@@ -3,33 +3,23 @@ kind: Deployment
 metadata:
   name: {{ include "n8n.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "n8n.name" . }}
-    helm.sh/chart: {{ include "n8n.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{ include "n8n.labels" . | indent 4 | trim }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "n8n.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{ include "n8n.selector" . | indent 6 | trim }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "n8n.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{ include "n8n.selector" . | indent 8 | trim }}
+      annotations:
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+        - name: {{ include "n8n.fullname" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -39,21 +29,15 @@ spec:
             httpGet:
               path: /
               port: 5678
+            periodSeconds: 15
+            timeoutSeconds: 15
           readinessProbe:
             httpGet:
               path: /
               port: 5678
+            periodSeconds: 15
+            timeoutSeconds: 15
+        {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-    {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
+            {{ toYaml . | nindent 12 }}
+        {{- end }}

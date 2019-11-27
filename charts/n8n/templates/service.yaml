@@ -3,17 +3,17 @@ kind: Service
 metadata:
   name: {{ include "n8n.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "n8n.name" . }}
-    helm.sh/chart: {{ include "n8n.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{ include "n8n.labels" . | indent 4 | trim }}
+{{- with .Values.service.annotations }}
+  annotations:
+    {{ toYaml . | nindent 4 }}
+{{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.port }}
+    - name: http
+      port: 80
+      targetPort: 5678
       protocol: TCP
-      name: http
   selector:
-    app.kubernetes.io/name: {{ include "n8n.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{ include "n8n.selector" . | indent 4 | trim }}
