@@ -19,6 +19,9 @@ spec:
         - name: {{ include "n8n.fullname" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: N8N_PORT
+              value: "5678"
           ports:
             - name: http
               containerPort: 5678
