@@ -12,11 +12,11 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.1
+      tag: v6.2.6
 
     cluster:
       enabled: true
-      maxJobs: 2500
+      maxJobs: 100
       maxJobsPerWorker: 50
 
     site: com
@@ -34,3 +34,6 @@ spec:
       enabled: true
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
+
+    default_machine_type: "n2-standard-2"
+    worker_gce_zones: "us-central1-c,us-central1-f"
