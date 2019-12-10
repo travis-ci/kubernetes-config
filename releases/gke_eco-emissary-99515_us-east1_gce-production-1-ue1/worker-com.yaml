@@ -36,4 +36,4 @@ spec:
       envPrefix: RATE_LIMIT_REDIS
 
     default_machine_type: "n2-standard-2"
-    worker_gce_zones: "us-east1-c"
+    worker_gce_zones: "us-east1-c,us-east1-d"
