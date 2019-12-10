@@ -1,18 +1,18 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-premium-c2
+  name: worker-com
   namespace: gce-production-1
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: master
-  releaseName: worker-premium-c2
+  releaseName: worker-com
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.1-21-g73afc12
+      tag: v6.2.5
 
     cluster:
       enabled: true
@@ -34,7 +34,3 @@ spec:
       enabled: true
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
-
-    default_machine_type: "n1-standard-2"
-    premium_machine_type: "c2-standard-4"
-    worker_gce_zone: "us-east1-c"
