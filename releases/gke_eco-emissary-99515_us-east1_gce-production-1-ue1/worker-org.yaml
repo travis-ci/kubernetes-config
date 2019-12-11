@@ -1,25 +1,25 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-com
+  name: worker-org
   namespace: gce-production-1
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: master
-  releaseName: worker-com
+  releaseName: worker-org
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.5
+      tag: v6.2.6
 
     cluster:
       enabled: true
-      maxJobs: 10
+      maxJobs: 5
       maxJobsPerWorker: 5
 
-    site: com
+    site: org
     queue: builds.us-east1-test
     project: eco-emissary-99515
     librato_source_prefix: production-1-gce
@@ -28,7 +28,7 @@ spec:
       enabled: true
       app: gce-workers
       env: production-1
-      pro: true
+      pro: false
 
     rateLimitRedis:
       enabled: true
