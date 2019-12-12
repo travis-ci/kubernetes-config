@@ -39,10 +39,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-      {{- if .Values.default_gce_network -}}
-        - name: TRAVIS_WORKER_GCE_PREMIUM_MACHINE_TYPE
+        - name: TRAVIS_WORKER_GCE_NETWORK
           value: "{{ .Values.default_gce_network }}"
-      {{- end }}
         - name: TRAVIS_WORKER_LIBRATO_SOURCE
           value: {{ include "gce-worker.librato_source_prefix" . }}-$(POD_NAME)
         - name: TRAVIS_WORKER_HOSTNAME
