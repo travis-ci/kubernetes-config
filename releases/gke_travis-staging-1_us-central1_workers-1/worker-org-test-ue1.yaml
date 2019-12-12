@@ -1,14 +1,14 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-org
+  name: worker-org-test-ue1
   namespace: default
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
-  releaseName: worker-org
+  releaseName: worker-org-test-ue1
   values:
     image:
       repository: travisci/worker
