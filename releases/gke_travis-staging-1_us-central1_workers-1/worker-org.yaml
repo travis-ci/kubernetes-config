@@ -37,7 +37,6 @@ spec:
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
 
-    default_gce_network: "main-us-east1"
     worker_gce_zones: "us-central1-c,us-central1-f"
     default_machine_type: "n2-standard-2"
     

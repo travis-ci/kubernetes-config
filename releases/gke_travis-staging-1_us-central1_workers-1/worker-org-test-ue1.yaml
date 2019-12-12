@@ -18,8 +18,8 @@ spec:
       # Staging doesn't need that much, would be a waste of resources.
     cluster:
       enabled: true
-      maxJobs: 1
-      maxJobsPerWorker: 1
+      maxJobs: 5
+      maxJobsPerWorker: 5
 
     site: org
     queue: builds.gce
@@ -37,7 +37,7 @@ spec:
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
 
-    default_gce_network: "main-us-east1"
+
     worker_gce_zones: "us-central1-c,us-central1-f"
     default_machine_type: "n2-standard-2"
-    
+    default_gce_network: "main-us-east1"
