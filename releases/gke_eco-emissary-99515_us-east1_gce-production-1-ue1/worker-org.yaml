@@ -16,11 +16,11 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 5
-      maxJobsPerWorker: 5
+      maxJobs: 250
+      maxJobsPerWorker: 50
 
     site: org
-    queue: builds.us-east1-test
+    queue: builds.gce
     project: eco-emissary-99515
     librato_source_prefix: production-1-gce
 
