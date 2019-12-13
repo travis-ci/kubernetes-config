@@ -38,3 +38,4 @@ spec:
     default_machine_type: "n2-standard-2"
     worker_gce_zones: "us-east1-c,us-east1-d"
     default_gce_network: "main-us-east1"
+    worker_gce_region: "us-east1"
