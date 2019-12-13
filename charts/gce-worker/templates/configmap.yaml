@@ -43,7 +43,7 @@ data:
   TRAVIS_WORKER_GCE_RATE_LIMIT_MAX_CALLS: "30"
   TRAVIS_WORKER_GCE_RATE_LIMIT_PREFIX: "worker"
   TRAVIS_WORKER_GCE_RATE_LIMIT_TICK: "2s"
-  TRAVIS_WORKER_GCE_REGION: "us-central1"
+  TRAVIS_WORKER_GCE_REGION: "{{ .Values.worker_gce_region }}"
   {{ if .Values.worker_gce_zone -}}
   TRAVIS_WORKER_GCE_ZONE: "{{ .Values.worker_gce_zone }}"
   {{- end }}

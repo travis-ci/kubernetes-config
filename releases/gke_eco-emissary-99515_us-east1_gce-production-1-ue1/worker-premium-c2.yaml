@@ -39,3 +39,4 @@ spec:
     premium_machine_type: "c2-standard-4"
     worker_gce_zone: "us-east1-c,us-east1-d"
     default_gce_network: "main-us-east1"
+    worker_gce_region: "us-east1"
