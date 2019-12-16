@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: quay.io/travisci/travis-listener
-      tag: '1312f89-pm_bump_puma_3.12.2'
+      tag: '077acf8'
     trvs:
       enabled: true
       env: staging-1
