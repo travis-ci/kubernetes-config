@@ -3,7 +3,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: rate-limit-redis
-  namespace: gce-production-2
+  namespace: gce-production-3
 spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
