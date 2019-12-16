@@ -16,7 +16,7 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 2500
+      maxJobs: 750
       maxJobsPerWorker: 50
 
     site: com
@@ -36,4 +36,4 @@ spec:
       envPrefix: RATE_LIMIT_REDIS
 
     default_machine_type: "n2-standard-2"
-    worker_gce_zones: "us-central1-c,us-central1-f"
+    worker_gce_zones: "us-central1-c"
