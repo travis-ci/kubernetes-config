@@ -12,15 +12,15 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.5
+      tag: v6.2.6
 
     cluster:
       enabled: true
-      maxJobs: 10
-      maxJobsPerWorker: 5
+      maxJobs: 750
+      maxJobsPerWorker: 50
 
     site: com
-    queue: builds.us-east1-test
+    queue: builds.gce
     project: eco-emissary-99515
     librato_source_prefix: production-1-gce
 
