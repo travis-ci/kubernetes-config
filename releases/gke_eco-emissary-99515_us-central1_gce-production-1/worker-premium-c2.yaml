@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.6
+      tag: v6.2.1-21-g73afc12
 
     cluster:
       enabled: true
@@ -35,6 +35,6 @@ spec:
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
 
-    default_machine_type: "n2-standard-2"
+    default_machine_type: "n1-standard-2"
     premium_machine_type: "c2-standard-4"
-    worker_gce_zones: "us-central1-c,us-central1-f"
+    worker_gce_zone: "us-central1-c"
