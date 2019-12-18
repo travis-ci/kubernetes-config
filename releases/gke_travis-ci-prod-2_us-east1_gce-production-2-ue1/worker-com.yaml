@@ -16,11 +16,11 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 5
-      maxJobsPerWorker: 5
+      maxJobs: 750
+      maxJobsPerWorker: 50
 
     site: com
-    queue: builds.us-east1-test
+    queue: builds.gce
     project: travis-ci-prod-2
     librato_source_prefix: production-2-gce
 
