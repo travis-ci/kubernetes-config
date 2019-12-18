@@ -16,8 +16,8 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 5
-      maxJobsPerWorker: 5
+      maxJobs: 750
+      maxJobsPerWorker: 50
 
     site: org
     queue: builds.gce
