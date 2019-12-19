@@ -22,6 +22,10 @@ spec:
           env:
             - name: N8N_PORT
               value: "5678"
+            - name: N8N_PROTOCOL
+              value: "http"
+            - name: N8N_HOST
+              value: n8n.staging.travis-ci.org
             - name: N8N_BASIC_AUTH_ACTIVE
               value: "true"
             - name: N8N_BASIC_AUTH_USER
