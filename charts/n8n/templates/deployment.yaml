@@ -22,6 +22,18 @@ spec:
           env:
             - name: N8N_PORT
               value: "5678"
+            - name: N8N_BASIC_AUTH_ACTIVE
+              value: true
+            - name: N8N_BASIC_AUTH_USER
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-auth
+                  key: username
+            - name: N8N_BASIC_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-auth
+                  key: password
           ports:
             - name: http
               containerPort: 5678
