@@ -21,9 +21,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: N8N_PORT
-              value: "5678"
+              value: "80"
             - name: N8N_PROTOCOL
-              value: "https"
+              value: "http"
             - name: N8N_HOST
               value: n8n.staging.travis-ci.org
             - name: N8N_BASIC_AUTH_ACTIVE
@@ -40,7 +40,7 @@ spec:
                   key: password
           ports:
             - name: http
-              containerPort: 5678
+              containerPort: 80
               protocol: TCP
         {{- with .Values.resources }}
           resources:
