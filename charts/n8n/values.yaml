@@ -17,9 +17,17 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: contour
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    kubernetes.io/tls-acme: "true"
+    contour.heptio.com/tls-minimum-protocol-version: "1.2"
   hosts:
-    - host: n8n.staging.travis-ci.org
-      paths: ["/"]
+  - host: n8n.travis-ci.org
+    paths: ["/"]
+  tls:
+  - secretName: n8n-staging-travis-ci-org-tls
+    hosts:
+    - n8n.staging.travis-ci.org
 
 resources: 
   requests:
