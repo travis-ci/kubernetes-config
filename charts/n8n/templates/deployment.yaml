@@ -21,13 +21,17 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: N8N_PORT
-              value: "80"
+              value: "443"
             - name: N8N_PROTOCOL
-              value: "http"
+              value: "https"
             - name: N8N_HOST
               value: n8n.staging.travis-ci.org
             - name: N8N_BASIC_AUTH_ACTIVE
               value: "true"
+            - name: VUE_APP_URL_BASE_API
+              value: "https://n8n.staging.travis-ci.org/"
+            - name: WEBHOOK_TUNNEL_URL
+              value: "https://n8n.staging.travis-ci.org/"
             - name: N8N_BASIC_AUTH_USER
               valueFrom:
                 secretKeyRef:
@@ -40,7 +44,7 @@ spec:
                   key: password
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 443
               protocol: TCP
         {{- with .Values.resources }}
           resources:
