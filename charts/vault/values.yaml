@@ -32,13 +32,21 @@ server:
 
   # Ingress allows ingress services to be created to allow external access 
   # from Kubernetes to access Vault pods.
-  ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: contour
-    hosts:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
       - host: vault.staging.travis-ci.org
         paths: ["/"]
+      tls:
+      - secretName: vault-staging-travis-ci-org-tls
+        hosts:
+        - vault.staging.travis-ci.org
 
     #tls: []
     #  - secretName: chart-example-tls
