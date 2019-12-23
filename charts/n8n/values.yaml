@@ -41,5 +41,6 @@ resources:
     memory: 512Mi
 
 storage:
-  capacity: "10G"
-  accessMode: "ReadWriteOnce"
+  name: n8n
+  capacity: 10G
+  accessMode: ReadWriteOnce
