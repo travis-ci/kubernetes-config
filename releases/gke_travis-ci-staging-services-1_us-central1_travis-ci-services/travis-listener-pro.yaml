@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: quay.io/travisci/travis-listener
-      tag: 'afe1a94'
+      tag: '2f24c49'
     trvs:
       enabled: true
       env: staging-1
