@@ -22,7 +22,7 @@ ingress:
     kubernetes.io/tls-acme: "true"
     contour.heptio.com/tls-minimum-protocol-version: "1.2"
   hosts:
-  - host: n8n.travis-ci.org
+  - host: n8n.staging.travis-ci.org
     paths: ["/"]
     backend:
       serviceName: n8n
