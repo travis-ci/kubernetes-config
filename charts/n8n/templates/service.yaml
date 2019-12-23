@@ -12,9 +12,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - name: http
-      port: 443
-      targetPort: 443
-      protocol: TCP
+      port: 5678
+      targetPort: 5678
   selector:
     {{ include "n8n.selector" . | indent 4 | trim }}
     

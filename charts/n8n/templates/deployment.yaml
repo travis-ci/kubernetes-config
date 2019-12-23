@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: N8N_PORT
-              value: "443"
+              value: "5678"
             - name: N8N_PROTOCOL
               value: "https"
             - name: N8N_HOST
@@ -44,7 +44,7 @@ spec:
                   key: password
           ports:
             - name: http
-              containerPort: 443
+              containerPort: 5678
               protocol: TCP
         {{- with .Values.resources }}
           resources:

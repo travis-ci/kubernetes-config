@@ -26,7 +26,7 @@ ingress:
     paths: ["/"]
     backend:
       serviceName: n8n
-      servicePort: 443
+      servicePort: 5678
   tls:
   - secretName: n8n-staging-travis-ci-org-tls
     hosts:
