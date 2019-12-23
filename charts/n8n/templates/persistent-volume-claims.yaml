@@ -6,8 +6,8 @@ metadata:
   labels:
     {{ include "n8n.labels" . | indent 4 | trim }}
 spec:
- accessModes:
+  accessModes:
     - {{ .Values.storage.accessMode }}
- resources:
-   requests:
-     storage: {{ .Values.storage.capacity }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.capacity }}
