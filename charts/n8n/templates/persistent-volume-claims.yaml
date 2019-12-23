@@ -1,0 +1,13 @@
+---
+apiVersion: "v1"
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.name | quote }}
+  labels:
+    {{ include "n8n.labels" . | indent 4 | trim }}
+spec:
+ accessModes:
+    - {{ .Values.storage.accessMode | quote }}
+ resources:
+   requests:
+     storage: {{ .Values.storage.capacity | quote }}

@@ -42,6 +42,9 @@ spec:
                 secretKeyRef:
                   name: n8n-auth
                   key: password
+          volumeMounts:
+            - name: {{ .Values.name | quote }}
+              mountPath: /root/.n8n
           ports:
             - name: http
               containerPort: 5678
@@ -50,3 +53,7 @@ spec:
           resources:
             {{ toYaml . | nindent 12 }}
         {{- end }}
+      volumes:
+        - name: {{ .Values.name | quote }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.name | quote }}
