@@ -10,7 +10,7 @@ spec:
   chart:
     path: stable/node-red
     git: git@github.com:helm/charts.git
-    ref: staging
+    ref: master
   releaseName: node-red
   values:
     replicaCount: 1
