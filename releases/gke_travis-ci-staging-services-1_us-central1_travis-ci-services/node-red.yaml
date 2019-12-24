@@ -1,0 +1,27 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: node-red
+  namespace: gce-staging-services-1
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: stable/node-red
+    git: git@github.com:helm/charts.git
+    ref: staging
+  releaseName: node-red
+  values:
+    replicaCount: 1
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - host: node-red.staging.travis-ci.org
+        paths: ["/"]
+
+
