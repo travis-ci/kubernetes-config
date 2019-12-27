@@ -8,10 +8,10 @@ metadata:
     flux.weave.works/automated: 'true'
 spec:
   chart:
-    path: stable/node-red
-    git: git@github.com:helm/charts.git
-    ref: master
-  releaseName: nodered
+    path: charts/node-red
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: node-red
   values:
     replicaCount: 1
 
