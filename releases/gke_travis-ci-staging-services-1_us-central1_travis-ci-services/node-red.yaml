@@ -21,6 +21,6 @@ spec:
         kubernetes.io/ingress.class: contour
         contour.heptio.com/tls-minimum-protocol-version: "1.2"
       hosts:
-      - nodered.staging.travis-ci.org
+        - nodered.staging.travis-ci.org
 
 
