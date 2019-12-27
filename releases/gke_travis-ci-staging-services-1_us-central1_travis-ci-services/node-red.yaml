@@ -22,6 +22,7 @@ spec:
         ingress.kubernetes.io/force-ssl-redirect: "true"
         kubernetes.io/tls-acme: "true"
         contour.heptio.com/tls-minimum-protocol-version: "1.2"
+        projectcontour.io/websocket-routes: "true"
       hosts:
         - nodered.staging.travis-ci.org
       tls:
