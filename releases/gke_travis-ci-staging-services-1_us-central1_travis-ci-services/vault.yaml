@@ -2,15 +2,29 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: vault
+  name: vault-staging
   namespace: gce-staging-services-1
   annotations:
     flux.weave.works/automated: 'true'
 spec:
   chart:
-    path: charts/vault
-    git: git@github.com:travis-ci/kubernetes-config.git
-    ref: staging
-  releaseName: vault
+    git: git@github.com:r-arek/vault-helm.git
+    ref: master
+  releaseName: vault-staing
   values:
     replicaCount: 1
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - host: vault.staging.travis-ci.org
+        paths: ["/"]
+      tls:
+      - secretName: vault-staging-travis-ci-org-tls
+        hosts:
+        - vault.staging.travis-ci.org
