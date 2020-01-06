@@ -15,7 +15,7 @@ spec:
   values:
     replicaCount: 1
     ingress:
-      enabled: false
+      enabled: true
       annotations:
         kubernetes.io/ingress.class: contour
         certmanager.k8s.io/cluster-issuer: letsencrypt-staging
