@@ -11,7 +11,7 @@ spec:
     path: "."
     git: git@github.com:r-arek/vault-helm.git
     ref: master
-  releaseName: vault-staing
+  releaseName: vault-staging
   values:
     replicaCount: 1
     ingress:
