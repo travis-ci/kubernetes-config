@@ -8,6 +8,7 @@ metadata:
     flux.weave.works/automated: 'true'
 spec:
   chart:
+    path: "."
     git: git@github.com:r-arek/vault-helm.git
     ref: master
   releaseName: vault-staing
