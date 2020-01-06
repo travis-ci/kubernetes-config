@@ -6,7 +6,7 @@ global:
   enabled: true
 
   # Image is the name (and tag) of the Vault Docker image.
-  image: "vault:1.2.4"
+  image: "vault:1.3.1"
   # Overrides the default Image Pull Policy
   imagePullPolicy: IfNotPresent
   # Image pull secret to use for registry authentication.
