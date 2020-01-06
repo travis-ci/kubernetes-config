@@ -25,6 +25,6 @@ spec:
       hosts:
       - host: vault-staging.travis-ci.org
       tls:
-      - secretName: vault-staging-travis-ci-org-tls
+      - secretName: vault.staging-travis-ci-org-tls
         hosts:
         - vault.staging.travis-ci.org
