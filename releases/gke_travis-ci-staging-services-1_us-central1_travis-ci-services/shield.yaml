@@ -18,19 +18,18 @@ spec:
       repository: gcr.io/travis-ci-staging-services-1/shield
       tag: '1.0'
       pullPolicy: IfNotPresent
-    server:
-      ingress:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: contour
-          certmanager.k8s.io/cluster-issuer: letsencrypt-staging
-          ingress.kubernetes.io/force-ssl-redirect: "true"
-          kubernetes.io/tls-acme: "true"
-          contour.heptio.com/tls-minimum-protocol-version: "1.2"
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - host: shield-staging.travis-ci.org
+        paths: ["/"]
+      tls:
+      - secretName: shield-staging-travis-ci-org-tls
         hosts:
-        - host: shield-staging.travis-ci.org
-          paths: ["/"]
-        tls:
-        - secretName: shield-staging-travis-ci-org-tls
-          hosts:
-          - shield-staging.travis-ci.org
+        - shield-staging.travis-ci.org
