@@ -13,6 +13,10 @@ spec:
     ref: staging
   releaseName: shield
   values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/shield
+      tag: 'v1.0'
+      pullPolicy: IfNotPresent
     replicaCount: 2
     ingress:
       enabled: true
