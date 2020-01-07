@@ -51,13 +51,4 @@ app.kubernetes.io/name: {{ include "shield.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "shield.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "shield.fullname" .) .Values.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
-{{- end -}}
 {{- end -}}
