@@ -51,4 +51,3 @@ app.kubernetes.io/name: {{ include "shield.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
-{{- end -}}
