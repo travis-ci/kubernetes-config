@@ -23,8 +23,7 @@ spec:
         kubernetes.io/tls-acme: "true"
         contour.heptio.com/tls-minimum-protocol-version: "1.2"
       hosts:
-        - host: shield-staging.travis-ci.org
-          paths: ["/"]
+        - shield-staging.travis-ci.org
       tls:
         - secretName: shield-staging-travis-ci-org-tls
           hosts:
