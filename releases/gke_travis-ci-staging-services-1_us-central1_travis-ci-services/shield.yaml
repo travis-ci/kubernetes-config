@@ -14,10 +14,6 @@ spec:
   releaseName: shield
   values:
     replicaCount: 2
-    image:
-      repository: gcr.io/travis-ci-staging-services-1/shield
-      tag: '1.0'
-      pullPolicy: IfNotPresent
     ingress:
       enabled: true
       annotations:
