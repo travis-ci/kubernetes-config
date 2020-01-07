@@ -6,6 +6,7 @@ replicaCount: 1
 
 image:
   repository: gcr.io/travis-ci-staging-services-1/shield
+  tag: latest
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
