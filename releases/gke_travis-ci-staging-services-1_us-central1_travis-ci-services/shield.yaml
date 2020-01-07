@@ -1,0 +1,35 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: shield
+  namespace: gce-staging-services-1
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: charts/shield
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: shield
+  values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/shield
+      tag: 'latest'
+    replicaCount: 1
+    server:
+      ingress:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: contour
+          certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+          ingress.kubernetes.io/force-ssl-redirect: "true"
+          kubernetes.io/tls-acme: "true"
+          contour.heptio.com/tls-minimum-protocol-version: "1.2"
+        hosts:
+          - host: shield-staging.travis-ci.org
+            paths: ["/"]
+        tls:
+          - secretName: shield-staging-travis-ci-org-tls
+            hosts:
+            - shield-staging.travis-ci.org
