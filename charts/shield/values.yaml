@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: gcr.io/travis-ci-staging-services-1/shield
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -33,6 +33,7 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+  targetPort: 5000
 
 ingress:
   enabled: false
