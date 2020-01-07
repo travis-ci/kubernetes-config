@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/shield
-      tag: 'latest'
+      tag: '1.0'
     replicaCount: 1
     server:
       ingress:
@@ -27,9 +27,9 @@ spec:
           kubernetes.io/tls-acme: "true"
           contour.heptio.com/tls-minimum-protocol-version: "1.2"
         hosts:
-          - host: shield-staging.travis-ci.org
-            paths: ["/"]
+        - host: shield-staging.travis-ci.org
+          paths: ["/"]
         tls:
-          - secretName: shield-staging-travis-ci-org-tls
-            hosts:
-            - shield-staging.travis-ci.org
+        - secretName: shield-staging-travis-ci-org-tls
+          hosts:
+          - shield-staging.travis-ci.org
