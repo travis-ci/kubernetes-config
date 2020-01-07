@@ -35,17 +35,20 @@ service:
   # externalTrafficPolicy: Cluster
 
 ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: contour
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    kubernetes.io/tls-acme: "true"
+    contour.heptio.com/tls-minimum-protocol-version: "1.2"
   hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  - host: shield-staging.travis-ci.org
+    paths: ["/"]
+  tls:
+  - secretName: shield-staging-travis-ci-org-tls
+    hosts:
+    - shield-staging.travis-ci.org
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
