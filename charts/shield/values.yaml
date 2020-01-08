@@ -44,10 +44,14 @@ ingress:
     contour.heptio.com/tls-minimum-protocol-version: "1.2"
   hosts:
   - api-staging.travis-ci.org
+  - shield-staging.travis-ci.org
   tls:
   - secretName: api-staging-travis-ci-org-tls
     hosts:
     - api-staging.travis-ci.org
+  - secretName: shield-staging-travis-ci-org-tls
+    hosts:
+    - shield-staging.travis-ci.org
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
