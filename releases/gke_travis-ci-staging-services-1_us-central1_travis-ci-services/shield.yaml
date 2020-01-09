@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/shield
-      tag: 'v1.2'
+      tag: 'v1.7'
       pullPolicy: IfNotPresent
     replicaCount: 2
     ingress:
