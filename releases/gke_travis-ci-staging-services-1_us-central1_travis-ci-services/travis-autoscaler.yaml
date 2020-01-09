@@ -1,0 +1,41 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-autoscaler
+  namespace: gce-staging-services-1
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: charts/travis-autoscaler
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: travis-autoscaler
+  values:
+    image:
+      repository: quay.io/travisci/autoscaler
+      tag: 'f9c9e16'
+    imagePullSecrets:
+    - name: travisci-travis-autoscaler-pull-secret
+    trvs:
+      enabled: true
+      env: staging-1
+      pro: false
+    replicaCount: 2
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - host: autoscaler-staging.travis-ci.org
+        paths: ["/"]
+
+      tls:
+      - secretName: autoscaler-staging-travis-ci-org-tls
+        hosts:
+        - autoscaler-staging.travis-ci.org
