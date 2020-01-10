@@ -9,9 +9,6 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_8a2a23268e29_key -iv $encrypted_8a2a23268e29_iv
   -in gcs-credentials.json.enc -out gcs-credentials.json -d
 
-before_script:
-- helm init --client-only
-
 before_deploy:
 - ls dist
 
