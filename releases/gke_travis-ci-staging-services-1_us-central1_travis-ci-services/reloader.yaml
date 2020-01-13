@@ -11,6 +11,5 @@ spec:
   chart:
     repository: https://stakater.github.io/stakater-charts
     name: stakater/reloader
-    version: 0.0.50
   values:
     replicaCount: 1
