@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envars-test-container
+  namespace: gce-staging-services-1
+  labels:
+    app: envars-test-container
+  annotations:
+    secret.reloader.stakater.com/reload: "test-webhook-nodered"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: envars-test-container
+  template:
+    metadata:
+      labels:
+        app: envars-test-container
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        envFrom:
+        - secretRef:
+            name: test-webhook-nodered

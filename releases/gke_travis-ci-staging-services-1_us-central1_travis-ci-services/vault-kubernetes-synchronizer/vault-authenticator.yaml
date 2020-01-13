@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault-kubernetes-authenticator
+  namespace: gce-staging-services-1
+  labels:
+    appl: vault-kubernetes-authenticator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      appl: vault-kubernetes-authenticator
+  template:
+    metadata:
+      labels:
+        appl: vault-kubernetes-authenticator
+    spec:
+      serviceAccountName: vault-auth
+      volumes:
+      - name: vault-token
+        emptyDir:
+          medium: Memory
+      initContainers:
+      - name: vault-kubernetes-authenticator
+        image: postfinance/vault-kubernetes-authenticator:0.1.4
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: vault-token
+          mountPath: /home/vault
+        env:
+        - name: VAULT_ADDR
+          value: http://vault-staging.gce-staging-services-1.svc.cluster.local:8200
+        - name: VAULT_SKIP_VERIFY
+          value: "true"
+        - name: VAULT_ROLE
+          value: vault-auth
+        - name: VAULT_TOKEN_PATH
+          value: /home/vault/.vault-token
+      containers:
+      - name: busybox
+        image: busybox
+        command: [ "/bin/sh", "-c", "--" ]
+        args: [ "while true; do sleep 30; done;" ]
+        volumeMounts:
+        - name: vault-token
+          mountPath: /home/vault
