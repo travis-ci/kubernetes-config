@@ -9,8 +9,8 @@ metadata:
 spec:
   releaseName: reloader
   chart:
-    repository: https://hub.helm.sh/charts/stable/reloader
-    name: stable/reloader
-    version: 1.2.0
+    path: deployments/kubernetes/chart/reloader/
+    git: git@github.com:r-arek/Reloader.git
+    ref: master
   values:
     replicaCount: 1
