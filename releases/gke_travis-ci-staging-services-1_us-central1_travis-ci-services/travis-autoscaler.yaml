@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: quay.io/travisci/autoscaler
-      tag: 'f9c9e16'
+      tag: 'v0.0.2'
     imagePullSecrets:
     - name: travisci-travis-autoscaler-pull-secret
     trvs:
