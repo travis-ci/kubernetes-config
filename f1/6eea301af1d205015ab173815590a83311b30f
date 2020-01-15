@@ -1,0 +1,1 @@
+{"jobID":"711ef3a6-0004-c614-391b-1785c0155936","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"gce-staging-services-1:helmrelease/shield":{"add":{},"remove":{"automated":"true"}}}},"result":null}
