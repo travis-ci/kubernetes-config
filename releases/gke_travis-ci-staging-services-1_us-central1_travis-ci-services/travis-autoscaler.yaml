@@ -21,8 +21,8 @@ spec:
     trvs:
       enabled: true
       env: staging-1
-      pro: false
-    replicaCount: 2
+      pro: true
+    replicaCount: 1
     ingress:
       enabled: true
       annotations:
