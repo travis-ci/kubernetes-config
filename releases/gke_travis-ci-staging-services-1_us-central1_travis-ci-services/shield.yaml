@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: shield
   namespace: gce-staging-services-1
-  annotations:
-    flux.weave.works/automated: 'true'
 spec:
   chart:
     path: charts/shield
