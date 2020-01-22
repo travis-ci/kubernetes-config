@@ -1,0 +1,36 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: fluxbot
+  namespace: gce-staging-services-1
+spec:
+  chart:
+    path: charts/fluxbot
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: fluxbot
+  values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/fluxbot
+      tag: '900879a'
+      pullPolicy: IfNotPresent
+    replicaCount: 1
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - api-staging.travis-ci.org
+      - fluxbot-staging.travis-ci.org
+      tls:
+      - secretName: api-staging-travis-ci-org-tls
+        hosts:
+        - api-staging.travis-ci.org
+      - secretName: fluxbot-staging-travis-ci-org-tls
+        hosts:
+        - fluxbot-staging.travis-ci.org
