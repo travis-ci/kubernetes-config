@@ -16,6 +16,8 @@ spec:
       tag: '900879a'
       pullPolicy: IfNotPresent
     replicaCount: 2
+    vault:
+      secret: shield-com-staging
     ingress:
       enabled: true
       annotations:
