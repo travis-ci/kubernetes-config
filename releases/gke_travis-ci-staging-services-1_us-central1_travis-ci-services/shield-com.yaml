@@ -2,14 +2,14 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: shield
+  name: shield-com
   namespace: gce-staging-services-1
 spec:
   chart:
     path: charts/shield
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
-  releaseName: shield
+  releaseName: shield-com
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/shield
