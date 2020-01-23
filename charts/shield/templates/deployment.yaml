@@ -14,7 +14,7 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/agent-inject-status: "update"
-        vault.hashicorp.com/agent-inject-secret-shield-org-staging: "{{ .Values.vault.secret }}""
+        vault.hashicorp.com/agent-inject-secret-shield-org-staging: "{{ .Values.vault.secret }}"
         vault.hashicorp.com/role: "heroku-config-vars-sync"
       labels:
         {{- include "shield.selectorLabels" . | nindent 8 }}
