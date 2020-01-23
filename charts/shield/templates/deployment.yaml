@@ -32,7 +32,7 @@ spec:
               protocol: TCP
           envFrom:
           - secretRef:
-            name: {{ .Values.vault.secret }}
+              name: {{ .Values.vault.secret }}
 
           # livenessProbe:
           #   httpGet:
