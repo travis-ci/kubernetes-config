@@ -11,11 +11,6 @@ spec:
       {{- include "shield.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-inject-status: "update"
-        vault.hashicorp.com/agent-inject-secret-shield-org-staging: "{{ .Values.vault.secret }}"
-        vault.hashicorp.com/role: "heroku-config-vars-sync"
       labels:
         {{- include "shield.selectorLabels" . | nindent 8 }}
     spec:
@@ -35,6 +30,10 @@ spec:
             - name: http
               containerPort: 5000
               protocol: TCP
+          envFrom:
+          - secretRef:
+            name: {{ .Values.vault.secret }}
+
           # livenessProbe:
           #   httpGet:
           #     path: /
