@@ -36,3 +36,5 @@ spec:
       enabled: true
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
+      
+    default_machine_type: "n2-standard-2"  
