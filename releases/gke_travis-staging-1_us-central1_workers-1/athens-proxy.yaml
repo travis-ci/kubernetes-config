@@ -1,0 +1,33 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: athens-proxy
+  namespace: default
+  labels:
+    chart: athens-proxy
+spec:
+  releaseName: athens-proxy
+  chart:
+    repository: https://athens.blob.core.windows.net/charts
+    name: athens-proxy
+    version: 0.6.1
+  values:
+    replicaCount: 2
+    persistence:
+      enabled: false
+      accessMode: ReadWriteOnce
+      size: 40Gi
+    ingress:
+      enabled: true
+      annotations:
+        certmanager.k8s.io/cluster-issuer: "letsencrypt-stage"
+        kubernetes.io/tls-acme: "true"
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/ingress.class: nginx
+      hosts:
+        - staging-go.travis-ci.org
+      tls:
+        - secretName: staging-go.travis-ci.org
+          hosts:
+            - "staging-go.travis-ci.org"
