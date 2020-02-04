@@ -1,0 +1,1 @@
+{"jobID":"e2f19f6e-c795-d41e-db2b-8bb7d2720631","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"gce-staging-services-1:helmrelease/travis-build":{"add":{},"remove":{"automated":"true"}}}},"result":null}
