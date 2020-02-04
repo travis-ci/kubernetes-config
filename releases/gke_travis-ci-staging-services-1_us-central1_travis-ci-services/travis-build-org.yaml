@@ -20,7 +20,7 @@ spec:
 
     image:
       repository: gcr.io/travis-ci-staging-services-1/travis-build
-      tag: v10.0.0-816-g21e37093
+      tag: v10.0.0-828-g44e61639
       pullPolicy: IfNotPresent
 
     replicaCount: 1
