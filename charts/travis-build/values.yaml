@@ -14,12 +14,12 @@ fullnameOverride: ""
 secretName: ""
 
 resources: {}
-# limits:
-#  cpu: 100m
-#  memory: 128Mi
-# requests:
-#  cpu: 100m
-#  memory: 128Mi
+ limits:
+  cpu: 500m
+  memory: 512Mi
+ requests:
+  cpu: 100m
+  memory: 128Mi
 
 nodeSelector: {}
 
@@ -53,6 +53,13 @@ ingress:
 
 vault:
   secret: travis-build-staging-org
+
+autoscaling: 
+  enabled: "true"
+  minReplicas: 1
+  maxReplicas: 5
+  targetAverageCPUUtilization: 75
+  targetAverageMemoryValue: 400Mi
 
 debug: "false"
 enableDebugTools: "false"
