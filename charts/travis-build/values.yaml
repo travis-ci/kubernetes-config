@@ -13,7 +13,7 @@ nameOverride: ""
 fullnameOverride: ""
 secretName: ""
 
-resources: {}
+resources: 
  limits:
   cpu: 500m
   memory: 512Mi
