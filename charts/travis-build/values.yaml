@@ -51,6 +51,9 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+vault:
+  secret: travis-build-staging-org
+
 debug: "false"
 enableDebugTools: "false"
 libratoSource: ""
