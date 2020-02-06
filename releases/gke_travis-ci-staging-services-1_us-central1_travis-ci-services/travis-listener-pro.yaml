@@ -17,12 +17,12 @@ spec:
       repository: quay.io/travisci/travis-listener
       tag: 'e897c14'
     vault:
-      secret: travis-pro-listener-staging-org
+      secret: travis-pro-listener-staging-com
     trvs:
       enabled: true
       env: staging-1
       pro: true
-    replicaCount: 0
+    replicaCount: 2
     env:
       RACK_ENV: production
     ingress:
