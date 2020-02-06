@@ -16,11 +16,13 @@ spec:
     image:
       repository: quay.io/travisci/travis-listener
       tag: 'e897c14'
+    vault:
+      secret: travis-pro-listener-staging-org
     trvs:
       enabled: true
       env: staging-1
       pro: true
-    replicaCount: 2
+    replicaCount: 0
     env:
       RACK_ENV: production
     ingress:

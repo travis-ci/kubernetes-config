@@ -4,6 +4,8 @@ metadata:
   name: {{ include "travis-listener.fullname" . }}
   labels:
 {{ include "travis-listener.labels" . | indent 4 }}
+  annotations:
+    secret.reloader.stakater.com/reload: {{ .Values.vault.secret }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -46,10 +48,8 @@ spec:
               path: /uptime
               port: {{ .Values.service.port }}
           envFrom:
-            - configMapRef:
-                name: {{ template "travis-listener.fullname" . }}
             - secretRef:
-                name: {{ template "travis-listener.secret" . }}
+                name: {{ .Values.vault.secret }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

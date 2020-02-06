@@ -49,3 +49,6 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+  #
+vault:
+  secret: travis-listener-staging-org
