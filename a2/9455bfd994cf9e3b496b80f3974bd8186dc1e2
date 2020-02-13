@@ -1,0 +1,1 @@
+{"jobID":"5a0cbfed-76c7-07fd-1143-856c3de3df71","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"gce-staging-services-1:helmrelease/travis-listener-pro":{"add":{},"remove":{"automated":"true"}}}},"result":null}
