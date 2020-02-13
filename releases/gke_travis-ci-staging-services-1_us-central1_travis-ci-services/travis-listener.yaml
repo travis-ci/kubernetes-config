@@ -12,8 +12,9 @@ spec:
   releaseName: travis-listener
   values:
     image:
-      repository: quay.io/travisci/travis-listener
-      tag: 'e897c14'
+      repository: gcr.io/travis-ci-staging-services-1/travis-listener:v1.0.5-21-ge897c14
+      tag: v1.0.5-21-ge897c14
+      pullPolicy: IfNotPresent
     vault:
       secret: travis-listener-staging-org
     trvs:
@@ -36,11 +37,8 @@ spec:
         paths: ["/"]
       - host: notify.staging.travis-ci.org
         paths: ["/"]
-
       tls:
       - secretName: notify-staging-travis-ci-org-tls
         hosts:
         - notify-staging.travis-ci.org
-      - secretName: notify--staging-travis-ci-org-tls
-        hosts:
         - notify.staging.travis-ci.org
