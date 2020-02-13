@@ -12,7 +12,7 @@ spec:
   releaseName: travis-listener-pro
   values:
     image:
-      repository: gcr.io/travis-ci-staging-services-1/travis-listener:v1.0.5-21-ge897c14
+      repository: gcr.io/travis-ci-staging-services-1/travis-listener
       tag: v1.0.5-21-ge897c14
       pullPolicy: IfNotPresent
     vault:
