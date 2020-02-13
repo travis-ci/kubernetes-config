@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/travis-listener
-      tag: v1.0.5-21-ge897c14
+      tag: v1.0.5-20-g590e80b
       pullPolicy: IfNotPresent
     vault:
       secret: travis-listener-staging-org
