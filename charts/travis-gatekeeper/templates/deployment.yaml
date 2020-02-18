@@ -3,22 +3,28 @@ kind: Deployment
 metadata:
   name: {{ include "travis-gatekeeper.fullname" . }}
   labels:
-    {{- include "travis-gatekeeper.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "travis-gatekeeper.name" . }}
+    helm.sh/chart: {{ include "travis-gatekeeper.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    secret.reloader.stakater.com/reload: {{ .Values.vault.secret }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "travis-gatekeeper.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: {{ include "travis-gatekeeper.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        {{- include "travis-gatekeeper.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/name: {{ include "travis-gatekeeper.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "travis-gatekeeper.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -30,18 +36,6 @@ spec:
           envFrom:
           - secretRef:
               name: {{ .Values.vault.secret }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

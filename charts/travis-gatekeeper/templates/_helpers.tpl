@@ -30,34 +30,3 @@ Create chart name and version as used by the chart label.
 {{- define "travis-gatekeeper.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
-
-{{/*
-Common labels
-*/}}
-{{- define "travis-gatekeeper.labels" -}}
-helm.sh/chart: {{ include "travis-gatekeeper.chart" . }}
-{{ include "travis-gatekeeper.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end -}}
-
-{{/*
-Selector labels
-*/}}
-{{- define "travis-gatekeeper.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "travis-gatekeeper.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end -}}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "travis-gatekeeper.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "travis-gatekeeper.fullname" .) .Values.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
-{{- end -}}
-{{- end -}}
