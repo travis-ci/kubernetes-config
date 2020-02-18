@@ -1,0 +1,20 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-scheduler
+  namespace: gce-staging-services-1
+spec:
+  chart:
+    path: charts/travis-scheduler
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: travis-scheduler
+  values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/travis-scheduler
+      tag: latest
+      pullPolicy: IfNotPresent
+    vault:
+      secret: travis-scheduler-staging-com
+    replicaCount: 2
