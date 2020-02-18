@@ -2,7 +2,7 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: travis-scheduler
+  name: travis-scheduler-pro
   namespace: gce-staging-services-1
 spec:
   chart:
