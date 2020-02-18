@@ -1,0 +1,56 @@
+# Default values for travis-scheduler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: stable
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: 
+ limits:
+  cpu: 500m
+  memory: 512Mi
+ requests:
+  cpu: 100m
+  memory: 128Mi
+
+autoscaling: 
+  enabled: "true"
+  minReplicas: 1
+  maxReplicas: 10
+  targetAverageCPUUtilization: 75
+  targetAverageMemoryValue: 400Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+vault:
+  secret: travis-scheduler-staging-org
+

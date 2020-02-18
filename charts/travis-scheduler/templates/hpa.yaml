@@ -1,0 +1,28 @@
+{{- if .Values.autoscaling.enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "travis-scheduler.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "travis-scheduler.name" . }}
+    helm.sh/chart: {{ include "travis-scheduler.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "travis-scheduler.fullname" . }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: {{ .Values.autoscaling.targetAverageCPUUtilization }}
+  - type: Resource
+    resource:
+      name: memory 
+      targetAverageValue: {{ .Values.autoscaling.targetAverageMemoryValue }}
+
+{{- end }}
