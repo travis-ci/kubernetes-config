@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GIT_URL="https://$GITHUB_TOKEN@github.com/travis-ci/kubernetes-config.git"
+GIT_URL="https://$GITHUB_TOKEN@github.com/travis-infrastructure/kubernetes-config.git"
 
 merge_to_staging() {
   git fetch origin staging:staging
@@ -21,7 +21,7 @@ merge_pr_to_staging() {
 }
 
 if [[ "$TRAVIS_PULL_REQUEST" != "false" ]]; then
-  if [[ "$TRAVIS_PULL_REQUEST_SLUG" == "travis-ci/kubernetes-config" ]]; then
+  if [[ "$TRAVIS_PULL_REQUEST_SLUG" == "travis-infrastructure/kubernetes-config" ]]; then
     merge_pr_to_staging
   fi
 elif [[ "$TRAVIS_BRANCH" == "master" ]]; then
