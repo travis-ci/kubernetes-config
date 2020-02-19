@@ -48,6 +48,9 @@ spec:
             httpGet:
               path: /uptime
               port: {{ .Values.service.port }}
+          env:
+            - name: DOCKER
+              value: true
           envFrom:
             - secretRef:
                 name: {{ .Values.vault.secret }}
