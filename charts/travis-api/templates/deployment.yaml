@@ -50,7 +50,7 @@ spec:
               port: {{ .Values.service.port }}
           env:
             - name: DOCKER
-              value: true
+              value: "true"
           envFrom:
             - secretRef:
                 name: {{ .Values.vault.secret }}
