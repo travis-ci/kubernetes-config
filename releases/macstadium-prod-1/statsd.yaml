@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     path: charts/statsd
-    git: git@github.com:travis-ci/kubernetes-config.git
+    git: git@github.com:travis-infrastructure/kubernetes-config.git
   releaseName: statsd
   values:
     secretEnv: macstadium_prod_1

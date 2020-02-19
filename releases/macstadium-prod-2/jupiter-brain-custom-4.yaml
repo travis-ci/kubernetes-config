@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     path: charts/jupiter-brain
-    git: git@github.com:travis-ci/kubernetes-config.git
+    git: git@github.com:travis-infrastructure/kubernetes-config.git
   releaseName: jupiter-brain-custom-4
   values:
     trvs:

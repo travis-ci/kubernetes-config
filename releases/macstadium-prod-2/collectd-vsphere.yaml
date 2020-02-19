@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     path: charts/collectd-vsphere
-    git: git@github.com:travis-ci/kubernetes-config.git
+    git: git@github.com:travis-infrastructure/kubernetes-config.git
   releaseName: collectd-vsphere
   values:
     trvs:
