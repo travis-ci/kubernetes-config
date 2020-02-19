@@ -22,6 +22,3 @@ spec:
       env: staging-1
       pro: false
     replicaCount: 2
-    env:
-      RACK_ENV: production
-      DOCKER: true
