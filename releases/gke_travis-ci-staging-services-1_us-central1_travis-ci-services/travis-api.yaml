@@ -24,3 +24,4 @@ spec:
     replicaCount: 2
     env:
       RACK_ENV: production
+      DOCKER: true
