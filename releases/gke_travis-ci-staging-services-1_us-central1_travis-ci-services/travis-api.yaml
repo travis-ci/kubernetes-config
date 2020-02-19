@@ -1,0 +1,26 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-api
+  namespace: gce-staging-services-1
+spec:
+  chart:
+    path: charts/travis-api
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: travis-api
+  values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/travis-api
+      tag: v1.0.5-21-ge897c14
+      pullPolicy: IfNotPresent
+    vault:
+      secret: travis-api-staging-org
+    trvs:
+      enabled: true
+      env: staging-1
+      pro: false
+    replicaCount: 2
+    env:
+      RACK_ENV: production
