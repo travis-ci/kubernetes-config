@@ -37,10 +37,14 @@ spec:
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
+            periodSeconds: 30
+            initialDelaySeconds: 30
             httpGet:
               path: /uptime
               port: {{ .Values.service.port }}
           readinessProbe:
+            periodSeconds: 30
+            initialDelaySeconds: 30
             httpGet:
               path: /uptime
               port: {{ .Values.service.port }}
