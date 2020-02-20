@@ -1,0 +1,11 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: memcached
+  namespace: gce-staging-services-1
+spec:
+  chart:
+    name: memcached
+    version: 3.2.2
+  releaseName: memcached
