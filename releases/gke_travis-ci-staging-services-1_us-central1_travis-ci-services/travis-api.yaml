@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/travis-api
-      tag: deploy.2015-07-14.12-50-3220-g43238cb8
+      tag: deploy.2015-07-14.12-50-3224-g83ab0e8d
       pullPolicy: IfNotPresent
     vault:
       secret: travis-api-staging-org
