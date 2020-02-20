@@ -6,7 +6,7 @@ metadata:
 spec:
   chart:
     path: charts/gce-worker
-    git: git@github.com:travis-ci/kubernetes-config.git
+    git: git@github.com:travis-infrastructure/kubernetes-config.git
     ref: staging
   releaseName: worker-org
   values:
