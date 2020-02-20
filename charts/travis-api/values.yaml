@@ -26,10 +26,10 @@ resources:
 
 autoscaling:
   enabled: "true"
-  minReplicas: 1
-  maxReplicas: 10
+  minReplicas: 2
+  maxReplicas: 6
   targetAverageCPUUtilization: 75
-  targetAverageMemoryValue: 400Mi
+  targetAverageMemoryValue: 2000Mi
 
 nodeSelector: {}
 
