@@ -30,3 +30,27 @@ Create chart name and version as used by the chart label.
 {{- define "travis-api.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Common labels
+*/}}
+{{- define "travis-api.labels" -}}
+app.kubernetes.io/name: {{ include "travis-api.name" . }}
+helm.sh/chart: {{ include "travis-api.chart" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Use the fullname as the secret name unless a secretName has been provided.
+*/}}
+{{- define "travis-api.secret" -}}
+{{- if .Values.secretName -}}
+{{- .Values.secretName -}}
+{{- else -}}
+{{- include "travis-api.fullname" . }}
+{{- end -}}
+{{- end -}}
