@@ -9,19 +9,14 @@ metadata:
 spec:
   releaseName: contour
   chart:
-    repository: https://charts.rimusz.net
+    repository: https://kubernetes-charts.storage.googleapis.com/
     name: contour
-    version: 0.3.1
+    version: 0.2.0
   values:
-    replicaCount: 2
-    controller:
-      image:
-        repository: gcr.io/heptio-images/contour
-        # Note that by default we use appVersion to get images tag
-        tag: v0.14.2
-    proxy:
-      image:
-        repository: docker.io/envoyproxy/envoy-alpine
-        tag: v1.11.1
+    hpa:
+      create: "true"
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 85
     service:
       externalTrafficPolicy: "Local"
