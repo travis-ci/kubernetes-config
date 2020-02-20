@@ -6,6 +6,7 @@ metadata:
   namespace: gce-staging-services-1
 spec:
   chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
     name: memcached
     version: 3.2.2
   releaseName: memcached
