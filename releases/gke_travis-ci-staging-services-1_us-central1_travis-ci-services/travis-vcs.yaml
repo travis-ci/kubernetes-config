@@ -12,7 +12,7 @@ spec:
   releaseName: travis-vcs
   values:
     image:
-      repository: gcr.io/travis-ci-staging-services-1/travis-scheduler
+      repository: gcr.io/travis-ci-staging-services-1/travis-vcs
       pullPolicy: IfNotPresent
     vault:
       secret: travis-vcs-staging-org
