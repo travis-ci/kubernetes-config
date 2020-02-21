@@ -34,4 +34,4 @@ ingress:
 env: []
 
 vault:
-  secret: travis-listener-staging-org
+  secret: travis-vcs-staging-org
