@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: travis-vcs-pro
   namespace: gce-staging-services-1
-  annotations:
-    flux.weave.works/automated: 'true'
 spec:
   chart:
     path: charts/travis-vcs
