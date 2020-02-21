@@ -32,3 +32,6 @@ ingress:
   #      - chart-example.local
 
 env: []
+
+vault:
+  secret: travis-listener-staging-org
