@@ -13,7 +13,6 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/travis-scheduler
-      tag: 'f2c6f71'
       pullPolicy: IfNotPresent
     vault:
       secret: travis-vcs-staging-org
