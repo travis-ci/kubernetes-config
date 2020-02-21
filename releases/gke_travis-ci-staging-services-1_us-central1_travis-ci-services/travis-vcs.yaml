@@ -4,8 +4,6 @@ kind: HelmRelease
 metadata:
   name: travis-vcs
   namespace: gce-staging-services-1
-  annotations:
-    flux.weave.works/automated: 'true'
 spec:
   chart:
     path: charts/travis-vcs
@@ -14,8 +12,9 @@ spec:
   releaseName: travis-vcs
   values:
     image:
-      repository: quay.io/travisci/travis-vcs
+      repository: gcr.io/travis-ci-staging-services-1/travis-scheduler
       tag: 'f2c6f71'
+      pullPolicy: IfNotPresent
     vault:
       secret: travis-vcs-staging-org
     imagePullSecrets:
