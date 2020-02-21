@@ -13,15 +13,6 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-# Pull secrets from trvs keychain
-trvs:
-  # If not enabled, be sure to set secretName and create a secret with the
-  # necessary environment variables for travis-vcs
-  enabled: false
-  app: "travis-vcs"
-  env: ""
-  pro: false
-
 service:
   type: ClusterIP
   port: 3000
