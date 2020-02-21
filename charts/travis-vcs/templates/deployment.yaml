@@ -41,6 +41,9 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Values.vault.secret }}
+          env:
+            - name: WITHOUT_FORCE_SSL
+              value: "true"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
