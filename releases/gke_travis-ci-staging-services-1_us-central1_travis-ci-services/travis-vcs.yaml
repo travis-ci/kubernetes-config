@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: quay.io/travisci/travis-vcs
-      tag: '97b2a14'
+      tag: 'f2c6f71'
     vault:
       secret: travis-vcs-staging-org
     imagePullSecrets:
