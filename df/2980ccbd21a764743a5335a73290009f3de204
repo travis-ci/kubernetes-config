@@ -1,0 +1,1 @@
+{"jobID":"81629b1e-e7f0-24ae-5a71-2d4c7123b156","spec":{"type":"policy","cause":{"Message":"","User":""},"spec":{"gce-staging-services-1:helmrelease/travis-vcs-pro":{"add":{},"remove":{"automated":"true"}}}},"result":null}
