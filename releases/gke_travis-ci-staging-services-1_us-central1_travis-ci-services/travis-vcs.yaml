@@ -18,6 +18,8 @@ spec:
       tag: '97b2a14'
     imagePullSecrets:
     - name: travisci-travis-vcs-pull-secret
+    vault:
+      secret: travis-vcs-staging-org
     trvs:
       enabled: true
       env: staging-1
@@ -34,7 +36,6 @@ spec:
       hosts:
       - host: vcs-staging.travis-ci.org
         paths: ["/"]
-
       tls:
       - secretName: vcs-staging-travis-ci-org-tls
         hosts:
