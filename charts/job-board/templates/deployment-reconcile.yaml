@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "job-board.fullname" . }}-reconcile-jobs
+  labels:
+    app.kubernetes.io/name: {{ include "job-board.name" . }}-reconcile-jobs
+    helm.sh/chart: {{ include "job-board.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    secret.reloader.stakater.com/reload: {{ .Values.vault.secret }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "job-board.name" . }}-reconcile-jobs
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "job-board.name" . }}-reconcile-jobs
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["bundle"]
+          args: ["exec", "je", "bin/job-board-reconcile-jobs"]
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "{{ .Values.resources.limits.cpu }}"
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: "{{ .Values.resources.requests.cpu }}"
+              memory: {{ .Values.resources.requests.memory }}
+          env:
+            - name: DOCKER
+              value: "true"
+          envFrom:
+            - secretRef:
+                name: {{ .Values.vault.secret }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "job-board.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "job-board.name" . }}
+    helm.sh/chart: {{ include "job-board.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    secret.reloader.stakater.com/reload: {{ .Values.vault.secret }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "job-board.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "job-board.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            limits:
+              cpu: "{{ .Values.resources.limits.cpu }}"
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: "{{ .Values.resources.requests.cpu }}"
+              memory: {{ .Values.resources.requests.memory }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            periodSeconds: 30
+            initialDelaySeconds: 30
+            httpGet:
+              path: /uptime
+              port: {{ .Values.service.port }}
+          readinessProbe:
+            periodSeconds: 30
+            initialDelaySeconds: 30
+            httpGet:
+              path: /uptime
+              port: {{ .Values.service.port }}
+          env:
+            - name: DOCKER
+              value: "true"
+          envFrom:
+            - secretRef:
+                name: {{ .Values.vault.secret }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

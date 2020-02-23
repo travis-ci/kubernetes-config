@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "job-board.fullname" . }}
+  labels:
+{{ include "job-board.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 5555
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "job-board.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
