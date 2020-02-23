@@ -39,14 +39,12 @@ spec:
           livenessProbe:
             periodSeconds: 30
             initialDelaySeconds: 30
-            httpGet:
-              path: /uptime
+            tcpSocket:
               port: {{ .Values.service.port }}
           readinessProbe:
             periodSeconds: 30
             initialDelaySeconds: 30
-            httpGet:
-              path: /uptime
+            tcpSocket:
               port: {{ .Values.service.port }}
           env:
             - name: DOCKER

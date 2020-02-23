@@ -34,9 +34,6 @@ spec:
             requests:
               cpu: "{{ .Values.resources.requests.cpu }}"
               memory: {{ .Values.resources.requests.memory }}
-          env:
-            - name: DOCKER
-              value: "true"
           envFrom:
             - secretRef:
                 name: {{ .Values.vault.secret }}
