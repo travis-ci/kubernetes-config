@@ -6,9 +6,9 @@ metadata:
   namespace: gce-staging-services-1
 spec:
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
-    name: nginx
-    version: 1.31.0
+    path: charts/nginx-ingress
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
   releaseName: nginx-ingress
   values:
     controller:
