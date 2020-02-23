@@ -13,7 +13,7 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-staging-services-1/job-board
-      tag: '4999466'
+      tag: 'ae83610'
       pullPolicy: IfNotPresent
     vault:
       secret: job-board-staging-com
