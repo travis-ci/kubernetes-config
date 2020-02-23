@@ -21,7 +21,7 @@ spec:
     ingress:
       enabled: true
       annotations:
-        kubernetes.io/ingress.class: contour
+        kubernetes.io/ingress.class: nginx
         certmanager.k8s.io/cluster-issuer: letsencrypt-staging
         ingress.kubernetes.io/force-ssl-redirect: "true"
         kubernetes.io/tls-acme: "true"
