@@ -1,0 +1,35 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: job-board
+  namespace: gce-staging-services-1
+spec:
+  chart:
+    path: charts/job-board
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: job-board
+  values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/job-board
+      tag: latest
+      pullPolicy: IfNotPresent
+    vault:
+      secret: job-board-staging
+    replicaCount: 2
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: contour
+        certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/tls-acme: "true"
+        contour.heptio.com/tls-minimum-protocol-version: "1.2"
+      hosts:
+      - host: job-board-staging.travis-ci.org
+        paths: ["/"]
+      tls:
+      - secretName: job-board-staging-travis-ci-org-tls
+        hosts:
+        - job-board-staging.travis-ci.org
