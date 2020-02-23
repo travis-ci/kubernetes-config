@@ -16,7 +16,7 @@ spec:
       tag: latest
       pullPolicy: IfNotPresent
     vault:
-      secret: job-board-staging
+      secret: job-board-staging-com
     replicaCount: 2
     ingress:
       enabled: true
@@ -27,9 +27,9 @@ spec:
         kubernetes.io/tls-acme: "true"
         contour.heptio.com/tls-minimum-protocol-version: "1.2"
       hosts:
-      - host: job-board-staging.travis-ci.org
+      - host: job-board-staging.travis-ci.com
         paths: ["/"]
       tls:
-      - secretName: job-board-staging-travis-ci-org-tls
+      - secretName: job-board-staging-travis-ci-com-tls
         hosts:
-        - job-board-staging.travis-ci.org
+        - job-board-staging.travis-ci.com
