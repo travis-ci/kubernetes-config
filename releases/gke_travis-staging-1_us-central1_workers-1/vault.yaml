@@ -1,0 +1,16 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: vault
+  namespace: default
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  chart:
+    path: charts/vault
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: vault
+  values:
+    replicaCount: 1
