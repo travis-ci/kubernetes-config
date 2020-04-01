@@ -12,9 +12,11 @@ spec:
   releaseName: travis-autoscaler
   values:
     image:
-      repository: gcr.io/travis-ci-staging-services-1/autoscaler
+      repository: quay.io/travisci/autoscaler
       tag: v0.1.2
       pullPolicy: IfNotPresent
+    imagePullSecrets:
+      - name: travisci-travis-autoscaler-pull-secret
     vault:
       secret: travis-autoscaler-staging-com
     replicaCount: 1
