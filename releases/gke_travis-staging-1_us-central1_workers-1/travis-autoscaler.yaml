@@ -3,7 +3,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: travis-autoscaler
-  namespace: gce-staging-services-1
+  namespace: default
 spec:
   chart:
     path: charts/travis-autoscaler
