@@ -1,0 +1,20 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-autoscaler
+  namespace: gce-staging-services-1
+spec:
+  chart:
+    path: charts/travis-autoscaler
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: travis-autoscaler
+  values:
+    image:
+      repository: gcr.io/travis-ci-staging-services-1/autoscaler
+      tag: v0.1.2
+      pullPolicy: IfNotPresent
+    vault:
+      secret: travis-autoscaler-staging-com
+    replicaCount: 1

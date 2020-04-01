@@ -4,6 +4,8 @@ metadata:
   name: {{ include "travis-autoscaler.fullname" . }}
   labels:
 {{ include "travis-autoscaler.labels" . | indent 4 }}
+  annotations:
+    secret.reloader.stakater.com/reload: {{ .Values.vault.secret }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -38,7 +40,7 @@ spec:
               port: {{ .Values.service.port }}
           envFrom:
             - secretRef:
-                name: {{ template "travis-autoscaler.secret" . }}
+                name: {{ .Values.vault.secret }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

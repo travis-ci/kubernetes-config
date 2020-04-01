@@ -41,3 +41,6 @@ ingress:
   #      - chart-example.local
 
 env: []
+
+vault:
+  secret: travis-autoscaler-staging-com
