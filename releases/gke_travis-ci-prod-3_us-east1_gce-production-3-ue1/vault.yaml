@@ -3,14 +3,14 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: vault
-  namespace: default
+  namespace: gce-production-3
   annotations:
     flux.weave.works/automated: 'true'
 spec:
   chart:
     path: charts/vault
     git: git@github.com:travis-ci/kubernetes-config.git
-    ref: staging
+    ref: master
   releaseName: vault
   values:
     replicaCount: 1
