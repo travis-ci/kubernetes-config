@@ -11,7 +11,7 @@ metadata:
 spec:
   chart:
     path: charts/macbot
-    git: git@github.com:travis-ci/kubernetes-config.git
+    git: git@github.com:travis-infrastructure/kubernetes-config.git
   releaseName: macbot
   values:
     macbot:
