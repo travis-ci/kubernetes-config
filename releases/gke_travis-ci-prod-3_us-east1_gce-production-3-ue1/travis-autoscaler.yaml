@@ -18,5 +18,5 @@ spec:
     imagePullSecrets:
       - name: travisci-travis-autoscaler-pull-secret
     vault:
-      secret: travis-autoscaler-staging-com
+      secret: travis-autoscaler-prod-com
     replicaCount: 1
