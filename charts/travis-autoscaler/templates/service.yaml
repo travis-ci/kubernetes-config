@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "travis-autoscaler.fullname" . }}
+  labels:
+{{ include "travis-autoscaler.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 3000
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "travis-autoscaler.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
