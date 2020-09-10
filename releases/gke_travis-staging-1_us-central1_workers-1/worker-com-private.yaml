@@ -21,6 +21,7 @@ spec:
       maxJobs: 20
       maxJobsPerWorker: 10
 
+    terraform: worker-com-terraform
     site: com
     queue: builds.gce-private
     project: travis-staging-1
