@@ -8,7 +8,7 @@ spec:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: staging
-  releaseName: worker-com
+  releaseName: worker-com-private
   values:
     image:
       repository: travisci/worker
