@@ -4,6 +4,7 @@ addons:
   snaps:
   - name: helm
     classic: true
+    channel: 3.2/stable
 
 before_deploy:
 - ls dist
