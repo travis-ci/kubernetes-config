@@ -1,14 +1,14 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-premium-n2-highmem
-  namespace: gce-production-2
+  name: worker-premium-n2-highcpu
+  namespace: gce-production-1
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: master
-  releaseName: worker-premium-n2-highmem
+  releaseName: worker-premium-n2-highcpu
   values:
     image:
       repository: travisci/worker
@@ -20,14 +20,14 @@ spec:
       maxJobsPerWorker: 50
 
     site: com
-    queue: builds.gce-premium-n2-highmem
-    project: travis-ci-prod-2
-    librato_source_prefix: production-2-gce
+    queue: builds.gce-premium-n2-highcpu
+    project: travis-ci-prod-1
+    librato_source_prefix: production-1-gce
 
     trvs:
       enabled: true
       app: gce-workers
-      env: production-3
+      env: production-1
       pro: true
 
     rateLimitRedis:
@@ -37,6 +37,6 @@ spec:
 
     terraformSecretName: worker-premium-n2-terraform
 
-    default_machine_type: "n2-highmem-4"
-    premium_machine_type: "n2-highmem-8"
+    default_machine_type: "n2-highcpu-8"
+    premium_machine_type: "n2-highcpu-8"
     worker_gce_zone: "us-central1-c"

@@ -12,15 +12,12 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.1
+      tag: v6.2.17
 
-      # Calculation: 17000 CPUs / 2 vCPU per job / 2 worker types per project = 4250 maxJobs per worker type
-      # Take a bit of headroom, don't go over 4000 maxJobs
-      # NOTE: com-free is not in use atm.
     cluster:
       enabled: true
-      maxJobs: 0
-      maxJobsPerWorker: 1
+      maxJobs: 700
+      maxJobsPerWorker: 50
 
     site: com
     queue: builds.gce-free
@@ -37,3 +34,6 @@ spec:
       enabled: true
       secretName: rate-limit-redis
       envPrefix: RATE_LIMIT_REDIS
+
+    default_machine_type: "n2-standard-2"
+    worker_gce_zones: "us-central1-c,us-central1-f,us-central1-a"
