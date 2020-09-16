@@ -20,7 +20,7 @@ spec:
       maxJobsPerWorker: 50
 
     site: com
-    queue: builds.gce-free
+    queue: builds.gce
     project: travis-ci-prod-2
     librato_source_prefix: production-2-gce
 
