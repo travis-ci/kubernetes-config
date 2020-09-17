@@ -22,7 +22,7 @@ spec:
       maxJobsPerWorker: 10
 
     site: com
-    queue: builds.gce
+    queue: builds.gce-oss
     project: travis-staging-1
     librato_source_prefix: staging-1-gce
 
