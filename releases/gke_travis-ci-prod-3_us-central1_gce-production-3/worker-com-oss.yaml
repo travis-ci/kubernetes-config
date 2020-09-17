@@ -1,14 +1,14 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: worker-com-free
+  name: worker-com-oss
   namespace: gce-production-3
 spec:
   chart:
     path: charts/gce-worker
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: master
-  releaseName: worker-com-free
+  releaseName: worker-com-oss
   values:
     image:
       repository: travisci/worker
@@ -20,7 +20,7 @@ spec:
       maxJobsPerWorker: 50
 
     site: com
-    queue: builds.gce-free
+    queue: builds.gce-oss
     project: travis-ci-prod-3
     librato_source_prefix: production-3-gce
 
