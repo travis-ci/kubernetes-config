@@ -3,7 +3,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: travis-autoscaler
-  namespace: gce-production-3
+  namespace: gce-production-2
 spec:
   chart:
     path: charts/travis-autoscaler
@@ -18,5 +18,5 @@ spec:
     imagePullSecrets:
       - name: travisci-travis-autoscaler-pull-secret
     vault:
-      secret: travis-autoscaler-prod-com
+      secret: gce-lxd-autoscaler-prod-2-ue1
     replicaCount: 1

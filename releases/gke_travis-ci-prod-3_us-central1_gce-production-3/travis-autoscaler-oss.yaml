@@ -1,0 +1,22 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: travis-autoscaler-oss
+  namespace: gce-production-3
+spec:
+  chart:
+    path: charts/travis-autoscaler
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: master
+  releaseName: travis-autoscaler-paid
+  values:
+    image:
+      repository: quay.io/travisci/autoscaler
+      tag: v0.1.7
+      pullPolicy: IfNotPresent
+    imagePullSecrets:
+      - name: travisci-travis-autoscaler-pull-secret
+    vault:
+      secret: gce-lxd-autoscaler-prod-3
+    replicaCount: 1
