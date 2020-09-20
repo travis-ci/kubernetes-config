@@ -189,7 +189,7 @@ spec:
             name: vault-services-production # username and password to vault (it must be inserted manually before first run)
       containers:
       - name: vault-kubernetes-synchronizer
-        image: gcr.io/travis-ci-prod-services-1/vault-kubernetes-synchronizer:0.1.4-1-loop
+        image: gcr.io/travis-staging-1/vault-kubernetes-synchronizer:0.1.4-1-loop
         imagePullPolicy: Always
         volumeMounts:
         - name: vault-token
