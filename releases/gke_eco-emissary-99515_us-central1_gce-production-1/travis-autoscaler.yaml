@@ -19,4 +19,4 @@ spec:
       - name: travisci-travis-autoscaler-pull-secret
     vault:
       secret: gce-lxd-autoscaler-prod-1
-    replicaCount: 1
+    replicaCount: 0
