@@ -9,7 +9,7 @@ spec:
     path: charts/travis-autoscaler
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: master
-  releaseName: travis-autoscaler-paid
+  releaseName: travis-autoscaler-oss
   values:
     image:
       repository: quay.io/travisci/autoscaler
