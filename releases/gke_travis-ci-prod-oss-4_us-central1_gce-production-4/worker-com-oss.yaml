@@ -21,7 +21,7 @@ spec:
 
     site: com
     queue: builds.gce-oss
-    project: travis-ci-prod-3
+    project: travis-ci-prod-4
     librato_source_prefix: production-4-gce
 
     trvs:
