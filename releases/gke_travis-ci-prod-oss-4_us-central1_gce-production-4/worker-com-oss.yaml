@@ -1,0 +1,40 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-com-oss
+  namespace: gce-production-4
+spec:
+  chart:
+    path: charts/gce-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: master
+  releaseName: worker-com-oss
+  values:
+    image:
+      repository: travisci/worker
+      tag: v6.2.17
+
+    cluster:
+      enabled: true
+      maxJobs: 0
+      maxJobsPerWorker: 50
+
+    site: com
+    queue: builds.gce-oss
+    project: travis-ci-prod-3
+    librato_source_prefix: production-4-gce
+
+    trvs:
+      enabled: true
+      app: gce-workers
+      env: production-4
+      pro: true
+
+    rateLimitRedis:
+      enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
+
+    default_machine_type: "n2-standard-2"
+    worker_gce_zones: "us-central1-c,us-central1-f,us-central1-a"
+    terraformSecretName: worker-com-terraform
