@@ -1,4 +1,4 @@
-apiVersion: flux.weave.works/v1beta1
+apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: worker-org
@@ -16,7 +16,7 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 0
+      maxJobs: 5
       maxJobsPerWorker: 50
 
     site: org
