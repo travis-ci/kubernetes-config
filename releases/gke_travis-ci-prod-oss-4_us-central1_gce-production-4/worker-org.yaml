@@ -16,12 +16,12 @@ spec:
 
     cluster:
       enabled: true
-      maxJobs: 5
+      maxJobs: 50
       maxJobsPerWorker: 50
 
     site: org
     queue: builds.gce
-    project: travis-ci-prod-4
+    project: travis-ci-prod-oss-4
     librato_source_prefix: production-4-gce
 
     trvs:
