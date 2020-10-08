@@ -31,13 +31,16 @@ RELEASES = FileList["releases/**/*.yaml"]
 
 task :validate do
   RELEASES.each do |release|
-    validate_release(release)
+    next if validate_release(release) == 'skip'
   end
 end
 
 def validate_release(release)
   r = YAML.safe_load(File.read(release))
-  return unless r['spec']['chart']['git'] == 'git@github.com:travis-ci/kubernetes-config.git'
+  if r['kind'] != "HelmRelease" || r['spec']['chart']['git'] != "git@github.com:travis-ci/kubernetes-config.git"
+    puts "==> Skipping \`helm template\` for file #{release}"
+    return 'skip'
+  end 
 
   namespace = r['metadata']['namespace']
   release_name = r['spec']['releaseName']
