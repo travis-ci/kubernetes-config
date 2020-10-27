@@ -15,8 +15,8 @@ spec:
   releaseName: gcloud-cleanup
   values:
     image:
-      repository: travisci/gcloud-cleanup
-      tag: 4890bc7
+      repository: gcr.io/travis-ci-prod-services-1/gcloud-cleanup
+      tag: e68f7ea
     trvs:
       enabled: true
       env: production-3
