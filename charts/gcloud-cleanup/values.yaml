@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: travisci/gcloud-cleanup
+  repository: gcr.io/travis-ci-prod-services-1/gcloud-cleanup
   tag: ''
   pullPolicy: IfNotPresent
 
