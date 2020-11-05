@@ -17,7 +17,7 @@ spec:
     cluster:
       enabled: true
       maxJobs: 350
-      maxJobsPerWorker: 5
+      maxJobsPerWorker: 50
 
     site: com
     queue: builds.us-east1-test
