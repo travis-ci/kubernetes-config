@@ -11,23 +11,23 @@ spec:
     ref: staging
   releaseName: docker-registry
   values:
-		replicaCount: 2
-		# storage: gcs
-		storage: filesystem
+    replicaCount: 2
+    # storage: gcs
+    storage: filesystem
 
-		resources:
-			limits:
-				cpu: 100m
-				memory: 128Mi
-			requests:
-				cpu: 100m
-				memory: 128Mi
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
 
-		service:
-			type: LoadBalancer
-			annotations:
-				cloud.google.com/load-balancer-type: "Internal"
+    service:
+      type: LoadBalancer
+      annotations:
+        cloud.google.com/load-balancer-type: "Internal"
 
-		configData:
-			proxy:
-  			remoteurl: https://registry-1.docker.io
+    configData:
+      proxy:
+      remoteurl: https://registry-1.docker.io
