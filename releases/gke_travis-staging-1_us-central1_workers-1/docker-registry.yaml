@@ -1,0 +1,33 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: docker-registry
+  namespace: default
+spec:
+  chart:
+    path: charts/docker-registry
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: staging
+  releaseName: docker-registry
+  values:
+		replicaCount: 2
+		# storage: gcs
+		storage: filesystem
+
+		resources:
+			limits:
+				cpu: 100m
+				memory: 128Mi
+			requests:
+				cpu: 100m
+				memory: 128Mi
+
+		service:
+			type: LoadBalancer
+			annotations:
+				cloud.google.com/load-balancer-type: "Internal"
+
+		configData:
+			proxy:
+  			remoteurl: https://registry-1.docker.io
