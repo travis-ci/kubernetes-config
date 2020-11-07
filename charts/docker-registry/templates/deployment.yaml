@@ -139,17 +139,14 @@ spec:
               value: {{ .Values.s3.secure | quote }}
           {{- end }}
 {{- else if eq .Values.storage "gcs" }}
-					{{- if .Values.gcs.bucket }}
+          {{- if .Values.gcs.bucket }}
             - name: REGISTRY_STORAGE_GCS_BUCKET
               value: {{ required ".Values.gcs.bucket is required" .Values.gcs.bucket }}
-					{{- end }}
-					{{- if .Values.gcs.keyfile }}
+          {{- end }}
+          {{- if .Values.gcs.keyfile }}
             - name: REGISTRY_STORAGE_GCS_KEYFILE
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "docker-registry.fullname" . }}-secret
-                  key: gcsKeyfile
-					{{- end }}
+              value: {{ .Values.gcs.keyfile | quote }}
+          {{- end }}
           {{- if .Values.gcs.credentials.project_id }}
             - name: REGISTRY_STORAGE_GCS_CREDENTIALS_PROJECT_ID
               value: {{ .Values.gcs.credentials.project_id | quote }}
@@ -175,6 +172,10 @@ spec:
               value: "true"
 {{- end }}
           volumeMounts:
+{{- if .Values.gcs.keyfile }}
+            - name: docker-registry-keyfile
+              mountPath: /etc/docker/gcs
+{{- end }}
 {{- if .Values.secrets.htpasswd }}
             - name: auth
               mountPath: /auth
@@ -207,6 +208,11 @@ spec:
 {{ toYaml .Values.tolerations | indent 8 }}
 {{- end }}
       volumes:
+{{- if .Values.gcs.keyfile }}
+        - name: docker-registry-keyfile
+          secret:
+            secretName: docker-registry-keyfile
+{{- end }}
 {{- if .Values.secrets.htpasswd }}
         - name: auth
           secret:
