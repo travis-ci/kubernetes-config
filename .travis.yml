@@ -1,24 +1,28 @@
 language: ruby
-dist: xenial
+dist: bionic
 addons:
   snaps:
   - name: helm
     classic: true
     channel: 3.2/stable
 
-before_deploy:
-- ls dist
+before_install:
 - openssl aes-256-cbc -K $encrypted_8a2a23268e29_key -iv $encrypted_8a2a23268e29_iv
   -in gcs-credentials.json.enc -out gcs-credentials.json -d
+
+before_deploy:
+- ls dist
 
 deploy:
   provider: gcs
   edge:
-    branch: master
-  key_file: gcs-credentials.json
+    branch: gcs-ng
+  project_id: eco-emissary-99515
+  credentials: gcs-credentials.json
   bucket: travis-ci-helm-charts
   local_dir: dist
-  acl: public-read
+  skip_cleanup: true
+  acl: publicRead
   on:
     repo: travis-ci/kubernetes-config
 
