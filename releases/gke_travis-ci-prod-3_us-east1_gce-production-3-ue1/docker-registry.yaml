@@ -1,0 +1,41 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: docker-registry
+  namespace: gce-production-3
+spec:
+  chart:
+    path: charts/docker-registry
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: master
+  releaseName: docker-registry
+  values:
+    replicaCount: 6
+    tlsSecretName: travis-ci-com-tls-04-10-2021
+
+    storage: gcs
+    gcs:
+      bucket: travis-docker-registry-3
+      keyfile: /etc/docker/gcs/keyfile
+      credentials:
+        project_id: travis-production-3
+
+    resources:
+      limits:
+        cpu: 2000m
+        memory: 512Mi
+      requests:
+        cpu: 2000m
+        memory: 512Mi
+
+    service:
+      type: LoadBalancer
+      loadBalancerIP: 10.40.0.200
+      port: 443
+      annotations:
+        cloud.google.com/load-balancer-type: "Internal"
+
+    configData:
+      proxy:
+        remoteurl: https://mirror.gcr.io
