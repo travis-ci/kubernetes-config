@@ -211,7 +211,7 @@ spec:
 {{- if .Values.gcs.keyfile }}
         - name: docker-registry-keyfile
           secret:
-            secretName: docker-registry-keyfile
+            secretName: {{ .Values.gcs.keyfileSecretName }}
 {{- end }}
 {{- if .Values.secrets.htpasswd }}
         - name: auth
