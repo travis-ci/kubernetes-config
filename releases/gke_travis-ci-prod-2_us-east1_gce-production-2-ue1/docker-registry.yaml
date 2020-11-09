@@ -3,7 +3,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: docker-registry
-  namespace: gce-production-3
+  namespace: gce-production-2
 spec:
   chart:
     path: charts/docker-registry
