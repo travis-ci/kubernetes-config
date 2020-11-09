@@ -18,6 +18,7 @@ spec:
     gcs:
       bucket: travis-docker-registry-4
       keyfile: /etc/docker/gcs/keyfile
+      keyfileSecretName: docker-registry-keyfile-prod-4
       credentials:
         project_id: travis-production-4
 

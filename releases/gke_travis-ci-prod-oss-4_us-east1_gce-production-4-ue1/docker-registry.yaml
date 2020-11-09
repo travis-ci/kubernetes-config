@@ -11,13 +11,14 @@ spec:
     ref: master
   releaseName: docker-registry
   values:
-    replicaCount: 6
+    replicaCount: 0
     tlsSecretName: travis-ci-com-tls-04-10-2021
 
     storage: gcs
     gcs:
       bucket: travis-docker-registry-4
       keyfile: /etc/docker/gcs/keyfile
+      keyfileSecretName: docker-registry-keyfile-prod-4
       credentials:
         project_id: travis-production-4
 
