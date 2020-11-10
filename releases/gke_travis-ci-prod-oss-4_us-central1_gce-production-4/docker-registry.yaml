@@ -38,5 +38,13 @@ spec:
         cloud.google.com/load-balancer-type: "Internal"
 
     configData:
+      log:
+        accesslog:
+          disabled: true
+        level: debug
+        formatter: text
+        fields:
+          service: registry
+          environment: staging
       proxy:
         remoteurl: https://mirror.gcr.io
