@@ -11,7 +11,7 @@ spec:
     ref: staging
   releaseName: docker-registry
   values:
-    replicaCount: 1
+    replicaCount: 2
     tlsSecretName: travis-ci-com-tls-04-10-2021
 
     storage: filesystem
@@ -44,4 +44,4 @@ spec:
 
     configData:
       proxy:
-        remoteurl: https://mirror.gcr.io
+        remoteurl: https://registry-1.docker.io
