@@ -11,8 +11,8 @@ spec:
   releaseName: worker-n2-com
   values:
     image:
-      repository: travisci/worker
-      tag: v6.2.5-7-g941b20c
+      repository: gcr.io/travis-ci-prod-services-1/worker
+      tag: v6.2.20
 
     cluster:
       enabled: true
