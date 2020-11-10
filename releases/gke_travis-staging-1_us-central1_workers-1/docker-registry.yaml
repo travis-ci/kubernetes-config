@@ -11,7 +11,7 @@ spec:
     ref: staging
   releaseName: docker-registry
   values:
-    replicaCount: 2
+    replicaCount: 1
     tlsSecretName: travis-ci-com-tls-04-10-2021
 
     storage: filesystem
