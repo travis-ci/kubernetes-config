@@ -172,9 +172,11 @@ spec:
               value: "true"
 {{- end }}
           volumeMounts:
+{{- if eq .Values.storage "gcs" }}
 {{- if .Values.gcs.keyfile }}
             - name: docker-registry-keyfile
               mountPath: /etc/docker/gcs
+{{- end }}
 {{- end }}
 {{- if .Values.secrets.htpasswd }}
             - name: auth
