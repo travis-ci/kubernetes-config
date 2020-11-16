@@ -57,3 +57,4 @@ spec:
         maintenance:
           uploadpurging:
             enabled: false
+            age: 672h
