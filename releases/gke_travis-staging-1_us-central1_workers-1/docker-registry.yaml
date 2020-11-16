@@ -53,3 +53,7 @@ spec:
           environment: staging
       proxy:
         remoteurl: https://registry-1.docker.io
+      storage:
+        maintenance:
+          uploadpurging:
+            enabled: false
