@@ -11,21 +11,21 @@ spec:
     ref: staging
   releaseName: docker-registry
   values:
-    replicaCount: 1
+    replicaCount: 2
     tlsSecretName: travis-ci-com-tls-04-10-2021
 
-#     storage: filesystem
-#     persistence:
-#       accessMode: 'ReadWriteOnce'
-#       enabled: true
-#       size: 100Gi
+    storage: filesystem
+    persistence:
+      accessMode: 'ReadWriteOnce'
+      enabled: true
+      size: 100Gi
 
-    storage: gcs
-    gcs:
-      bucket: travis-docker-registry-staging
-      keyfile: /etc/docker/gcs/keyfile
-      credentials:
-        project_id: travis-staging-1
+    # storage: gcs
+    # gcs:
+    #   bucket: travis-docker-registry-staging
+    #   keyfile: /etc/docker/gcs/keyfile
+    #   credentials:
+    #     project_id: travis-staging-1
 
     resources:
       limits:
@@ -53,8 +53,3 @@ spec:
           environment: staging
       proxy:
         remoteurl: https://registry-1.docker.io
-      storage:
-        maintenance:
-          uploadpurging:
-            enabled: false
-            age: 672h
