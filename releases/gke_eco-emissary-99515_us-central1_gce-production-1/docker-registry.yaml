@@ -39,4 +39,4 @@ spec:
 
     configData:
       proxy:
-        remoteurl: https://mirror.gcr.io
+        remoteurl: https://registry-1.docker.io

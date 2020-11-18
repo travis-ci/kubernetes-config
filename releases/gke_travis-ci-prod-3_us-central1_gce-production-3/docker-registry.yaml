@@ -25,10 +25,10 @@ spec:
     resources:
       limits:
         cpu: 2000m
-        memory: 512Mi
+        memory: 2048Mi
       requests:
         cpu: 2000m
-        memory: 512Mi
+        memory: 2048Mi
 
     service:
       type: LoadBalancer
@@ -39,4 +39,4 @@ spec:
 
     configData:
       proxy:
-        remoteurl: https://mirror.gcr.io
+        remoteurl: https://registry-1.docker.io
