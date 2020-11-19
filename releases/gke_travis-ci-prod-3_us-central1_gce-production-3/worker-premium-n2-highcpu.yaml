@@ -11,8 +11,8 @@ spec:
   releaseName: worker-premium-n2-highcpu
   values:
     image:
-      repository: travisci/worker
-      tag: v6.2.1-21-g73afc12
+      repository: gcr.io/travis-ci-prod-services-1/worker
+      tag: v6.2.20
 
     cluster:
       enabled: true

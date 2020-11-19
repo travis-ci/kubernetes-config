@@ -11,8 +11,8 @@ spec:
   releaseName: worker-org
   values:
     image:
-      repository: travisci/worker
-      tag: v6.2.17
+      repository: gcr.io/travis-ci-prod-services-1/worker
+      tag: v6.2.20
 
     cluster:
       enabled: true
