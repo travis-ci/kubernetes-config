@@ -40,7 +40,3 @@ spec:
     configData:
       proxy:
         remoteurl: https://registry-1.docker.io
-      storage:
-        maintenance:
-          uploadpurging:
-            enabled: false
