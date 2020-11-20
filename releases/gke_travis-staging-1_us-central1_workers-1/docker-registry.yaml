@@ -53,8 +53,12 @@ spec:
           environment: staging
       proxy:
         remoteurl: https://registry-1.docker.io
-      # storage:
-      #   maintenance:
-      #     uploadpurging:
-      #       enabled: false
-      #       age: 672h
+			redis:
+  			addr: docker-redis-master:6379
+      storage:
+				cache:
+      		blobdescriptor: redis
+        maintenance:
+          uploadpurging:
+            enabled: false
+            age: 672h
