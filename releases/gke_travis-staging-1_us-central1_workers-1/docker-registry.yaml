@@ -24,8 +24,8 @@ spec:
     gcs:
       bucket: travis-docker-registry-staging
       # keyfile: /etc/docker/gcs/keyfile
-      # credentials:
-        # project_id: travis-staging-1
+      credentials:
+        project_id: travis-staging-1
 
     resources:
       limits:
