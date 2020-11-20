@@ -23,7 +23,7 @@ spec:
     storage: gcs
     gcs:
       bucket: travis-docker-registry-staging
-      # keyfile: /etc/docker/gcs/keyfile
+      keyfile: /etc/docker/gcs/keyfile
       credentials:
         project_id: travis-staging-1
 
@@ -53,11 +53,11 @@ spec:
           environment: staging
       proxy:
         remoteurl: https://registry-1.docker.io
-			redis:
-  			addr: docker-redis-master:6379
+      redis:
+        addr: docker-redis-master:6379
       storage:
-				cache:
-      		blobdescriptor: redis
+        cache:
+          blobdescriptor: redis
         maintenance:
           uploadpurging:
             enabled: false
