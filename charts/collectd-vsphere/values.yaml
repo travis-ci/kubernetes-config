@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: travisci/collectd-vsphere
+  repository: gcr.io/travis-ci-staging-services-1/collectd-vsphere:v1.2.0
   tag: v1.2.0
   pullPolicy: IfNotPresent
 
@@ -45,3 +45,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+imagePullSecrets: gcr-io

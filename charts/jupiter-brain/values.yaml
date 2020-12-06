@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: travisci/jupiter-brain
+  repository: gcr.io/travis-ci-staging-services-1/jupiter-brain
   tag: v1.1.0
   pullPolicy: IfNotPresent
 
@@ -43,3 +43,6 @@ honeycomb:
 service:
   type: ClusterIP
   port: 80
+
+imagePullSecrets: gcr-io  
+

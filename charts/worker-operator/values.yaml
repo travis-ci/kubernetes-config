@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: travisci/worker-operator
+  repository: gcr.io/travis-ci-staging-services-1/worker-operator
   tag: v1.0.0
   pullPolicy: IfNotPresent
 
@@ -29,3 +29,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+imagePullSecrets: gcr-io
