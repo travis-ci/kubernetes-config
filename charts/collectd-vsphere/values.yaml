@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: gcr.io/travis-ci-staging-services-1/collectd-vsphere:v1.2.0
+  repository: gcr.io/travis-ci-staging-services-1/collectd-vsphere
   tag: v1.2.0
   pullPolicy: IfNotPresent
 
