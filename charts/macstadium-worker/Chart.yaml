@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "v4.6.2"
 description: Deploys worker with jupiter-brain for building macOS jobs
 name: macstadium-worker
-version: 0.1.0
+version: 0.1.1

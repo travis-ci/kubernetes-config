@@ -45,3 +45,5 @@ spec:
             name: {{ template "jupiter-brain.fullname" . }}
         - secretRef:
             name: {{ include "jupiter-brain.secret" . }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}      
