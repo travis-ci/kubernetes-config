@@ -3,11 +3,11 @@
 # Declare variables to be passed into your templates.
 
 macbot:
-  image: travisci/macbot:v1.1.2-2-gf339d36
+  image: gcr.io/travis-ci-prod-services-1/macbot:v1.3.1
   imagePullPolicy: IfNotPresent
 
 imaged:
-  image: travisci/imaged:627afe9
+  image: gcr.io/travis-ci-prod-services-1/imaged:v1.0.0
   imagePullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -34,3 +34,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+imagePullSecrets: gcr-io
