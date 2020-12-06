@@ -64,13 +64,13 @@ spec:
         - name: travis-vm-ssh-key
           mountPath: "/etc/worker/ssh"
           readOnly: true
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}           
       volumes:
       - name: travis-vm-ssh-key
         secret:
           secretName: {{ template "macstadium-worker.fullname" . }}-vm-key
       terminationGracePeriodSeconds: 7200
-      imagePullSecrets:
-      - name: {{ .Values.imagePullSecrets }} 
   strategy:
     rollingUpdate:
       # We can probably handle extra jobs while a worker is shutting down,
