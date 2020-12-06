@@ -56,6 +56,9 @@ spec:
           name: {{ template "macstadium-worker.fullname" . }}
       - secretRef:
           name: {{ template "macstadium-worker.secret" . }}
+          
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}    
 
       sshKeySecret: {{ template "macstadium-worker.fullname" . }}-vm-key
 {{ end }}

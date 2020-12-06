@@ -9,8 +9,8 @@
 replicaCount: 2
 
 image:
-  repository: travisci/worker
-  tag: v6.0.0
+  repository: gcr.io/travis-ci-staging-services-1/worker
+  tag: v6.2.0
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -80,3 +80,5 @@ jupiterBrainName: ""
 # This secret must store the private key under the key "travis-vm-ssh-key" regardless
 # of this value.
 sshKeySecretName: "travis-vm-ssh-key"
+
+imagePullSecrets: gcr-io

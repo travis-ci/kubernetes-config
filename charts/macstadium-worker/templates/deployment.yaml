@@ -69,6 +69,8 @@ spec:
         secret:
           secretName: {{ template "macstadium-worker.fullname" . }}-vm-key
       terminationGracePeriodSeconds: 7200
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}  
   strategy:
     rollingUpdate:
       # We can probably handle extra jobs while a worker is shutting down,
