@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: gcr.io/travis-ci-prod-services-1/worker
-      tag: v6.2.20
+      tag: v6.2.21
 
     cluster:
       enabled: true
