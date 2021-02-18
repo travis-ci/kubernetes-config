@@ -1,0 +1,41 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-premium-n2-32
+  namespace: gce-production-1
+spec:
+  chart:
+    path: charts/gce-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: master
+  releaseName: worker-premium-n2-32
+  values:
+    image:
+      repository: gcr.io/travis-ci-prod-services-1/worker
+      tag: v6.2.21
+
+    cluster:
+      enabled: true
+      maxJobs: 100
+      maxJobsPerWorker: 50
+
+    site: com
+    queue: builds.gce-premium-n2-32
+    project: eco-emissary-99515
+
+    trvs:
+      enabled: true
+      app: gce-workers
+      env: production-1
+      pro: true
+
+    rateLimitRedis:
+      enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
+
+    terraformSecretName: worker-premium-n2
+
+    default_machine_type: "n2-standard-32"
+    premium_machine_type: "n2-standard-32"
+    worker_gce_zone: "us-central1-c"
