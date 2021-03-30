@@ -6,7 +6,7 @@ metadata:
   namespace: gce-production-1
 spec:
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
+    repository: https://charts.helm.sh/stable
     name: redis
     version: 8.0.13
   releaseName: rate-limit-redis
