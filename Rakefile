@@ -6,7 +6,6 @@ task default: %i[lint validate package]
 CHARTS = FileList["charts/*"].resolve
 
 task :lint do
-  sh "helm repo rm stable"
   sh "helm repo add stable https://charts.helm.sh/stable --force-update"
   CHARTS.each do |chart|    
     sh "helm dependency update #{chart}"
