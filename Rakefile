@@ -7,6 +7,7 @@ CHARTS = FileList["charts/*"].resolve
 
 task :lint do
   sh "helm repo add stable https://charts.helm.sh/stable --force-update"
+  sh "helm repo list"
   CHARTS.each do |chart|
     sh "helm dependency update #{chart}"
   end
