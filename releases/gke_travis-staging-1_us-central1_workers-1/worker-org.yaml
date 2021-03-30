@@ -11,7 +11,7 @@ spec:
   releaseName: worker-org
   values:
     image:
-      repository: travisci/worker
+      repository: gcr.io/travis-staging-1/worker
       tag: v6.2.22
 
       # Example calculation: 2400 CPUs / 2 vCPU per job = 1200 maxJobs
