@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: travisci/worker
-      tag: v6.2.6
+      tag: v6.2.22
 
       # Example calculation: 2400 CPUs / 2 vCPU per job = 1200 maxJobs
       # Staging doesn't need that much, would be a waste of resources.
