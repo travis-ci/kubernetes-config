@@ -23,7 +23,7 @@ task :package do
     CHARTS.each do |chart|
       sh "helm package -u ../#{chart}"
     end
-    sh "helm repo index . --url https://travis-ci-helm-charts.storage.googleapis.com"
+    sh "helm repo index . --url https://charts.helm.sh/stable"
   end
 end
 
