@@ -11,7 +11,7 @@ spec:
   releaseName: worker-com-free
   values:
     image:
-      repository: travisci/worker
+      repository: gcr.io/travis-ci-prod-services-1/worker
       tag: v6.2.22
 
       # Calculation: 17000 CPUs / 2 vCPU per job / 2 worker types per project = 4250 maxJobs per worker type

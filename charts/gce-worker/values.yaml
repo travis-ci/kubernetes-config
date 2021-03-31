@@ -9,7 +9,7 @@
 replicaCount: 2
 
 image:
-  repository: travisci/worker
+  repository: gcr.io/travis-ci-prod-services-1/worker
   tag: v6.2.1
   pullPolicy: IfNotPresent
 
