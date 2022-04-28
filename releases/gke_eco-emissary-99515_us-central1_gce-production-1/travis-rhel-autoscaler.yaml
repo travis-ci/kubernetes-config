@@ -12,7 +12,7 @@ spec:
   releaseName: travis-rhel-autoscaler
   values:
     image:
-      repository: quay.io/travisci/autoscaler
+      repository: gcr.io/eco-emissary-99515/autoscaler
       tag: v0.1.7
       pullPolicy: IfNotPresent
     imagePullSecrets:
