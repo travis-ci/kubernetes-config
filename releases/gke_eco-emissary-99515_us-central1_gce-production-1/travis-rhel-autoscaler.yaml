@@ -2,14 +2,14 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: travis-autoscaler
+  name: travis-rhel-autoscaler
   namespace: gce-production-1
 spec:
   chart:
     path: charts/travis-autoscaler
     git: git@github.com:travis-ci/kubernetes-config.git
     ref: master
-  releaseName: travis-autoscaler
+  releaseName: travis-rhel-autoscaler
   values:
     image:
       repository: quay.io/travisci/autoscaler
