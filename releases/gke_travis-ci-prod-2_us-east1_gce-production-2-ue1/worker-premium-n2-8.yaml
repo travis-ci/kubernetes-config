@@ -1,0 +1,42 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: worker-premium-n2-8
+  namespace: gce-production-2
+spec:
+  chart:
+    path: charts/gce-worker
+    git: git@github.com:travis-ci/kubernetes-config.git
+    ref: master
+  releaseName: worker-premium-n2-8
+  values:
+    image:
+      repository: gcr.io/travis-ci-prod-services-1/worker
+      tag: v6.2.22
+
+    cluster:
+      enabled: true
+      maxJobs: 20
+      maxJobsPerWorker: 50
+
+    site: com
+    queue: builds.gce-premium-n2-8
+    project: travis-ci-prod-2
+    librato_source_prefix: production-2-gce
+
+    trvs:
+      enabled: true
+      app: gce-workers
+      env: production-2
+      pro: true
+
+    rateLimitRedis:
+      enabled: true
+      secretName: rate-limit-redis
+      envPrefix: RATE_LIMIT_REDIS
+
+    default_machine_type: "n2-standard-8"
+    premium_machine_type: "n2-standard-8"
+    worker_gce_zone: "us-east1-c,us-east1-d"
+    default_gce_network: "main-us-east1"
+    worker_gce_region: "us-east1"
